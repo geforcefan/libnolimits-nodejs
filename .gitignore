@@ -1,3 +1,9 @@
-node_modules
+inode_modules
 docs
 .idea
+build
+*.pro
+*.user
+ext-lib/glm
+*.log
+src

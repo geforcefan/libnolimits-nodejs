@@ -29,10 +29,10 @@ namespace Binding {
             static BINDING_METHOD_NEW(
                 Park *obj;
 
-                if(info[0]->IsUndefined() || !info[0]->IsString())
-                    obj = new Park();
-                else
+                if(info[0]->IsString())
                     obj = new Park(std::string(*Nan::Utf8String(info[0])));
+                else
+                    obj = new Park();
             );
 
             BINDING_METHOD_GETTER_OBJECT(Info, Park);

@@ -1,5 +1,5 @@
 {
-  "name": "nolimits-nodejs",
+  "name": "nolimits",
   "version": "1.0.0",
   "description": "Native implementation of NoLimits Roller Coaster Library for NodeJS",
   "main": "index.js",

@@ -4,7 +4,7 @@
   "description": "Native implementation of NoLimits Roller Coaster Library for NodeJS",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
@@ -35,8 +35,9 @@
   "dependencies": {
     "bindings": "^1.2.1",
     "nan": "^2.5.1",
-    "node-pre-gyp": "^0.6.34",
-    "segfault-handler": "git+https://github.com/ddopson/node-segfault-handler.git",
-    "v8pp": "git+https://github.com/pmed/v8pp.git"
+    "node-pre-gyp": "^0.6.34"
+  },
+  "devDependencies": {
+    "segfault-handler": "git+https://github.com/ddopson/node-segfault-handler.git"
   }
 }

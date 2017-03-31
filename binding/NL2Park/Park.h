@@ -23,7 +23,7 @@ namespace Binding {
 
             static BINDING_MODULE_INIT("Park",
                 BINDING_PROTOTYPE_METHOD_GETTER(Info);
-            )
+            );
         private:
             static BINDING_PERSISTENT_CONSTRUCTOR();
             static BINDING_METHOD_NEW(

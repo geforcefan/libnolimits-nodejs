@@ -25,7 +25,7 @@ namespace Binding {
                BINDING_PROTOTYPE_METHOD_SETTER_GETTER(OverwriteDefaultWeather);
                BINDING_PROTOTYPE_STATIC_METHOD(convertWindIntensity);
                BINDING_PROTOTYPE_STATIC_METHOD(convertFogIntensity);
-             )
+             );
 
             static BINDING_NEW_INSTANCE();
         private:

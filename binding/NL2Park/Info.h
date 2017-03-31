@@ -22,8 +22,9 @@ namespace Binding {
                BINDING_PROTOTYPE_METHOD_SETTER_GETTER(Preview);
                BINDING_PROTOTYPE_METHOD_SETTER_GETTER(Environment);
                BINDING_PROTOTYPE_METHOD_GETTER(Weather);
-            )
-            static BINDING_NEW_INSTANCE()
+            );
+
+            static BINDING_NEW_INSTANCE();
         private:
             BINDING_METHOD_SETTER_GETTER_STRING(Author, Info);
             BINDING_METHOD_SETTER_GETTER_STRING(Description, Info);

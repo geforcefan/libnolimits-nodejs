@@ -26,10 +26,7 @@
                 "<!(node -e \"require('nan')\")",
                 "<!(node -e \"require('v8pp')\")",
                 "lib",
-                ".",
-                "ext-lib",
-                "ext-lib/glm",
-                "ext-lib/glm/detail"
+                "."
             ]
         }
     ]

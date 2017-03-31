@@ -4,8 +4,6 @@
             "target_name": "nolimits",
             "sources": [
                 "binding/nolimits.cpp",
-                "binding/NL2Park/Park.cpp",
-                "binding/NL2Park/Info/Info.cpp",
                 "lib/Stream/NoLimitsStream.cpp",
                 "lib/NL2Park/Park.cpp",
                 "lib/NL2Park/Info/Info.cpp",

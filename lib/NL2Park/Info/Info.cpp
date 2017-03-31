@@ -6,8 +6,6 @@ namespace Library {
         Info::Info() {
             weather = new Weather();
             sky = new Sky();
-
-            author = std::string("Ercan Yeah");
         }
 
         void Info::read() {

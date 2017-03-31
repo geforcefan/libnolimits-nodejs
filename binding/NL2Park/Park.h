@@ -1,39 +1,45 @@
-#ifndef PARK_H
-#define PARK_H
+#ifndef BINDING_NL2PARK_PARK_H
+#define BINDING_NL2PARK_PARK_H
 
-#include <nan.h>
-#include <node.h>
-#include <node_object_wrap.h>
+#include <binding/nolimits.h>
+#include <binding/NL2Park/Info.h>
 
-#include <string>
-
-#include <File/BufferFile.h>
-#include <Stream/NoLimitsStream.h>
-#include <NL2Park/Park.h>
-
-#include <binding/NL2Park/Info/Info.h>
+#include <lib/NL2Park/Park.h>
+#include <lib/File/BufferFile.h>
 
 namespace Binding {
     namespace NL2Park {
-        class Park : public node::ObjectWrap {
+        class Park : public Nan::ObjectWrap {
         public:
-            static void Init(v8::Handle<v8::Object> exports);
+            explicit Park(std::string filepath) {
+                _park = new Library::NL2Park::Park();
+                _park->readChunk(Library::File::BufferFile::createFromFilePath(filepath));
+            }
 
-            static v8::Persistent<v8::Function> getConstructor();
+            explicit Park() {}
+            ~Park() {}
 
-            Library::NL2Park::Park *getPark() const;
+            Library::NL2Park::Park *getPark() { return _park; }
+
+            static BINDING_MODULE_INIT("Park",
+                BINDING_PROTOTYPE_METHOD_GETTER(Info);
+            )
         private:
-            explicit Park(std::string filepath);
-            explicit Park();
+            static BINDING_PERSISTENT_CONSTRUCTOR();
+            static BINDING_METHOD_NEW(
+                Park *obj;
 
-            static void New(const v8::FunctionCallbackInfo<v8::Value>& args);
-            static void getInfo(const v8::FunctionCallbackInfo<v8::Value> &args);
+                if(info[0]->IsUndefined() || !info[0]->IsString())
+                    obj = new Park();
+                else
+                    obj = new Park(std::string(*Nan::Utf8String(info[0])));
+            );
 
-            static v8::Persistent<v8::Function> constructor;
+            BINDING_METHOD_GETTER_OBJECT(Info, Park);
 
-            Library::NL2Park::Park *park;
+            Library::NL2Park::Park *_park;
         };
     }
 }
 
-#endif // PARK_H
+#endif // BINDING_NL2PARK_PARK_H

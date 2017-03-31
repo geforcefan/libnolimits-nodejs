@@ -6,8 +6,18 @@
 namespace Library {
     namespace NL2Park {
         class Weather: public Stream::NoLimitsStream {
-            using Stream::NoLimitsStream::NoLimitsStream;
         public:
+            Weather() : Stream::NoLimitsStream::NoLimitsStream() {
+                rainIntensity = 0;
+                snowIntensity = 0;
+                fogIntensity = 0;
+                windIntensity = 0;
+                overcastIntensity = 0;
+                cloudsIntensity = 0;
+                thunderIntensity = 0;
+                overwriteDefaultWeather = false;
+            }
+
             void read();
 
             float getRainIntensity() const;

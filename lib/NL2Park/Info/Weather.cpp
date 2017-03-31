@@ -3,6 +3,7 @@
 
 namespace Library {
     namespace NL2Park {
+
         void Weather::read() {
            setOverwriteDefaultWeather(readBoolean());
 

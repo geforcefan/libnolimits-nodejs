@@ -6,7 +6,6 @@ namespace Library {
 
         void Weather::read() {
            setOverwriteDefaultWeather(readBoolean());
-
            setRainIntensity(readFloat());
            setSnowIntensity(readFloat());
            setWindIntensity(Weather::convertWindIntensity(readFloat(), true));

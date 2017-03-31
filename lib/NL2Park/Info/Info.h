@@ -59,4 +59,4 @@ namespace Library {
     }
 }
 
-#endif // INFO_H
+#endif // LIB_NL2PARK_INFO_H

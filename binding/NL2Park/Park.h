@@ -2,7 +2,8 @@
 #define BINDING_NL2PARK_PARK_H
 
 #include <binding/nolimits.h>
-#include <binding/NL2Park/Info.h>
+#include <binding/NL2Park/Info/Info.h>
+#include <binding/NL2Park/Coaster/Coaster.h>
 
 #include <lib/NL2Park/Park.h>
 #include <lib/File/BufferFile.h>
@@ -23,6 +24,7 @@ namespace Binding {
 
             static BINDING_MODULE_INIT("Park",
                 BINDING_PROTOTYPE_METHOD_GETTER(Info);
+                BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(Coaster);
             );
         private:
             static BINDING_PERSISTENT_CONSTRUCTOR();
@@ -36,6 +38,7 @@ namespace Binding {
             );
 
             BINDING_METHOD_GETTER_OBJECT(Info, Park);
+            BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(Coaster, Park);
 
             Library::NL2Park::Park *_park;
         };

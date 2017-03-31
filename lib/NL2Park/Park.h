@@ -4,6 +4,9 @@
 #include <string>
 #include <Stream/NoLimitsStream.h>
 #include <NL2Park/Info/Info.h>
+#include <NL2Park/Coaster/Coaster.h>
+
+#include <vector>
 
 namespace Library {
     namespace NL2Park {
@@ -14,8 +17,14 @@ namespace Library {
             void read();
 
             Info *getInfo() const;
+
+            std::vector<Coaster*> getCoaster() const;
+            void insertCoaster(Coaster* value);
+
         private:
             Info *info;
+
+            std::vector<Coaster*> coaster;
         };
     }
 }

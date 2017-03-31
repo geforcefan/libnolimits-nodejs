@@ -9,13 +9,21 @@ namespace Library {
         }
 
         void Park::read() {
-            for (int i = 0; i <= getFileSize(); i++) {
+            for(int i=0; i <= getFileSize(); i++) {
                 setStreamPosition(i);
 
                 std::string chunk = readChunkName();
 
                 if(chunk == "INFO") {
                     getInfo()->readChunk(getChunkBufferFile());
+                    i = getStreamPosition() - 1;
+                }
+
+                if(chunk == "COAS") {
+                    Coaster *_coaster = new Coaster();
+                    insertCoaster(_coaster);
+
+                    _coaster->readChunk(getChunkBufferFile());
                     i = getStreamPosition() - 1;
                 }
 
@@ -37,12 +45,18 @@ namespace Library {
                     i = getStreamPosition() - 1;
                 }
             }
-
-
         }
 
         Info *Park::getInfo() const {
             return info;
+        }
+
+        std::vector<Coaster*> Park::getCoaster() const {
+            return coaster;
+        }
+
+        void Park::insertCoaster(Coaster* value) {
+            coaster.push_back(value);
         }
     }
 }

@@ -12,5 +12,4 @@ SegfaultHandler.registerHandler("crash.log", function(signal, address, stack) {
 const NoLimits = require('./build/Release/nolimits');
 const Park = new NoLimits.NL2.Park("/Users/ercanakyurek/Desktop/newpark/parks/Hydra/Hydra.nl2park");
 
-console.log(Park);
-console.log(NoLimits.NL2.Weather.convertFogIntensity(3, true), NoLimits.NL2.Weather.convertWindIntensity(3, true));
+console.log(Park.Coaster[0]);

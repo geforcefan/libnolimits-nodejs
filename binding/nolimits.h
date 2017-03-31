@@ -1,6 +1,7 @@
 #ifndef BINDING_NOLIMITS_H
 #define BINDING_NOLIMITS_H
 
+#include <vector>
 #include <iostream>
 #include <nan.h>
 #include <node.h>
@@ -9,6 +10,19 @@
 #include <glm/common.hpp>
 
 #define BINDING_QUOTE(name) #name
+
+#define BINDING_MODULE_INIT_ENUM(enumName, initList) \
+    NAN_MODULE_INIT(Init) { \
+        v8::Local<v8::Object> enums = Nan::New<v8::Object>(); \
+        initList \
+        Nan::Set(target, Nan::New(BINDING_QUOTE(enumName)).ToLocalChecked(), enums); \
+    }
+
+#define BINDING_PROTOTYPE_ENUM_LIST(bindingEnumClass) \
+    bindingEnumClass::Init(Nan::GetFunction(tpl).ToLocalChecked());
+
+#define BINDING_MODULE_ENUM_FIELD(enumField, className) \
+    enums->Set(Nan::New(BINDING_QUOTE(enumField)).ToLocalChecked(), Nan::New(className::enumField));
 
 #define BINDING_NEW_INSTANCE() \
     v8::Local<v8::Object> NewInstance(int argc, v8::Local<v8::Value> argv[]) { \
@@ -56,7 +70,6 @@
         } \
     } \
 
-
 #define BINDING_METHOD_NEW_CAST_EXTERNAL(className) \
     BINDING_METHOD_NEW( \
         className *obj; \
@@ -73,6 +86,10 @@
 
 #define BINDING_PROTOTYPE_STATIC_METHOD(name) \
     tpl->Set(Nan::New(BINDING_QUOTE(name)).ToLocalChecked(), Nan::New<v8::FunctionTemplate>(name));
+
+#define BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(name) \
+    Nan::SetAccessor(itpl, Nan::New<v8::String>(BINDING_QUOTE(name)).ToLocalChecked(), get##name); \
+    Nan::SetPrototypeMethod(tpl, BINDING_QUOTE(insert##name), insert##name);
 
 #define BINDING_PROTOTYPE_METHOD_SETTER_GETTER(name) \
     Nan::SetAccessor(itpl, Nan::New<v8::String>(BINDING_QUOTE(name)).ToLocalChecked(), get##name, set##name);
@@ -101,34 +118,135 @@
         if(!value->IsString()) \
             Nan::ThrowTypeError("First argument must be of type string"); \
         obj->get##className()->set##method(std::string(*Nan::Utf8String(value))); \
-    } \
+    }
 
 #define BINDING_METHOD_SETTER_GETTER_FLOAT(method, className) \
     static NAN_GETTER(get##method) { \
         className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
         info.GetReturnValue().Set(obj->get##className()->get##method()); \
     } \
-    \
     static NAN_SETTER(set##method) { \
         className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
         if(!value->IsNumber()) \
             Nan::ThrowTypeError("First argument must be of type number"); \
         obj->get##className()->set##method((float)Nan::To<double>(value).FromJust()); \
-    } \
+    }
 
+#define BINDING_METHOD_SETTER_GETTER_DOUBLE(method, className) \
+    static NAN_GETTER(get##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        info.GetReturnValue().Set(obj->get##className()->get##method()); \
+    } \
+    static NAN_SETTER(set##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        if(!value->IsNumber()) \
+            Nan::ThrowTypeError("First argument must be of type number"); \
+        obj->get##className()->set##method(Nan::To<double>(value).FromJust()); \
+    }
+
+#define BINDING_METHOD_SETTER_GETTER_INTEGER(method, className) \
+    static NAN_GETTER(get##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        info.GetReturnValue().Set(obj->get##className()->get##method()); \
+    } \
+    static NAN_SETTER(set##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        if(!value->IsNumber()) \
+            Nan::ThrowTypeError("First argument must be of type number"); \
+        obj->get##className()->set##method(Nan::To<int>(value).FromJust()); \
+    }
+
+#define BINDING_METHOD_SETTER_GETTER_ENUM(method, className, cast) \
+    static NAN_GETTER(get##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        info.GetReturnValue().Set(obj->get##className()->get##method()); \
+    } \
+    static NAN_SETTER(set##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        if(!value->IsNumber()) \
+            Nan::ThrowTypeError("First argument must be of type number"); \
+        obj->get##className()->set##method((cast)Nan::To<int>(value).FromJust()); \
+    }
+
+#define BINDING_METHOD_SETTER_GETTER_VEC3(method, className)\
+    static NAN_GETTER(get##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        glm::vec3 val = obj->get##className()->get##method(); \
+        v8::Local<v8::Array> aVal = Nan::New<v8::Array>(3); \
+        aVal->Set(0, Nan::New(val.x)); \
+        aVal->Set(1, Nan::New(val.y)); \
+        aVal->Set(2, Nan::New(val.z)); \
+        info.GetReturnValue().Set(aVal); \
+    } \
+    static NAN_SETTER(set##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        if(!value->IsArray()) \
+            return Nan::ThrowSyntaxError("First argument must be of type array"); \
+        v8::Local<v8::Array> aVal = v8::Local<v8::Array>::Cast(value); \
+        if(aVal->Length() != 3) \
+            return Nan::ThrowSyntaxError("3 argument must be provided of type number"); \
+        obj->get##className()->set##method(glm::vec3( \
+            aVal->Get(0)->IsNumber() ? Nan::To<double>(aVal->Get(0)).FromJust() : 0, \
+            aVal->Get(1)->IsNumber() ? Nan::To<double>(aVal->Get(1)).FromJust() : 0, \
+            aVal->Get(2)->IsNumber() ? Nan::To<double>(aVal->Get(2)).FromJust() : 0 \
+        )); \
+    }
+
+#define BINDING_METHOD_SETTER_GETTER_VEC2(method, className)\
+    static NAN_GETTER(get##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        glm::vec2 val = obj->get##className()->get##method(); \
+        v8::Local<v8::Array> aVal = Nan::New<v8::Array>(2); \
+        aVal->Set(0, Nan::New(val.x)); \
+        aVal->Set(1, Nan::New(val.y)); \
+        info.GetReturnValue().Set(aVal); \
+    } \
+    static NAN_SETTER(set##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        if(!value->IsArray()) \
+            return Nan::ThrowSyntaxError("First argument must be of type array"); \
+        v8::Local<v8::Array> aVal = v8::Local<v8::Array>::Cast(value); \
+        if(aVal->Length() != 2) \
+            return Nan::ThrowSyntaxError("2 argument must be provided of type number"); \
+        obj->get##className()->set##method(glm::vec2( \
+            aVal->Get(0)->IsNumber() ? Nan::To<double>(aVal->Get(0)).FromJust() : 0, \
+            aVal->Get(1)->IsNumber() ? Nan::To<double>(aVal->Get(1)).FromJust() : 0 \
+        )); \
+    }
 
 #define BINDING_METHOD_SETTER_GETTER_BOOLEAN(method, className) \
     static NAN_GETTER(get##method) { \
         className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
         info.GetReturnValue().Set(obj->get##className()->get##method()); \
     } \
-    \
     static NAN_SETTER(set##method) { \
         className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
         if(!value->IsBoolean()) \
-            Nan::ThrowTypeError("First argument must be of type boolen"); \
+            Nan::ThrowTypeError("First argument must be of type boolean"); \
         obj->get##className()->set##method(Nan::To<bool>(value).FromJust()); \
-    } \
+    }
 
+#define BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(method, className) \
+    static NAN_GETTER(get##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        std::vector<Library::NL2Park::method*> vec = obj->get##className()->get##method(); \
+        v8::Local<v8::Array> arr = Nan::New<v8::Array>(vec.size()); \
+        for(unsigned long i = 0; i < vec.size(); i++) {\
+            Library::NL2Park::method *lib = vec[i]; \
+            Binding::NL2Park::method *binding = new Binding::NL2Park::method(lib); \
+            const int argc = 1; \
+            v8::Local<v8::Value> argv[] = { v8::External::New(info.GetIsolate(), binding) }; \
+            arr->Set(i, Binding::NL2Park::method::NewInstance(argc, argv)); \
+        } \
+        info.GetReturnValue().Set(arr);\
+    } \
+    static NAN_METHOD(insert##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        if(info[0]->IsUndefined()) \
+            return Nan::ThrowSyntaxError("1 argument must be provided"); \
+        Nan::MaybeLocal<v8::Object> maybe1 = Nan::To<v8::Object>(info[0]); \
+        Binding::NL2Park::method* argObj = ObjectWrap::Unwrap<Binding::NL2Park::method>(maybe1.ToLocalChecked()); \
+        obj->get##className()->insert##method(argObj->get##method()); \
+    }
 
 #endif // BINDING_NOLIMITS_H

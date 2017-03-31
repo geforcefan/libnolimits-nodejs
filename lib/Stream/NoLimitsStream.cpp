@@ -35,10 +35,18 @@ namespace Library {
             return floatBuffer;
         }
 
+        double NoLimitsStream::readDouble() {
+            double doubleBuffer;
+            file->read(&doubleBuffer, 8, 1);
+            doubleBuffer = be2Host(doubleBuffer);
+
+            return doubleBuffer;
+        }
+
         uint16_t NoLimitsStream::readUnsignedShort() {
             uint16_t shortBuffer;
             file->read(&shortBuffer, 2, 1);
-            shortBuffer = be2Host(shortBuffer);
+            shortBuffer = le2Host(shortBuffer);
 
             return shortBuffer;
         }
@@ -46,7 +54,7 @@ namespace Library {
         uint32_t NoLimitsStream::readUnsignedInteger() {
             uint32_t intBuffer;
             file->read(&intBuffer, 4, 1);
-            intBuffer = be2Host(intBuffer);
+            intBuffer = le2Host(intBuffer);
 
             return intBuffer;
         }
@@ -61,9 +69,13 @@ namespace Library {
         int NoLimitsStream::readInteger() {
             int intBuffer;
             file->read(&intBuffer, 4, 1);
-            intBuffer = be2Host(intBuffer);
+            intBuffer = le2Host(intBuffer);
 
             return intBuffer;
+        }
+
+        glm::vec3 NoLimitsStream::readColor() {
+            return readUnsigned8Vec3();
         }
 
         glm::vec2 NoLimitsStream::readIntVec2() {
@@ -76,6 +88,14 @@ namespace Library {
 
         glm::vec3 NoLimitsStream::readFloatVec3() {
             return glm::vec3(readFloat(), readFloat(), readFloat());
+        }
+
+        glm::vec3 NoLimitsStream::readUnsigned8Vec3() {
+            return glm::vec3(readUnsigned8(), readUnsigned8(), readUnsigned8());
+        }
+
+        glm::vec2 NoLimitsStream::readDoubleVec2() {
+            return glm::vec2(readDouble(), readDouble());
         }
 
         std::string NoLimitsStream::readChunkName() {
@@ -122,6 +142,7 @@ namespace Library {
 
         File::BufferFile *NoLimitsStream::getChunkBufferFile() {
             uint32_t chunkSize = readUnsignedInteger();
+            chunkSize = be2Host(chunkSize);
 
             char *chunkBuffer = (char*) malloc(chunkSize + 4);
 

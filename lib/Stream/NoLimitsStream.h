@@ -20,7 +20,6 @@ namespace Library {
             int getFileSize() const;
 
             File::File *getFile() const;
-
         protected:
             virtual void read() = 0;
 
@@ -31,10 +30,15 @@ namespace Library {
             int readInteger();
             void readNull(long count);
             float readFloat();
+            double readDouble();
             bool readBoolean();
+            glm::vec3 readColor();
 
             glm::vec2 readIntVec2();
             glm::vec2 readFloatVec2();
+            glm::vec2 readDoubleVec2();
+
+            glm::vec3 readUnsigned8Vec3();
             glm::vec3 readFloatVec3();
 
             std::string readString();

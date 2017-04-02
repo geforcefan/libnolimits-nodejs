@@ -20,6 +20,7 @@
                 "lib/NL2Park/Coaster/Track/Vertex.cpp",
                 "lib/NL2Park/Coaster/Track/RollPoint.cpp",
                 "lib/NL2Park/Coaster/Track/Trigger.cpp",
+                "lib/NL2Park/Coaster/Track/Parameter4D.cpp",
                 "lib/NL2Park/Coaster/Track/Support/RailNode.cpp",
                 "lib/NL2Park/Coaster/Track/Support/SupportNode.cpp",
                 "lib/File/File.cpp",

@@ -55,6 +55,14 @@ namespace Library {
                     i = getStreamPosition() - 1;
                 }
 
+                if(chunk == "4DPM") {
+                    Parameter4D *_parameter4D = new Parameter4D();
+                    insertParameter4D(_parameter4D);
+
+                    _parameter4D->readChunk(getChunkBufferFile());
+                    i = getStreamPosition() - 1;
+                }
+
                 if(chunk == "SRNP") {
                     RailNode *_railNode = new RailNode();
                     insertRailNode(_railNode);
@@ -103,6 +111,14 @@ namespace Library {
 
         void CustomTrack::insertRailNode(RailNode* value) {
             railNode.push_back(value);
+        }
+
+        std::vector<Parameter4D*> CustomTrack::getParameter4D() const {
+            return parameter4D;
+        }
+
+        void CustomTrack::insertParameter4D(Parameter4D* value) {
+            parameter4D.push_back(value);
         }
     }
 }

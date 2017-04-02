@@ -6,6 +6,7 @@
 #include <binding/NL2Park/Coaster/Track/RollPoint.h>
 #include <binding/NL2Park/Coaster/Track/Vertex.h>
 #include <binding/NL2Park/Coaster/Track/Trigger.h>
+#include <binding/NL2Park/Coaster/Track/Parameter4D.h>
 #include <binding/NL2Park/Coaster/Track/Support/RailNode.h>
 #include <lib/NL2Park/Coaster/Track/CustomTrack.h>
 
@@ -27,6 +28,7 @@ namespace Binding {
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(RollPoint);
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(Trigger);
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(RailNode);
+                BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(Parameter4D);
             );
 
             static BINDING_NEW_INSTANCE();
@@ -40,6 +42,7 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(RollPoint, CustomTrack);
             BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(Trigger, CustomTrack);
             BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(RailNode, CustomTrack);
+            BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(Parameter4D, CustomTrack);
         };
     }
 }

@@ -3,10 +3,14 @@
 
 #include <binding/nolimits.h>
 #include <lib/NL2Park/Coaster/Coaster.h>
+#include <lib/NL2Park/Coaster/Track/Track.h>
+#include <lib/NL2Park/Coaster/Track/CustomTrack.h>
 
 #include <binding/NL2Park/Coaster/Colors.h>
 #include <binding/NL2Park/Coaster/Style.h>
 #include <binding/NL2Park/Coaster/Mode.h>
+
+#include <binding/NL2Park/Coaster/Track/CustomTrack.h>
 
 namespace Binding {
     namespace NL2Park {
@@ -24,6 +28,7 @@ namespace Binding {
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(HideWireframe);
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(Freezed);
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(NumberOfCarsPerTrain);
+                BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(Track);
 
                 BINDING_PROTOTYPE_METHOD_GETTER(Colors);
                 BINDING_PROTOTYPE_METHOD_GETTER(Style);
@@ -44,6 +49,9 @@ namespace Binding {
             BINDING_METHOD_GETTER_OBJECT(Colors, Coaster);
             BINDING_METHOD_GETTER_OBJECT(Style, Coaster);
             BINDING_METHOD_GETTER_OBJECT(Mode, Coaster);
+
+
+            BINDING_METHOD_SETTER_GETTER_INHERITED_OBJECT_VECTOR(Track, Coaster);
 
             Library::NL2Park::Coaster *_coaster;
         };

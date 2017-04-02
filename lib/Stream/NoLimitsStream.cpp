@@ -54,7 +54,7 @@ namespace Library {
         uint32_t NoLimitsStream::readUnsignedInteger() {
             uint32_t intBuffer;
             file->read(&intBuffer, 4, 1);
-            intBuffer = le2Host(intBuffer);
+            intBuffer = be2Host(intBuffer);
 
             return intBuffer;
         }
@@ -96,6 +96,10 @@ namespace Library {
 
         glm::vec2 NoLimitsStream::readDoubleVec2() {
             return glm::vec2(readDouble(), readDouble());
+        }
+
+        glm::vec4 NoLimitsStream::readDoubleVec4() {
+            return glm::vec4(readDouble(), readDouble(), readDouble(), readDouble());
         }
 
         std::string NoLimitsStream::readChunkName() {
@@ -142,7 +146,6 @@ namespace Library {
 
         File::BufferFile *NoLimitsStream::getChunkBufferFile() {
             uint32_t chunkSize = readUnsignedInteger();
-            chunkSize = be2Host(chunkSize);
 
             char *chunkBuffer = (char*) malloc(chunkSize + 4);
 

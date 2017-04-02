@@ -9,6 +9,11 @@
 #include <binding/NL2Park/Coaster/Style.h>
 #include <binding/NL2Park/Coaster/Mode.h>
 #include <binding/NL2Park/Coaster/CustomFriction.h>
+#include <binding/NL2Park/Coaster/Track/CustomTrack.h>
+#include <binding/NL2Park/Coaster/Track/Track.h>
+#include <binding/NL2Park/Coaster/Track/RollPoint.h>
+#include <binding/NL2Park/Coaster/Track/Vertex.h>
+#include <binding/NL2Park/Coaster/Track/Trigger.h>
 
 void NL2Functions(const v8::FunctionCallbackInfo<v8::Value>& args) {
 }
@@ -24,6 +29,11 @@ void InitAll(v8::Handle<v8::Object> exports) {
     Binding::NL2Park::Style::Init(obj);
     Binding::NL2Park::Mode::Init(obj);
     Binding::NL2Park::CustomFriction::Init(obj);
+    Binding::NL2Park::CustomTrack::Init(obj);
+    Binding::NL2Park::Track::Init(obj);
+    Binding::NL2Park::Vertex::Init(obj);
+    Binding::NL2Park::RollPoint::Init(obj);
+    Binding::NL2Park::Trigger::Init(obj);
 
     Nan::Set(exports, Nan::New("NL2").ToLocalChecked(), obj);
 }

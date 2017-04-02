@@ -12,6 +12,7 @@ namespace Library {
         class NoLimitsStream {
         public:
             NoLimitsStream() {}
+            NoLimitsStream(File::File *_file) : file(_file) {}
 
             void readChunk(File::File *_file);
             void readStream(NoLimitsStream *stream);
@@ -40,6 +41,8 @@ namespace Library {
 
             glm::vec3 readUnsigned8Vec3();
             glm::vec3 readFloatVec3();
+
+            glm::vec4 readDoubleVec4();
 
             std::string readString();
 

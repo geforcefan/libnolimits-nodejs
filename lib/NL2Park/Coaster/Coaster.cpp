@@ -53,9 +53,28 @@ namespace Library {
                 setStreamPosition(i);
                 std::string chunk = readChunkName();
 
+                if(chunk == "CUTK") {
+                    CustomTrack *_track = new CustomTrack();
+                    insertTrack(_track);
+
+                    _track->readChunk(getChunkBufferFile());
+                    i = getStreamPosition() - 1;
+                }
+
                 if(chunk == "CUFR") {
                     getMode()->getCustomFriction()->readChunk(getChunkBufferFile());
                     i = getStreamPosition() - 1;
+                }
+
+                if(chunk == "FSCR") {
+                    readNull(4);
+
+                    uint32_t numScripts = readUnsignedInteger();
+
+                    for(uint32_t i = 0; i < numScripts; i++) {
+                        insertFileScript(readString());
+                        readNull(8);
+                    }
                 }
             }
         }
@@ -122,6 +141,22 @@ namespace Library {
 
         void Coaster::setMode(Mode *value) {
             mode = value;
+        }
+
+        std::vector<std::string> Coaster::getFileScript() const {
+            return fileScript;
+        }
+
+        void Coaster::insertFileScript(std::string value) {
+            fileScript.push_back(value);
+        }
+
+        std::vector<Track*> Coaster::getTrack() const {
+            return track;
+        }
+
+        void Coaster::insertTrack(Track* value) {
+            track.push_back(value);
         }
     }
 }

@@ -31,7 +31,7 @@
     }
 
 #define BINDING_MODULE_INIT(moduleName, prototypeDeclaration) \
-    NAN_MODULE_INIT(Init) { \
+    v8::Local<v8::FunctionTemplate> Init(v8::Local<v8::Object> target) { \
         v8::Local<v8::FunctionTemplate> tpl = Nan::New<v8::FunctionTemplate>(New); \
         tpl->SetClassName(Nan::New(moduleName).ToLocalChecked()); \
         tpl->InstanceTemplate()->SetInternalFieldCount(1); \
@@ -39,6 +39,7 @@
         prototypeDeclaration \
         constructor().Reset(Nan::GetFunction(tpl).ToLocalChecked()); \
         Nan::Set(target, Nan::New(moduleName).ToLocalChecked(), Nan::GetFunction(tpl).ToLocalChecked()); \
+        return tpl; \
     } \
 
 #define BINDING_PERSISTENT_CONSTRUCTOR() \
@@ -81,6 +82,9 @@
         } \
     )
 
+#define BINDING_INHERIT(className) \
+    tpl->Inherit(className::Init(Nan::New<v8::Object>()));
+
 #define BINDING_PROTOTYPE_METHOD(name) \
     Nan::SetPrototypeMethod(tpl, BINDING_QUOTE(name), name);
 
@@ -105,6 +109,16 @@
         const int argc = 1; \
         v8::Local<v8::Value> argv[] = { v8::External::New(info.GetIsolate(), binding) }; \
         info.GetReturnValue().Set(Binding::NL2Park::method::NewInstance(argc, argv)); \
+    }
+
+#define BINDING_METHOD_GETTER_OBJECT_WITH_VARNAME(varName, method, className) \
+    static NAN_GETTER(get##varName) { \
+    className* obj = Nan::ObjectWrap::Unwrap<className>(info.Holder()); \
+    Library::NL2Park::method *lib = obj->get##className()->get##varName(); \
+    Binding::NL2Park::method *binding = new Binding::NL2Park::method(lib); \
+    const int argc = 1; \
+    v8::Local<v8::Value> argv[] = { v8::External::New(info.GetIsolate(), binding) }; \
+    info.GetReturnValue().Set(Binding::NL2Park::method::NewInstance(argc, argv)); \
     }
 
 #define BINDING_METHOD_SETTER_GETTER_STRING(method, className) \
@@ -192,6 +206,33 @@
         )); \
     }
 
+
+#define BINDING_METHOD_SETTER_GETTER_VEC4(method, className)\
+    static NAN_GETTER(get##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        glm::vec4 val = obj->get##className()->get##method(); \
+        v8::Local<v8::Array> aVal = Nan::New<v8::Array>(3); \
+        aVal->Set(0, Nan::New(val.x)); \
+        aVal->Set(1, Nan::New(val.y)); \
+        aVal->Set(2, Nan::New(val.z)); \
+        aVal->Set(3, Nan::New(val.w)); \
+        info.GetReturnValue().Set(aVal); \
+    } \
+    static NAN_SETTER(set##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        if(!value->IsArray()) \
+            return Nan::ThrowSyntaxError("First argument must be of type array"); \
+        v8::Local<v8::Array> aVal = v8::Local<v8::Array>::Cast(value); \
+        if(aVal->Length() != 4) \
+            return Nan::ThrowSyntaxError("4 argument must be provided of type number"); \
+        obj->get##className()->set##method(glm::vec4( \
+            aVal->Get(0)->IsNumber() ? Nan::To<double>(aVal->Get(0)).FromJust() : 0, \
+            aVal->Get(1)->IsNumber() ? Nan::To<double>(aVal->Get(1)).FromJust() : 0, \
+            aVal->Get(2)->IsNumber() ? Nan::To<double>(aVal->Get(2)).FromJust() : 0, \
+            aVal->Get(3)->IsNumber() ? Nan::To<double>(aVal->Get(3)).FromJust() : 0 \
+        )); \
+    }
+
 #define BINDING_METHOD_SETTER_GETTER_VEC2(method, className)\
     static NAN_GETTER(get##method) { \
         className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
@@ -248,5 +289,27 @@
         Binding::NL2Park::method* argObj = ObjectWrap::Unwrap<Binding::NL2Park::method>(maybe1.ToLocalChecked()); \
         obj->get##className()->insert##method(argObj->get##method()); \
     }
+
+
+#define BINDING_METHOD_SETTER_GETTER_INHERITED_OBJECT_VECTOR(method, className) \
+    static NAN_GETTER(get##method) { \
+        className* self = ObjectWrap::Unwrap<className>(info.Holder()); \
+        std::vector<Library::NL2Park::method*> vec = self->get##className()->get##method(); \
+        v8::Local<v8::Array> arr = Nan::New<v8::Array>(vec.size()); \
+        for(unsigned long i = 0; i < vec.size(); i++) { \
+            Library::NL2Park::method *_lib = vec[i]; \
+            arr->Set(i, Binding::NL2Park::method::createFromType(_lib)); \
+        } \
+        info.GetReturnValue().Set(arr); \
+    } \
+    static NAN_METHOD(insert##method) { \
+        className* self = ObjectWrap::Unwrap<className>(info.Holder()); \
+        if(info[0]->IsUndefined()) \
+            return Nan::ThrowSyntaxError("1 argument must be provided"); \
+        Nan::MaybeLocal<v8::Object> maybe1 = Nan::To<v8::Object>(info[0]); \
+        Binding::NL2Park::method* _lib = ObjectWrap::Unwrap<Binding::NL2Park::method>(maybe1.ToLocalChecked()); \
+        self->get##className()->insert##method(_lib->get##method()); \
+    }
+
 
 #endif // BINDING_NOLIMITS_H

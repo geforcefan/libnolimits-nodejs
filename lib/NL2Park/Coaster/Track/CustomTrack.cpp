@@ -6,6 +6,7 @@ namespace Library {
         CustomTrack::CustomTrack() : Track(TrackType::Custom) {
             firstRollPoint = new RollPoint();
             lastRollPoint = new RollPoint();
+            segment = new Segment();
         }
 
         void CustomTrack::read() {
@@ -52,6 +53,14 @@ namespace Library {
                     insertTrigger(_trigger);
 
                     _trigger->readChunk(getChunkBufferFile());
+                    i = getStreamPosition() - 1;
+                }
+
+                if(chunk == "SEGM") {
+                    Segment *_segment = new Segment();
+                    setSegment(_segment);
+
+                    _segment->readChunk(getChunkBufferFile());
                     i = getStreamPosition() - 1;
                 }
 
@@ -119,6 +128,14 @@ namespace Library {
 
         void CustomTrack::insertParameter4D(Parameter4D* value) {
             parameter4D.push_back(value);
+        }
+
+        Segment *CustomTrack::getSegment() const {
+            return segment;
+        }
+
+        void CustomTrack::setSegment(Segment *value) {
+            segment = value;
         }
     }
 }

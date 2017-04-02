@@ -9,6 +9,7 @@
 #include <lib/NL2Park/Coaster/Track/Vertex.h>
 #include <lib/NL2Park/Coaster/Track/Trigger.h>
 #include <lib/NL2Park/Coaster/Track/Parameter4D.h>
+#include <lib/NL2Park/Coaster/Track/Segment.h>
 #include <lib/NL2Park/Coaster/Track/Support/RailNode.h>
 
 namespace Library {
@@ -36,6 +37,9 @@ namespace Library {
             std::vector<Parameter4D*> getParameter4D() const;
             void insertParameter4D(Parameter4D* value);
 
+            Segment *getSegment() const;
+            void setSegment(Segment *value);
+
         private:
             std::vector<Vertex*> vertex;
             std::vector<RollPoint*> rollPoint;
@@ -45,6 +49,8 @@ namespace Library {
 
             RollPoint *firstRollPoint;
             RollPoint *lastRollPoint;
+
+            Segment *segment;
         };
     }
 }

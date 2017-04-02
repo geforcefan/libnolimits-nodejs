@@ -170,6 +170,18 @@
         obj->get##className()->set##method(Nan::To<int>(value).FromJust()); \
     }
 
+#define BINDING_METHOD_SETTER_GETTER_UNSIGNED_8(method, className) \
+    static NAN_GETTER(get##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        info.GetReturnValue().Set(obj->get##className()->get##method()); \
+    } \
+    static NAN_SETTER(set##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        if(!value->IsNumber()) \
+            Nan::ThrowTypeError("First argument must be of type number"); \
+        obj->get##className()->set##method((uint8_t)Nan::To<int>(value).FromJust()); \
+    }
+
 #define BINDING_METHOD_SETTER_GETTER_ENUM(method, className, cast) \
     static NAN_GETTER(get##method) { \
         className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \

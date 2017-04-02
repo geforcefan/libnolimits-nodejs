@@ -8,6 +8,7 @@
 #include <lib/NL2Park/Coaster/Track/RollPoint.h>
 #include <lib/NL2Park/Coaster/Track/Vertex.h>
 #include <lib/NL2Park/Coaster/Track/Trigger.h>
+#include <lib/NL2Park/Coaster/Track/Support/RailNode.h>
 
 namespace Library {
     namespace NL2Park {
@@ -28,10 +29,14 @@ namespace Library {
             std::vector<Trigger*> getTrigger() const;
             void insertTrigger(Trigger* value);
 
+            std::vector<RailNode*> getRailNode() const;
+            void insertRailNode(RailNode* value);
+
         private:
             std::vector<Vertex*> vertex;
             std::vector<RollPoint*> rollPoint;
             std::vector<Trigger*> trigger;
+            std::vector<RailNode*> railNode;
 
             RollPoint *firstRollPoint;
             RollPoint *lastRollPoint;

@@ -54,6 +54,14 @@ namespace Library {
                     _trigger->readChunk(getChunkBufferFile());
                     i = getStreamPosition() - 1;
                 }
+
+                if(chunk == "SRNP") {
+                    RailNode *_railNode = new RailNode();
+                    insertRailNode(_railNode);
+
+                    _railNode->readChunk(getChunkBufferFile());
+                    i = getStreamPosition() - 1;
+                }
             }
         }
 
@@ -87,6 +95,14 @@ namespace Library {
 
         void CustomTrack::insertTrigger(Trigger* value) {
             trigger.push_back(value);
+        }
+
+        std::vector<RailNode*> CustomTrack::getRailNode() const {
+            return railNode;
+        }
+
+        void CustomTrack::insertRailNode(RailNode* value) {
+            railNode.push_back(value);
         }
     }
 }

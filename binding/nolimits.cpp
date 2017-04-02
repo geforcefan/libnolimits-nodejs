@@ -14,6 +14,7 @@
 #include <binding/NL2Park/Coaster/Track/RollPoint.h>
 #include <binding/NL2Park/Coaster/Track/Vertex.h>
 #include <binding/NL2Park/Coaster/Track/Trigger.h>
+#include <binding/NL2Park/Coaster/Track/Support/RailNode.h>
 
 void NL2Functions(const v8::FunctionCallbackInfo<v8::Value>& args) {
 }
@@ -34,6 +35,7 @@ void InitAll(v8::Handle<v8::Object> exports) {
     Binding::NL2Park::Vertex::Init(obj);
     Binding::NL2Park::RollPoint::Init(obj);
     Binding::NL2Park::Trigger::Init(obj);
+    Binding::NL2Park::RailNode::Init(obj);
 
     Nan::Set(exports, Nan::New("NL2").ToLocalChecked(), obj);
 }

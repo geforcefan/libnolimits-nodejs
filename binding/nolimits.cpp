@@ -18,6 +18,9 @@
 #include <binding/NL2Park/Coaster/Track/WoodenSupportGenerator.h>
 #include <binding/NL2Park/Coaster/Track/Parameter4D.h>
 #include <binding/NL2Park/Coaster/Track/Support/RailNode.h>
+#include <binding/NL2Park/Coaster/Track/Section/Section.h>
+#include <binding/NL2Park/Coaster/Track/Section/TransportDevice.h>
+#include <binding/NL2Park/Coaster/Track/Section/Storage.h>
 
 void NL2Functions(const v8::FunctionCallbackInfo<v8::Value>& args) {
 }
@@ -42,6 +45,9 @@ void InitAll(v8::Handle<v8::Object> exports) {
     Binding::NL2Park::Segment::Init(obj);
     Binding::NL2Park::Parameter4D::Init(obj);
     Binding::NL2Park::WoodenSupportGenerator::Init(obj);
+    Binding::NL2Park::Section::Init(obj);
+    Binding::NL2Park::Storage::Init(obj);
+    Binding::NL2Park::TransportDevice::Init(obj);
 
     Nan::Set(exports, Nan::New("NL2").ToLocalChecked(), obj);
 }

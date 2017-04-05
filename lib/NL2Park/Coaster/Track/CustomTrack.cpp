@@ -7,6 +7,7 @@ namespace Library {
             firstRollPoint = new RollPoint();
             lastRollPoint = new RollPoint();
             segment = new Segment();
+            section = new Section();
         }
 
         void CustomTrack::read() {
@@ -64,6 +65,13 @@ namespace Library {
                     i = getStreamPosition() - 1;
                 }
 
+                if(chunk == "SECT") {
+                    Section *_section = new Section();
+                    _section->readChunk(getChunkBufferFile());
+                    setSection(_section->getSection());
+                    i = getStreamPosition() - 1;
+                }
+
                 if(chunk == "4DPM") {
                     Parameter4D *_parameter4D = new Parameter4D();
                     insertParameter4D(_parameter4D);
@@ -77,6 +85,11 @@ namespace Library {
                     insertRailNode(_railNode);
 
                     _railNode->readChunk(getChunkBufferFile());
+                    i = getStreamPosition() - 1;
+                }
+
+                if(chunk == "SEPA") {
+                    getChunkBufferFile();
                     i = getStreamPosition() - 1;
                 }
             }
@@ -136,6 +149,14 @@ namespace Library {
 
         void CustomTrack::setSegment(Segment *value) {
             segment = value;
+        }
+
+        Section *CustomTrack::getSection() const {
+            return section;
+        }
+
+        void CustomTrack::setSection(Section *value) {
+            section = value;
         }
     }
 }

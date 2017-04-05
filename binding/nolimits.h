@@ -111,6 +111,24 @@
         info.GetReturnValue().Set(Binding::NL2Park::method::NewInstance(argc, argv)); \
     }
 
+#define BINDING_METHOD_SETTER_GETTER_OBJECT(method, className) \
+    static NAN_GETTER(get##method) { \
+        className* obj = Nan::ObjectWrap::Unwrap<className>(info.Holder()); \
+        Library::NL2Park::method *lib = obj->get##className()->get##method(); \
+        Binding::NL2Park::method *binding = new Binding::NL2Park::method(lib); \
+        const int argc = 1; \
+        v8::Local<v8::Value> argv[] = { v8::External::New(info.GetIsolate(), binding) }; \
+        info.GetReturnValue().Set(Binding::NL2Park::method::NewInstance(argc, argv)); \
+    } \
+    static NAN_METHOD(set##method) { \
+        className* self = ObjectWrap::Unwrap<className>(info.Holder()); \
+        if(info[0]->IsUndefined()) \
+            return Nan::ThrowSyntaxError("1 argument must be provided"); \
+        Nan::MaybeLocal<v8::Object> maybe1 = Nan::To<v8::Object>(info[0]); \
+        Binding::NL2Park::method* _lib = ObjectWrap::Unwrap<Binding::NL2Park::method>(maybe1.ToLocalChecked()); \
+        self->get##className()->set##method(_lib->get##method()); \
+    }
+
 #define BINDING_METHOD_GETTER_OBJECT_WITH_VARNAME(varName, method, className) \
     static NAN_GETTER(get##varName) { \
     className* obj = Nan::ObjectWrap::Unwrap<className>(info.Holder()); \
@@ -323,5 +341,19 @@
         self->get##className()->insert##method(_lib->get##method()); \
     }
 
+#define BINDING_METHOD_SETTER_GETTER_INHERITED_OBJECT(method, className) \
+    static NAN_GETTER(get##method) { \
+        className* self = ObjectWrap::Unwrap<className>(info.Holder()); \
+        Library::NL2Park::method *_lib = self->get##className()->get##method(); \
+        info.GetReturnValue().Set(Binding::NL2Park::method::createFromType(_lib)); \
+    } \
+    static NAN_METHOD(set##method) { \
+        className* self = ObjectWrap::Unwrap<className>(info.Holder()); \
+        if(info[0]->IsUndefined()) \
+            return Nan::ThrowSyntaxError("1 argument must be provided"); \
+        Nan::MaybeLocal<v8::Object> maybe1 = Nan::To<v8::Object>(info[0]); \
+        Binding::NL2Park::method* _lib = ObjectWrap::Unwrap<Binding::NL2Park::method>(maybe1.ToLocalChecked()); \
+        self->get##className()->set##method(_lib->get##method()); \
+    }
 
 #endif // BINDING_NOLIMITS_H

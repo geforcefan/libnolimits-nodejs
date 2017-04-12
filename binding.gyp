@@ -35,6 +35,7 @@
                 "lib/NL2Park/Coaster/Track/Section/Station.cpp",
                 "lib/NL2Park/Coaster/Track/Section/BrakeDevice.cpp",
                 "lib/NL2Park/Coaster/Track/Section/Brake.cpp",
+                "lib/NL2Park/Coaster/Track/Separator.cpp",
                 "lib/File/File.cpp",
                 "lib/File/BufferFile.cpp",
             ],

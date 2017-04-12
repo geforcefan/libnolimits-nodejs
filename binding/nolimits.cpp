@@ -14,13 +14,20 @@
 #include <binding/NL2Park/Coaster/Track/RollPoint.h>
 #include <binding/NL2Park/Coaster/Track/Vertex.h>
 #include <binding/NL2Park/Coaster/Track/Trigger.h>
+#include <binding/NL2Park/Coaster/Track/Separator.h>
 #include <binding/NL2Park/Coaster/Track/Segment.h>
 #include <binding/NL2Park/Coaster/Track/WoodenSupportGenerator.h>
 #include <binding/NL2Park/Coaster/Track/Parameter4D.h>
 #include <binding/NL2Park/Coaster/Track/Support/RailNode.h>
 #include <binding/NL2Park/Coaster/Track/Section/Section.h>
 #include <binding/NL2Park/Coaster/Track/Section/TransportDevice.h>
+#include <binding/NL2Park/Coaster/Track/Section/Lift.h>
 #include <binding/NL2Park/Coaster/Track/Section/Storage.h>
+#include <binding/NL2Park/Coaster/Track/Section/Station.h>
+#include <binding/NL2Park/Coaster/Track/Section/Transport.h>
+#include <binding/NL2Park/Coaster/Track/Section/WaitTime.h>
+#include <binding/NL2Park/Coaster/Track/Section/Brake.h>
+#include <binding/NL2Park/Coaster/Track/Section/BrakeDevice.h>
 
 void NL2Functions(const v8::FunctionCallbackInfo<v8::Value>& args) {
 }
@@ -48,6 +55,13 @@ void InitAll(v8::Handle<v8::Object> exports) {
     Binding::NL2Park::Section::Init(obj);
     Binding::NL2Park::Storage::Init(obj);
     Binding::NL2Park::TransportDevice::Init(obj);
+    Binding::NL2Park::Lift::Init(obj);
+    Binding::NL2Park::Separator::Init(obj);
+    Binding::NL2Park::Station::Init(obj);
+    Binding::NL2Park::Brake::Init(obj);
+    Binding::NL2Park::WaitTime::Init(obj);
+    Binding::NL2Park::Transport::Init(obj);
+    Binding::NL2Park::BrakeDevice::Init(obj);
 
     Nan::Set(exports, Nan::New("NL2").ToLocalChecked(), obj);
 }

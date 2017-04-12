@@ -68,6 +68,7 @@ namespace Library {
                 if(chunk == "SECT") {
                     Section *_section = new Section();
                     _section->readChunk(getChunkBufferFile());
+
                     setSection(_section->getSection());
                     i = getStreamPosition() - 1;
                 }
@@ -89,7 +90,10 @@ namespace Library {
                 }
 
                 if(chunk == "SEPA") {
-                    getChunkBufferFile();
+                    Separator *_separator = new Separator();
+                    insertSeparator(_separator);
+
+                    _separator->readChunk(getChunkBufferFile());
                     i = getStreamPosition() - 1;
                 }
             }
@@ -141,6 +145,14 @@ namespace Library {
 
         void CustomTrack::insertParameter4D(Parameter4D* value) {
             parameter4D.push_back(value);
+        }
+
+        std::vector<Separator *> CustomTrack::getSeparator() const {
+            return separator;
+        }
+
+        void CustomTrack::insertSeparator(Separator* value) {
+            separator.push_back(value);
         }
 
         Segment *CustomTrack::getSegment() const {

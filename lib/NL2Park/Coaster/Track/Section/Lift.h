@@ -7,6 +7,7 @@
 namespace Library {
     namespace NL2Park {
         class Lift : public Section {
+        public:
             enum LiftType {
                 Chain,
                 FrictionWheels
@@ -17,7 +18,7 @@ namespace Library {
                 AtEnd,
                 Silent
             };
-        public:
+
             Lift() : Section(Section::SectionType::Lift) {}
             void read();
 

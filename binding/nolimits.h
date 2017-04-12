@@ -200,6 +200,18 @@
         obj->get##className()->set##method((uint8_t)Nan::To<int>(value).FromJust()); \
     }
 
+#define BINDING_METHOD_SETTER_GETTER_UNSIGNED_INTEGER(method, className) \
+    static NAN_GETTER(get##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        info.GetReturnValue().Set(obj->get##className()->get##method()); \
+    } \
+    static NAN_SETTER(set##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        if(!value->IsNumber()) \
+            Nan::ThrowTypeError("First argument must be of type number"); \
+        obj->get##className()->set##method((uint32_t)Nan::To<int>(value).FromJust()); \
+    }
+
 #define BINDING_METHOD_SETTER_GETTER_ENUM(method, className, cast) \
     static NAN_GETTER(get##method) { \
         className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
@@ -296,6 +308,25 @@
             Nan::ThrowTypeError("First argument must be of type boolean"); \
         obj->get##className()->set##method(Nan::To<bool>(value).FromJust()); \
     }
+
+#define BINDING_METHOD_SETTER_GETTER_UNSIGNED_INTEGER_VECTOR(method, className) \
+    static NAN_GETTER(get##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        std::vector<uint32_t> vec = obj->get##className()->get##method(); \
+        v8::Local<v8::Array> arr = Nan::New<v8::Array>(vec.size()); \
+        for(unsigned long i = 0; i < vec.size(); i++) {\
+            uint32_t val = vec[i]; \
+            arr->Set(i, Nan::New(val)); \
+        } \
+        info.GetReturnValue().Set(arr);\
+    } \
+    static NAN_METHOD(insert##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        if(!info[0]->IsNumber()) \
+            return Nan::ThrowSyntaxError("1 argument must be of type number"); \
+        obj->get##className()->insert##method((uint32_t)Nan::To<int>(info[0]).FromJust()); \
+    }
+
 
 #define BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(method, className) \
     static NAN_GETTER(get##method) { \

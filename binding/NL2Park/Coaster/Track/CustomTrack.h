@@ -7,6 +7,7 @@
 #include <binding/NL2Park/Coaster/Track/Vertex.h>
 #include <binding/NL2Park/Coaster/Track/Trigger.h>
 #include <binding/NL2Park/Coaster/Track/Parameter4D.h>
+#include <binding/NL2Park/Coaster/Track/Separator.h>
 #include <binding/NL2Park/Coaster/Track/Segment.h>
 #include <binding/NL2Park/Coaster/Track/Support/RailNode.h>
 #include <binding/NL2Park/Coaster/Track/Section/Section.h>
@@ -31,6 +32,7 @@ namespace Binding {
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(Trigger);
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(RailNode);
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(Parameter4D);
+                BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(Separator);
                 BINDING_PROTOTYPE_METHOD_GETTER(Segment);
                 BINDING_PROTOTYPE_METHOD_GETTER(Section);
             );
@@ -47,6 +49,7 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(Trigger, CustomTrack);
             BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(RailNode, CustomTrack);
             BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(Parameter4D, CustomTrack);
+            BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(Separator, CustomTrack);
 
             BINDING_METHOD_SETTER_GETTER_OBJECT(Segment, CustomTrack);
             BINDING_METHOD_SETTER_GETTER_INHERITED_OBJECT(Section, CustomTrack);

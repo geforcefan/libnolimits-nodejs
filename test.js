@@ -12,5 +12,14 @@ SegfaultHandler.registerHandler("crash.log", function(signal, address, stack) {
 const NoLimits = require('./build/Release/nolimits');
 //const Park = new NoLimits.NL2.Park("/Users/ercanakyurek/Desktop/newpark/parks/Script Park/Script Park.nl2park");
 const Park = new NoLimits.NL2.Park("/Users/ercanakyurek/Desktop/newpark/parks/Hydra/Hydra.nl2park");
+/*
+for(var sep in Park.Coaster[0].Track[1].Separator) {
+    var section = Park.Coaster[0].Track[1].Separator[sep].Section;
 
-console.log(Park.Coaster[0].Track[0].Section);
+    if(section.SectionType === 4) {
+        section.WaitTime.insertSynchronizeDispatchWith(10);
+        console.log(section);
+    }
+}
+*/
+console.log(Park);

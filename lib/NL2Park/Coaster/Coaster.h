@@ -7,7 +7,9 @@
 #include <lib/NL2Park/Coaster/Colors.h>
 #include <lib/NL2Park/Coaster/Style.h>
 #include <lib/NL2Park/Coaster/Mode.h>
+#include <lib/NL2Park/Coaster/Train.h>
 #include <lib/NL2Park/Coaster/Track/Track.h>
+#include <lib/NL2Park/Coaster/Track/Section/Section.h>
 #include <lib/NL2Park/Coaster/Track/CustomTrack.h>
 
 namespace Library {
@@ -47,6 +49,11 @@ namespace Library {
             std::vector<Track*> getTrack() const;
             void insertTrack(Track* value);
 
+            std::vector<Train*> getTrain() const;
+            void insertTrain(Train* value);
+
+            Section *getSection(std::string name);
+
         private:
             std::string name;
             std::string description;
@@ -60,8 +67,9 @@ namespace Library {
             Style *style;
             Mode *mode;
 
-            std::vector<Track *> track;
+            std::vector<Track*> track;
             std::vector<std::string> fileScript;
+            std::vector<Train*> train;
         };
     }
 }

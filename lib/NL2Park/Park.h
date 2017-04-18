@@ -7,6 +7,7 @@
 #include <NL2Park/Coaster/Coaster.h>
 
 #include <vector>
+#include <map>
 
 namespace Library {
     namespace NL2Park {
@@ -19,12 +20,14 @@ namespace Library {
             Info *getInfo() const;
 
             std::vector<Coaster*> getCoaster() const;
+            Coaster* getCoaster(std::string name) const;
             void insertCoaster(Coaster* value);
 
         private:
             Info *info;
 
             std::vector<Coaster*> coaster;
+            std::map<std::string, int> coasterMapping;
         };
     }
 }

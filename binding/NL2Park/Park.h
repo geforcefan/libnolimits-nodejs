@@ -25,6 +25,7 @@ namespace Binding {
             static BINDING_MODULE_INIT("Park",
                 BINDING_PROTOTYPE_METHOD_GETTER(Info);
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(Coaster);
+                BINDING_PROTOTYPE_METHOD_GETTER_BY_NAME_VECTOR(Coaster);
             );
         private:
             static BINDING_PERSISTENT_CONSTRUCTOR();
@@ -39,6 +40,7 @@ namespace Binding {
 
             BINDING_METHOD_GETTER_OBJECT(Info, Park);
             BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(Coaster, Park);
+            BINDING_METHOD_GETTER_BY_NAME_OBJECT_VECTOR(Coaster, Park);
 
             Library::NL2Park::Park *_park;
         };

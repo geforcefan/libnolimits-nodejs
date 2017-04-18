@@ -3,6 +3,7 @@
         {
             "target_name": "nolimits",
             "sources": [
+                "lib/Helper.cpp",
                 "binding/nolimits.cpp",
                 "binding/NL2Park/Coaster/Track/Track.cpp",
                 "binding/NL2Park/Coaster/Track/Section/Section.cpp",
@@ -13,6 +14,9 @@
                 "lib/NL2Park/Info/Weather.cpp",
                 "lib/NL2Park/Coaster/Coaster.cpp",
                 "lib/NL2Park/Coaster/Colors.cpp",
+                "lib/NL2Park/Coaster/Train.cpp",
+                "lib/NL2Park/Coaster/Car.cpp",
+                "lib/NL2Park/Coaster/IndividualColor.cpp",
                 "lib/NL2Park/Coaster/Style.cpp",
                 "lib/NL2Park/Coaster/Mode.cpp",
                 "lib/NL2Park/Coaster/CustomFriction.cpp",

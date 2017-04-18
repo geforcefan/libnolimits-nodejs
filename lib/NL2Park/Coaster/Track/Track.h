@@ -2,6 +2,7 @@
 #define LIB_NL2PARK_TRACK_H
 
 #include <Stream/NoLimitsStream.h>
+#include "Section/Section.h"
 
 namespace Library {
     namespace NL2Park {
@@ -17,7 +18,7 @@ namespace Library {
             Track() : _trackType(TrackType::None) {}
             TrackType getTrackType() const;
             void setTrackType(const TrackType &value);
-
+            virtual Section *getSectionByName(std::string name) { return NULL; }
         private:
             TrackType _trackType;
         };

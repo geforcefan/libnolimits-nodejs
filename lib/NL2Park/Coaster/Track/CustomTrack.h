@@ -39,15 +39,16 @@ namespace Library {
             std::vector<Parameter4D*> getParameter4D() const;
             void insertParameter4D(Parameter4D* value);
 
+            std::vector<Separator*> getSeparator() const;
+            void insertSeparator(Separator* value);
+
             Segment *getSegment() const;
             void setSegment(Segment *value);
 
             Section *getSection() const;
             void setSection(Section *value);
 
-            std::vector<Separator*> getSeparator() const;
-            void insertSeparator(Separator* value);
-
+            virtual Section *getSectionByName(std::string);
         private:
             std::vector<Vertex*> vertex;
             std::vector<RollPoint*> rollPoint;

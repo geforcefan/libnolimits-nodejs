@@ -106,7 +106,7 @@ namespace Library {
             std::string chunkName(4, '\0');
             file->read(&chunkName[0], sizeof(char), 4);
 
-            return chunkName;
+            return Helper::trim(chunkName);
         }
 
         std::string NoLimitsStream::readString() {

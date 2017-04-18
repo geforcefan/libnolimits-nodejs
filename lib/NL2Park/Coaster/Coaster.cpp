@@ -53,6 +53,14 @@ namespace Library {
                 setStreamPosition(i);
                 std::string chunk = readChunkName();
 
+                if(chunk == "TRAI") {
+                    Train *_train = new Train();
+                    insertTrain(_train);
+
+                    _train->readChunk(getChunkBufferFile());
+                    i = getStreamPosition() - 1;
+                }
+
                 if(chunk == "CUTK") {
                     CustomTrack *_track = new CustomTrack();
                     insertTrack(_track);
@@ -157,6 +165,33 @@ namespace Library {
 
         void Coaster::insertTrack(Track* value) {
             track.push_back(value);
+        }
+
+        std::vector<Train*> Coaster::getTrain() const {
+            return train;
+        }
+
+        void Coaster::insertTrain(Train* value) {
+            train.push_back(value);
+        }
+
+        Section *Coaster::getSection(std::string name) {
+            Section *foundSection = NULL;
+
+            if(!name.size())
+                return foundSection;
+
+            for(int i = track.size() - 1; i >= 0; i--) {
+                Track *t = track[i];
+                Section *section = t->getSectionByName(name);
+
+                if(section != NULL) {
+                    foundSection = section;
+                    break;
+                }
+            }
+
+            return foundSection;
         }
     }
 }

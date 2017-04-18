@@ -3,10 +3,6 @@
 
 namespace Library {
     namespace NL2Park {
-        Mode::Mode() {
-            customFriction = new CustomFriction();
-        }
-
         void Mode::read() {
         }
 

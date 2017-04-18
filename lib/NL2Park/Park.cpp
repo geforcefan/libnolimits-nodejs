@@ -21,9 +21,9 @@ namespace Library {
 
                 if(chunk == "COAS") {
                     Coaster *_coaster = new Coaster();
-                    insertCoaster(_coaster);
-
                     _coaster->readChunk(getChunkBufferFile());
+
+                    insertCoaster(_coaster);
                     i = getStreamPosition() - 1;
                 }
 
@@ -55,7 +55,15 @@ namespace Library {
             return coaster;
         }
 
+        Coaster *Park::getCoaster(std::string name) const {
+            if(coasterMapping.find(name) != coasterMapping.end())
+                return coaster.at(coasterMapping.at(name));
+            else
+                return NULL;
+        }
+
         void Park::insertCoaster(Coaster* value) {
+            coasterMapping[value->getName()] = coaster.size();
             coaster.push_back(value);
         }
     }

@@ -95,6 +95,9 @@
     Nan::SetAccessor(itpl, Nan::New<v8::String>(BINDING_QUOTE(name)).ToLocalChecked(), get##name); \
     Nan::SetPrototypeMethod(tpl, BINDING_QUOTE(insert##name), insert##name);
 
+#define BINDING_PROTOTYPE_METHOD_GETTER_BY_NAME_VECTOR(name) \
+    Nan::SetPrototypeMethod(tpl, BINDING_QUOTE(get##name##ByName), get##name##ByName);
+
 #define BINDING_PROTOTYPE_METHOD_SETTER_GETTER(name) \
     Nan::SetAccessor(itpl, Nan::New<v8::String>(BINDING_QUOTE(name)).ToLocalChecked(), get##name, set##name);
 
@@ -351,6 +354,34 @@
         obj->get##className()->insert##method(argObj->get##method()); \
     }
 
+#define BINDING_METHOD_GETTER_BY_NAME_OBJECT_VECTOR(method, className) \
+    static NAN_METHOD(get##method##ByName) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        if(!info[0]->IsString()) \
+            Nan::ThrowTypeError("First argument must be of type string"); \
+        Library::NL2Park::method* lib = obj->get##className()->get##method(std::string(*Nan::Utf8String(info[0]))); \
+        if(lib == NULL) { \
+            info.GetReturnValue().Set(Nan::Null());\
+        } else { \
+            Binding::NL2Park::method *binding = new Binding::NL2Park::method(lib); \
+            const int argc = 1; \
+            v8::Local<v8::Value> argv[] = { v8::External::New(info.GetIsolate(), binding) }; \
+            info.GetReturnValue().Set(Binding::NL2Park::method::NewInstance(argc, argv)); \
+        } \
+    }
+
+#define BINDING_METHOD_GETTER_BY_NAME_INHERITED_OBJECT_VECTOR(method, className) \
+    static NAN_METHOD(get##method##ByName) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        if(!info[0]->IsString()) \
+            Nan::ThrowTypeError("First argument must be of type string"); \
+        Library::NL2Park::method* lib = obj->get##className()->get##method(std::string(*Nan::Utf8String(info[0]))); \
+        if(lib == NULL) { \
+            info.GetReturnValue().Set(Nan::Null());\
+        } else { \
+            info.GetReturnValue().Set(Binding::NL2Park::method::createFromType(lib)); \
+        } \
+    }
 
 #define BINDING_METHOD_SETTER_GETTER_INHERITED_OBJECT_VECTOR(method, className) \
     static NAN_GETTER(get##method) { \

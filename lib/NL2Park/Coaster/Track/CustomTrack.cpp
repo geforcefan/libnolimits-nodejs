@@ -170,5 +170,17 @@ namespace Library {
         void CustomTrack::setSection(Section *value) {
             section = value;
         }
+
+        Section *CustomTrack::getSectionByName(std::string name) {
+            if(section->getName() == name)
+                return section;
+
+            for(int i = separator.size() - 1; i >= 0; i--) {
+                if(separator[i]->getSection()->getName() == name)
+                    return separator[i]->getSection();
+            }
+
+            return NULL;
+        }
     }
 }

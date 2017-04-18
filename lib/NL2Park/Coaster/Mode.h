@@ -28,7 +28,10 @@ namespace Library {
                 NoLimits1 = 2
             };
 
-            Mode();
+            Mode() {
+                customFriction = new CustomFriction();
+            }
+
             void read();
 
             Operation getOperationMode() const;

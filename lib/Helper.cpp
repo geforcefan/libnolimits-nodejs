@@ -11,7 +11,7 @@ std::string Helper::leftTrim(std::string str) {
 
 std::string Helper::rightTrim(std::string str) {
     int numEndSpaces = 0;
-    for (unsigned long i = str.length() - 1; i >= 0; i--) {
+    for (long i = str.length() - 1; i >= 0; i--) {
         if (!isspace(str[i])) break;
         numEndSpaces++;
     }

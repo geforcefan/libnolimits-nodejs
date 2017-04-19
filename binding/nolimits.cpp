@@ -8,6 +8,9 @@
 #include <binding/NL2Park/Coaster/Colors.h>
 #include <binding/NL2Park/Coaster/Style.h>
 #include <binding/NL2Park/Coaster/Mode.h>
+#include <binding/NL2Park/Coaster/Train.h>
+#include <binding/NL2Park/Coaster/Car.h>
+#include <binding/NL2Park/Coaster/IndividualColor.h>
 #include <binding/NL2Park/Coaster/CustomFriction.h>
 #include <binding/NL2Park/Coaster/Track/CustomTrack.h>
 #include <binding/NL2Park/Coaster/Track/Track.h>
@@ -29,41 +32,41 @@
 #include <binding/NL2Park/Coaster/Track/Section/Brake.h>
 #include <binding/NL2Park/Coaster/Track/Section/BrakeDevice.h>
 
-void NL2Functions(const v8::FunctionCallbackInfo<v8::Value>& args) {
-}
-
 void InitAll(v8::Handle<v8::Object> exports) {
-    v8::Local<v8::Object> obj = Nan::New<v8::Object>();
-    Binding::NL2Park::Park::Init(obj);
-    Binding::NL2Park::Info::Init(obj);
-    Binding::NL2Park::Weather::Init(obj);
-    Binding::NL2Park::Sky::Init(obj);
-    Binding::NL2Park::Coaster::Init(obj);
-    Binding::NL2Park::Colors::Init(obj);
-    Binding::NL2Park::Style::Init(obj);
-    Binding::NL2Park::Mode::Init(obj);
-    Binding::NL2Park::CustomFriction::Init(obj);
-    Binding::NL2Park::CustomTrack::Init(obj);
-    Binding::NL2Park::Track::Init(obj);
-    Binding::NL2Park::Vertex::Init(obj);
-    Binding::NL2Park::RollPoint::Init(obj);
-    Binding::NL2Park::Trigger::Init(obj);
-    Binding::NL2Park::RailNode::Init(obj);
-    Binding::NL2Park::Segment::Init(obj);
-    Binding::NL2Park::Parameter4D::Init(obj);
-    Binding::NL2Park::WoodenSupportGenerator::Init(obj);
-    Binding::NL2Park::Section::Init(obj);
-    Binding::NL2Park::Storage::Init(obj);
-    Binding::NL2Park::TransportDevice::Init(obj);
-    Binding::NL2Park::Lift::Init(obj);
-    Binding::NL2Park::Separator::Init(obj);
-    Binding::NL2Park::Station::Init(obj);
-    Binding::NL2Park::Brake::Init(obj);
-    Binding::NL2Park::WaitTime::Init(obj);
-    Binding::NL2Park::Transport::Init(obj);
-    Binding::NL2Park::BrakeDevice::Init(obj);
+    v8::Local<v8::Object> NL2Binding = Nan::New<v8::Object>();
+    Binding::NL2Park::Park::Init(NL2Binding);
+    Binding::NL2Park::Info::Init(NL2Binding);
+    Binding::NL2Park::Weather::Init(NL2Binding);
+    Binding::NL2Park::Sky::Init(NL2Binding);
+    Binding::NL2Park::Coaster::Init(NL2Binding);
+    Binding::NL2Park::Colors::Init(NL2Binding);
+    Binding::NL2Park::Style::Init(NL2Binding);
+    Binding::NL2Park::Mode::Init(NL2Binding);
+    Binding::NL2Park::CustomFriction::Init(NL2Binding);
+    Binding::NL2Park::CustomTrack::Init(NL2Binding);
+    Binding::NL2Park::Track::Init(NL2Binding);
+    Binding::NL2Park::Vertex::Init(NL2Binding);
+    Binding::NL2Park::RollPoint::Init(NL2Binding);
+    Binding::NL2Park::Trigger::Init(NL2Binding);
+    Binding::NL2Park::RailNode::Init(NL2Binding);
+    Binding::NL2Park::Segment::Init(NL2Binding);
+    Binding::NL2Park::Parameter4D::Init(NL2Binding);
+    Binding::NL2Park::WoodenSupportGenerator::Init(NL2Binding);
+    Binding::NL2Park::Section::Init(NL2Binding);
+    Binding::NL2Park::Storage::Init(NL2Binding);
+    Binding::NL2Park::TransportDevice::Init(NL2Binding);
+    Binding::NL2Park::Lift::Init(NL2Binding);
+    Binding::NL2Park::Separator::Init(NL2Binding);
+    Binding::NL2Park::Station::Init(NL2Binding);
+    Binding::NL2Park::Brake::Init(NL2Binding);
+    Binding::NL2Park::WaitTime::Init(NL2Binding);
+    Binding::NL2Park::Transport::Init(NL2Binding);
+    Binding::NL2Park::BrakeDevice::Init(NL2Binding);
+    Binding::NL2Park::Train::Init(NL2Binding);
+    Binding::NL2Park::Car::Init(NL2Binding);
+    Binding::NL2Park::IndividualColor::Init(NL2Binding);
 
-    Nan::Set(exports, Nan::New("NL2").ToLocalChecked(), obj);
+    Nan::Set(exports, Nan::New("NL2").ToLocalChecked(), NL2Binding);
 }
 
 NODE_MODULE(nolimits, InitAll)

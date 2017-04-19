@@ -9,6 +9,7 @@
 #include <binding/NL2Park/Coaster/Colors.h>
 #include <binding/NL2Park/Coaster/Style.h>
 #include <binding/NL2Park/Coaster/Mode.h>
+#include <binding/NL2Park/Coaster/Train.h>
 
 #include <binding/NL2Park/Coaster/Track/CustomTrack.h>
 
@@ -29,6 +30,7 @@ namespace Binding {
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(Freezed);
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(NumberOfCarsPerTrain);
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(Track);
+                BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(Train);
 
                 BINDING_PROTOTYPE_METHOD_GETTER(Colors);
                 BINDING_PROTOTYPE_METHOD_GETTER(Style);
@@ -52,6 +54,7 @@ namespace Binding {
             BINDING_METHOD_GETTER_OBJECT(Mode, Coaster);
 
             BINDING_METHOD_SETTER_GETTER_INHERITED_OBJECT_VECTOR(Track, Coaster);
+            BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(Train, Coaster);
             BINDING_METHOD_GETTER_BY_NAME_INHERITED_OBJECT_VECTOR(Section, Coaster);
 
             Library::NL2Park::Coaster *_coaster;

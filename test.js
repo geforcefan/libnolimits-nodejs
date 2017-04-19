@@ -13,4 +13,4 @@ const NoLimits = require('.').default;
 
 const HydraPark = new NoLimits.NL2.Park("/Users/ercanakyurek/Desktop/newpark/parks/Hydra/Hydra.nl2park");
 
-console.log(HydraPark.getCoasterByName("Hydra").Track[1]);
+console.log(HydraPark.getCoasterByName("Hydra").Train[0].Car);

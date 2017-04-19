@@ -85,6 +85,13 @@ namespace Library {
                     }
                 }
             }
+
+            for (unsigned long i = 0; i < train.size(); i++) {
+                Train *t = train.at(i);
+                if (t->getCar().size() && numberOfCarsPerTrain != t->getCar().size()) {
+                    t->getCar().at(0)->setIsZeroCar(true);
+                }
+            }
         }
 
         std::string Coaster::getName() const {
@@ -181,7 +188,7 @@ namespace Library {
             if(!name.size())
                 return foundSection;
 
-            for(int i = track.size() - 1; i >= 0; i--) {
+            for(unsigned long i = 0; i < track.size(); i++) {
                 Track *t = track[i];
                 Section *section = t->getSectionByName(name);
 

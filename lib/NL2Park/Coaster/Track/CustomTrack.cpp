@@ -10,91 +10,90 @@ namespace Library {
             section = new Section();
         }
 
-        void CustomTrack::read() {
-            readNull(1);
+        void CustomTrack::read(File::File *file) {
+            file->readNull(1);
 
             getFirstRollPoint()->setPosition(0.0);
-            getFirstRollPoint()->setRoll(readDouble());
-            getFirstRollPoint()->setVertical(readBoolean());
+            getFirstRollPoint()->setRoll(file->readDouble());
+            getFirstRollPoint()->setVertical(file->readBoolean());
             getFirstRollPoint()->setStrict(true);
 
-            getLastRollPoint()->setRoll(readDouble());
-            getLastRollPoint()->setVertical(readBoolean());
+            getLastRollPoint()->setRoll(file->readDouble());
+            getLastRollPoint()->setVertical(file->readBoolean());
             getLastRollPoint()->setStrict(true);
 
-            readNull(53);
+            file->readNull(53);
 
-            uint32_t numberOfControlPoints = readUnsignedInteger();
+            uint32_t numberOfControlPoints = file->readUnsignedInteger();
             getLastRollPoint()->setPosition(numberOfControlPoints - 1);
 
             for (uint32_t i = 0; i < numberOfControlPoints; i++) {
                 Vertex *vertex = new Vertex();
-
-                vertex->readStream(this);
+                vertex->read(file);
                 insertVertex(vertex);
             }
 
-            readNull(60);
+            file->readNull(60);
 
-            for(int i=0; i <= getFileSize(); i++) {
-                setStreamPosition(i);
+            for(int i=0; i <= file->tell(); i++) {
+                file->seek(i, SEEK_SET);
 
-                std::string chunk = readChunkName();
+                std::string chunk = file->readChunkName();
 
                 if(chunk == "ROLL") {
                     RollPoint *_rollPoint = new RollPoint();
                     insertRollPoint(_rollPoint);
 
-                    _rollPoint->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    _rollPoint->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
 
                 if(chunk == "TTRG") {
                     Trigger *_trigger = new Trigger();
                     insertTrigger(_trigger);
 
-                    _trigger->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    _trigger->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
 
                 if(chunk == "SEGM") {
                     Segment *_segment = new Segment();
                     setSegment(_segment);
 
-                    _segment->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    _segment->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
 
                 if(chunk == "SECT") {
                     Section *_section = new Section();
-                    _section->readChunk(getChunkBufferFile());
+                    _section->readChunk(file->getChunkBufferFile());
 
                     setSection(_section->getSection());
-                    i = getStreamPosition() - 1;
+                    i = file->tell() - 1;
                 }
 
                 if(chunk == "4DPM") {
                     Parameter4D *_parameter4D = new Parameter4D();
                     insertParameter4D(_parameter4D);
 
-                    _parameter4D->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    _parameter4D->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
 
                 if(chunk == "SRNP") {
                     RailNode *_railNode = new RailNode();
                     insertRailNode(_railNode);
 
-                    _railNode->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    _railNode->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
 
                 if(chunk == "SEPA") {
                     Separator *_separator = new Separator();
                     insertSeparator(_separator);
 
-                    _separator->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    _separator->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
             }
         }

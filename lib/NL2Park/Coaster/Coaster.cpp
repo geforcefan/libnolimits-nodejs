@@ -9,79 +9,79 @@ namespace Library {
             mode = new Mode();
         }
 
-        void Coaster::read() {
-            setName(readString());
+        void Coaster::read(File::File *file) {
+            setName(file->readString());
 
-            getColors()->setWireframeTrack(readColor());
-            getMode()->setSplinePosition((Mode::SplinePosition)readUnsigned8());
+            getColors()->setWireframeTrack(file->readColor());
+            getMode()->setSplinePosition((Mode::SplinePosition)file->readUnsigned8());
 
-            getMode()->setSplinePositionOffset(readDoubleVec2());
+            getMode()->setSplinePositionOffset(file->readDoubleVec2());
 
-            setDescription(readString());
+            setDescription(file->readString());
 
-            readNull(3);
-            getStyle()->setStyleType((Style::StyleType)readUnsigned8());
+            file->readNull(3);
+            getStyle()->setStyleType((Style::StyleType)file->readUnsigned8());
 
-            getColors()->setRails(readColor());
-            getColors()->setCrossTies(readColor());
-            getColors()->setMainSpine(readColor());
-            getColors()->setCar(readColor());
-            getColors()->setSeat(readColor());
-            getColors()->setHarness(readColor());
-            getColors()->setBogie(readColor());
+            getColors()->setRails(file->readColor());
+            getColors()->setCrossTies(file->readColor());
+            getColors()->setMainSpine(file->readColor());
+            getColors()->setCar(file->readColor());
+            getColors()->setSeat(file->readColor());
+            getColors()->setHarness(file->readColor());
+            getColors()->setBogie(file->readColor());
 
-            setFreezed(readBoolean());
-            getColors()->setSpineColorScheme((Colors::SpineColorScheme)readUnsigned8());
-            getColors()->setSupports(readColor());
-            getColors()->setTunnel(readColor());
+            setFreezed(file->readBoolean());
+            getColors()->setSpineColorScheme((Colors::SpineColorScheme)file->readUnsigned8());
+            getColors()->setSupports(file->readColor());
+            getColors()->setTunnel(file->readColor());
 
-            getStyle()->setWornType((Style::WornType)readUnsigned8());
-            getColors()->setChasiss(readColor());
+            getStyle()->setWornType((Style::WornType)file->readUnsigned8());
+            getColors()->setChasiss(file->readColor());
 
-            getMode()->setOperationMode((Mode::Operation)readUnsigned8());
-            getStyle()->setRailType((Style::RailType)readUnsigned8());
+            getMode()->setOperationMode((Mode::Operation)file->readUnsigned8());
+            getStyle()->setRailType((Style::RailType)file->readUnsigned8());
 
-            getColors()->setHandrails(readColor());
-            getColors()->setCatwalks(readColor());
+            getColors()->setHandrails(file->readColor());
+            getColors()->setCatwalks(file->readColor());
 
-            getMode()->setPhysicsModel((Mode::PhysicsModel)readUnsigned8());
-            setHideWireframe(readBoolean());
+            getMode()->setPhysicsModel((Mode::PhysicsModel)file->readUnsigned8());
+            setHideWireframe(file->readBoolean());
 
-            setNumberOfCarsPerTrain(readUnsigned8());
+            setNumberOfCarsPerTrain(file->readUnsigned8());
 
-            for(int i=0; i <= getFileSize(); i++) {
-                setStreamPosition(i);
-                std::string chunk = readChunkName();
+            for(int i=0; i <= file->tell(); i++) {
+                file->seek(i, SEEK_SET);
+                std::string chunk = file->readChunkName();
 
                 if(chunk == "TRAI") {
                     Train *_train = new Train();
                     insertTrain(_train);
 
-                    _train->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    _train->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
 
                 if(chunk == "CUTK") {
                     CustomTrack *_track = new CustomTrack();
                     insertTrack(_track);
 
-                    _track->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    _track->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
 
                 if(chunk == "CUFR") {
-                    getMode()->getCustomFriction()->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    getMode()->getCustomFriction()->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
 
                 if(chunk == "FSCR") {
-                    readNull(4);
+                    file->readNull(4);
 
-                    uint32_t numScripts = readUnsignedInteger();
+                    uint32_t numScripts = file->readUnsignedInteger();
 
                     for(uint32_t i = 0; i < numScripts; i++) {
-                        insertFileScript(readString());
-                        readNull(8);
+                        insertFileScript(file->readString());
+                        file->readNull(8);
                     }
                 }
             }

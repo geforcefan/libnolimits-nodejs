@@ -6,9 +6,9 @@ namespace Library {
         CustomFriction::CustomFriction() {
         }
 
-        void CustomFriction::read() {
-            setConstFrictionParameter(readDouble());
-            setAirResistanceParameter(readDouble());
+        void CustomFriction::read(File::File *file) {
+            setConstFrictionParameter(file->readDouble());
+            setAirResistanceParameter(file->readDouble());
         }
 
         double CustomFriction::getConstFrictionParameter() const {

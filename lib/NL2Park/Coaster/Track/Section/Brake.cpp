@@ -4,35 +4,35 @@
 
 namespace Library {
     namespace NL2Park {
-        void Brake::read() {
-            setMode((Brake::BrakeMode)readUnsigned8());
-            setBrakeType((Brake::BrakeType)readUnsigned8());
-            setDeceleration(readDouble());
-            setSpeedLimit(readDouble());
-            setHysteresis(readDouble());
+        void Brake::read(File::File *file) {
+            setMode((Brake::BrakeMode)file->readUnsigned8());
+            setBrakeType((Brake::BrakeType)file->readUnsigned8());
+            setDeceleration(file->readDouble());
+            setSpeedLimit(file->readDouble());
+            setHysteresis(file->readDouble());
 
-            readNull(9);
+            file->readNull(9);
 
-            setCompleteStop(readBoolean());
-            setWaitTime(readDouble());
+            setCompleteStop(file->readBoolean());
+            setWaitTime(file->readDouble());
 
-            readNull(66);
-            setExtraBlockLength(readDouble());
+            file->readNull(66);
+            setExtraBlockLength(file->readDouble());
 
-            setStreamPosition(71);
-            setEnableTransport(readBoolean());
+            file->seek(71, SEEK_SET);
+            setEnableTransport(file->readBoolean());
 
-            getTransportDevice()->setTransportType((Transport::TransportType)readUnsigned8());
-            getTransportDevice()->setSpeed(readDouble());
-            getTransportDevice()->setAcceleration(readDouble());
-            getTransportDevice()->setDeceleration(readDouble());
-            getTransportDevice()->setLaunch(readBoolean());
-            getTransportDevice()->setLaunchAcceleration(readDouble());
-            getTransportDevice()->setLaunchMaxSpeed(readDouble());
+            getTransportDevice()->setTransportType((Transport::TransportType)file->readUnsigned8());
+            getTransportDevice()->setSpeed(file->readDouble());
+            getTransportDevice()->setAcceleration(file->readDouble());
+            getTransportDevice()->setDeceleration(file->readDouble());
+            getTransportDevice()->setLaunch(file->readBoolean());
+            getTransportDevice()->setLaunchAcceleration(file->readDouble());
+            getTransportDevice()->setLaunchMaxSpeed(file->readDouble());
 
-            setStreamPosition(30);
-            setPositionOnTrain((Brake::Position)readUnsigned8());
-            setPositionOnSection(readDouble());
+            file->seek(30, SEEK_SET);
+            setPositionOnTrain((Brake::Position)file->readUnsigned8());
+            setPositionOnSection(file->readDouble());
         }
 
         double Brake::getExtraBlockLength() const {

@@ -4,14 +4,14 @@
 
 namespace Library {
     namespace NL2Park {
-        void Transport::read() {
-            setTransportType((Transport::TransportType)readUnsigned8());
-            setSpeed(readDouble());
-            setAcceleration(readDouble());
-            setDeceleration(readDouble());
-            setSpeedingUpPasses(readUnsignedInteger());
-            setSpeedingDown(readBoolean());
-            setMinSpeed(readDouble());
+        void Transport::read(File::File *file) {
+            setTransportType((Transport::TransportType)file->readUnsigned8());
+            setSpeed(file->readDouble());
+            setAcceleration(file->readDouble());
+            setDeceleration(file->readDouble());
+            setSpeedingUpPasses(file->readUnsignedInteger());
+            setSpeedingDown(file->readBoolean());
+            setMinSpeed(file->readDouble());
         }
 
         double Transport::getSpeed() const {

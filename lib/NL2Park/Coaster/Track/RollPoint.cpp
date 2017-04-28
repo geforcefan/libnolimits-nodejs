@@ -2,13 +2,13 @@
 
 namespace Library {
     namespace NL2Park {
-        void RollPoint::read() {
-            setPosition(readDouble());
-            setRoll(readDouble());
-            setVertical(readBoolean());
-            setStrict(readBoolean());
+        void RollPoint::read(File::File *file) {
+            setPosition(file->readDouble());
+            setRoll(file->readDouble());
+            setVertical(file->readBoolean());
+            setStrict(file->readBoolean());
 
-            readNull(14);
+            file->readNull(14);
         }
 
         double RollPoint::getPosition() const {

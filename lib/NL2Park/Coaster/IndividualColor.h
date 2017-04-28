@@ -1,15 +1,15 @@
 #ifndef LIB_NL2PARK_INDIVIDUALCOLOR_H
 #define LIB_NL2PARK_INDIVIDUALCOLOR_H
 
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 #include <vector>
 
 namespace Library {
     namespace NL2Park {
-        class IndividualColor: public Stream::NoLimitsStream {
+        class IndividualColor: public Stream::Chunk {
         public:
             IndividualColor() {}
-            void read();
+            void read(File::File *file);
 
             bool getHasIndividualColor() const;
             void setHasIndividualColor(bool value);

@@ -4,7 +4,7 @@
 #include "Section.h"
 #include "Transport.h"
 #include "TransportDevice.h"
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 
 namespace Library {
     namespace NL2Park {
@@ -18,7 +18,7 @@ namespace Library {
             Storage() : Section(Section::SectionType::Storage) {
                 transportDevice = new TransportDevice();
             }
-            void read();
+            void read(File::File *file);
 
             bool getEnableTransportDevice() const;
             void setEnableTransportDevice(bool value);

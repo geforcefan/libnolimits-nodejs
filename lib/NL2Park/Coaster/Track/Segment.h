@@ -3,11 +3,11 @@
 
 #include <lib/NL2Park/Coaster/Colors.h>
 #include <lib/NL2Park/Coaster/Track/WoodenSupportGenerator.h>
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 
 namespace Library {
     namespace NL2Park {
-        class Segment : public Stream::NoLimitsStream {
+        class Segment : public Stream::Chunk {
         public:
             enum Tunnel {
                 None,
@@ -31,7 +31,7 @@ namespace Library {
                 woodenSupportGenerator = new WoodenSupportGenerator();
             }
 
-            void read();
+            void read(File::File *file);
 
             bool getInvisibleSegment() const;
             void setInvisibleSegment(bool value);

@@ -11,6 +11,10 @@ SegfaultHandler.registerHandler("crash.log", function(signal, address, stack) {
 
 const NoLimits = require('.').default;
 
-const HydraPark = new NoLimits.NL2.Park("/Users/ercanakyurek/Desktop/newpark/parks/Hydra/Hydra.nl2park");
+//const HydraPark = new NoLimits.NL2.Park("/Users/ercanakyurek/Desktop/newpark/parks/Hydra/Hydra.nl2park");
 
-console.log(HydraPark.getCoasterByName("Hydra").Train[0].Car);
+const TestCoaster = new NoLimits.NL2.Park("/Users/ercanakyurek/Desktop/TestCoaster/TestCoaster.nl2park");
+TestCoaster.save("/Users/ercanakyurek/Desktop/TestCoaster/TestCoaster.test.nl2park");
+const TestCoaster2 = new NoLimits.NL2.Park("/Users/ercanakyurek/Desktop/TestCoaster/TestCoaster.test.nl2park");
+
+//console.log(TestCoaster);

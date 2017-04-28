@@ -118,7 +118,7 @@ namespace Library {
             spineColorScheme = value;
         }
 
-        void Colors::read() {
+        void Colors::read(File::File *file) {
         }
     }
 }

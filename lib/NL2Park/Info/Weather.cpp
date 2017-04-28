@@ -3,16 +3,26 @@
 
 namespace Library {
     namespace NL2Park {
+        void Weather::read(File::File *file) {
+           setOverwriteDefaultWeather(file->readBoolean());
+           setRainIntensity(file->readFloat());
+           setSnowIntensity(file->readFloat());
+           setWindIntensity(Weather::convertWindIntensity(file->readFloat(), true));
+           setFogIntensity(Weather::convertFogIntensity(file->readFloat(), true));
+           setCloudsIntensity(file->readFloat());
+           setOvercastIntensity(file->readFloat());
+           setThunderIntensity(file->readFloat());
+        }
 
-        void Weather::read() {
-           setOverwriteDefaultWeather(readBoolean());
-           setRainIntensity(readFloat());
-           setSnowIntensity(readFloat());
-           setWindIntensity(Weather::convertWindIntensity(readFloat(), true));
-           setFogIntensity(Weather::convertFogIntensity(readFloat(), true));
-           setCloudsIntensity(readFloat());
-           setOvercastIntensity(readFloat());
-           setThunderIntensity(readFloat());
+        void Weather::write(File::File *file)  {
+            file->writeBoolean(getOverwriteDefaultWeather());
+            file->writeFloat(getRainIntensity());
+            file->writeFloat(getSnowIntensity());
+            file->writeFloat(Weather::convertWindIntensity(getWindIntensity(), false));
+            file->writeFloat(Weather::convertFogIntensity(getFogIntensity(), false));
+            file->writeFloat(getCloudsIntensity());
+            file->writeFloat(getOvercastIntensity());
+            file->writeFloat(getThunderIntensity());
         }
 
         bool Weather::getOverwriteDefaultWeather() const {

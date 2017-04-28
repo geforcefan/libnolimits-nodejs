@@ -1,11 +1,11 @@
 #ifndef LIB_NL2PARK_STYLE_H
 #define LIB_NL2PARK_STYLE_H
 
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 
 namespace Library {
     namespace NL2Park {
-        class Style: public Stream::NoLimitsStream {
+        class Style: public Stream::Chunk {
         public:
             enum StyleType {
                 Coaster4D = 22,
@@ -60,7 +60,7 @@ namespace Library {
             };
 
             Style();
-            void read();
+            void read(File::File *file);
 
             StyleType getStyleType() const;
             void setStyleType(const StyleType &value);

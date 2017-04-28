@@ -1,12 +1,12 @@
 #ifndef LIB_NL2PARK_MODE_H
 #define LIB_NL2PARK_MODE_H
 
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 #include <lib/NL2Park/Coaster/CustomFriction.h>
 
 namespace Library {
     namespace NL2Park {
-        class Mode: public Stream::NoLimitsStream {
+        class Mode: public Stream::Chunk {
         public:
             enum Operation {
                 ClosedCircuit = 0,
@@ -32,7 +32,7 @@ namespace Library {
                 customFriction = new CustomFriction();
             }
 
-            void read();
+            void read(File::File *file);
 
             Operation getOperationMode() const;
             void setOperationMode(const Operation &value);

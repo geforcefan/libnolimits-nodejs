@@ -4,21 +4,21 @@
 
 namespace Library {
     namespace NL2Park {
-        void Lift::read() {
-            readNull(3);
-            setLiftType((LiftType)readUnsigned8());
+        void Lift::read(File::File *file) {
+            file->readNull(3);
+            setLiftType((LiftType)file->readUnsigned8());
 
-            readNull(3);
-            setMotorLocation((MotorLocation)readUnsigned8());
-            setSpeed(readDouble());
-            setAcceleration(readDouble());
-            setDeceleration(readDouble());
+            file->readNull(3);
+            setMotorLocation((MotorLocation)file->readUnsigned8());
+            setSpeed(file->readDouble());
+            setAcceleration(file->readDouble());
+            setDeceleration(file->readDouble());
 
-            setHasAntiRollbackDevice(readBoolean());
-            setShuttleModeGentle2ndPassRelease(readBoolean());
-            setExtraBlockLength(readDouble());
+            setHasAntiRollbackDevice(file->readBoolean());
+            setShuttleModeGentle2ndPassRelease(file->readBoolean());
+            setExtraBlockLength(file->readDouble());
 
-            setDiveCoasterDropReleaseMode(readBoolean());
+            setDiveCoasterDropReleaseMode(file->readBoolean());
         }
 
         double Lift::getSpeed() const {

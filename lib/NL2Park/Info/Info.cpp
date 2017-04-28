@@ -1,35 +1,70 @@
 #include <NL2Park/Info/Info.h>
 #include <iostream>
+#include <string>
+#include <sstream>
 
 namespace Library {
     namespace NL2Park {
         Info::Info() {
             weather = new Weather();
             sky = new Sky();
+            version = new Version();
         }
 
-        void Info::read() {
-            readNull(31);
+        void Info::read(File::File *file) {
+            getVersion()->read(file);
 
-            getWeather()->readStream(this);
+            file->readNull(27);
 
-            readNull(6);
+            getWeather()->read(file);
 
-            setAuthor(readString());
-            setDescription(readString());
-            setPreview(readString());
-            setEnvironment(readString());
+            file->readNull(6);
 
-            readNull(9);
+            setAuthor(file->readString());
+            setDescription(file->readString());
+            setPreview(file->readString());
+            setEnvironment(file->readString());
 
-            getSky()->readStream(this);
+            file->readNull(9);
 
-            readNull(1);
+            getSky()->read(file);
 
-            setInitialPosition(readFloatVec3());
-            setInitialRotation(readFloatVec2());
+            file->readNull(1);
 
-            setInitialView((Info::RideView)readUnsigned8());
+            setInitialPosition(file->readFloatVec3());
+            setInitialRotation(file->readFloatVec2());
+
+            setInitialView((Info::RideView)file->readUnsigned8());
+
+            file->readNull(22);
+        }
+
+        void Info::write(File::File *file) {
+            getVersion()->write(file);
+
+            file->writeNull(27);
+
+            getWeather()->write(file);
+
+            file->writeNull(6);
+
+            file->writeString(getAuthor());
+            file->writeString(getDescription());
+            file->writeString(getPreview());
+            file->writeString(getEnvironment());
+
+            file->writeNull(9);
+
+            getSky()->write(file);
+
+            file->writeNull(1);
+
+            file->writeFloatVec3(getInitialPosition());
+            file->writeFloatVec2(getInitialRotation());
+
+            file->writeUnsigned8(getInitialView());
+
+            file->writeNull(22);
         }
 
         Sky *Info::getSky() const {
@@ -42,6 +77,14 @@ namespace Library {
 
         void Info::setInitialView(Info::RideView value) {
             initialView = value;
+        }
+
+        Version *Info::getVersion() const {
+            return version;
+        }
+
+        void Info::setVersion(Version *value) {
+            version = value;
         }
 
         glm::vec2 Info::getInitialRotation() const {

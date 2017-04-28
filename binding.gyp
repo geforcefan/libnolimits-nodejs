@@ -7,9 +7,19 @@
                 "binding/nolimits.cpp",
                 "binding/NL2Park/Coaster/Track/Track.cpp",
                 "binding/NL2Park/Coaster/Track/Section/Section.cpp",
-                "lib/Stream/NoLimitsStream.cpp",
+                "lib/Stream/Chunk.cpp",
                 "lib/NL2Park/Park.cpp",
+                "lib/NL2Park/Uspk.cpp",
+                "lib/NL2Park/Terrain/Terrain.cpp",
+                "lib/NL2Park/Terrain/AutoPaint.cpp",
+                "lib/NL2Park/Terrain/BaseMap.cpp",
+                "lib/NL2Park/Terrain/BumpMap.cpp",
+                "lib/NL2Park/Terrain/DetailMap.cpp",
+                "lib/NL2Park/Terrain/Extras.cpp",
+                "lib/NL2Park/Terrain/Layer.cpp",
+                "lib/NL2Park/Terrain/Water.cpp",
                 "lib/NL2Park/Info/Info.cpp",
+                "lib/NL2Park/Info/Version.cpp",
                 "lib/NL2Park/Info/Sky.cpp",
                 "lib/NL2Park/Info/Weather.cpp",
                 "lib/NL2Park/Coaster/Coaster.cpp",
@@ -43,13 +53,14 @@
                 "lib/File/File.cpp",
                 "lib/File/BufferFile.cpp",
             ],
-            'cflags!': ['-fno-exceptions', '-funwind-tables', '-stdlib=libc++', '-std=c++11'],
-            'cflags_cc!': ['-fno-exceptions', '-funwind-tables', '-stdlib=libc++', '-std=c++11'],
+            'cflags!': ['-fno-exceptions', '-funwind-tables', '-stdlib=libc++', '-std=c++11', '-O3', '-g0'],
+            'cflags_cc!': ['-fno-exceptions', '-funwind-tables', '-stdlib=libc++', '-std=c++11', '-O3', '-g0'],
             'conditions': [
               ['OS=="mac"', {
                 'xcode_settings': {
                   'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
-                  'OTHER_CFLAGS': ['-stdlib=libc++', '-std=c++11']
+                  'OTHER_CFLAGS': ['-stdlib=libc++', '-std=c++11', '-O3', '-g0'],
+                  'OTHER_LDFLAGS': ['-lz']
                 }
               }]
             ],

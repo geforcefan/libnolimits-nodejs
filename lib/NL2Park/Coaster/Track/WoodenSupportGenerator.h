@@ -1,11 +1,11 @@
 #ifndef LIB_NL2PARK_WOODENSUPPORTGENERATOR_H
 #define LIB_NL2PARK_WOODENSUPPORTGENERATOR_H
 
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 
 namespace Library {
     namespace NL2Park {
-        class WoodenSupportGenerator : public Stream::NoLimitsStream {
+        class WoodenSupportGenerator : public Stream::Chunk {
         public:
             enum Flag {
                 IndividualSettings,
@@ -25,7 +25,7 @@ namespace Library {
             };
 
             WoodenSupportGenerator() {}
-            void read();
+            void read(File::File *file);
 
             bool getUseIndividualSettings();
             bool getUseLeftWideSupports();

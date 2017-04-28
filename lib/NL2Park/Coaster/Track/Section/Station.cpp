@@ -4,54 +4,54 @@
 
 namespace Library {
     namespace NL2Park {
-        void Station::read() {
-            setUseTransportDevice(readBoolean());
-            getTransportDevice()->setTransportType((Transport::TransportType)readUnsigned8());
-            getTransportDevice()->setSpeed(readDouble());
-            getTransportDevice()->setAcceleration(readDouble());
-            getTransportDevice()->setDeceleration(readDouble());
+        void Station::read(File::File *file) {
+            setUseTransportDevice(file->readBoolean());
+            getTransportDevice()->setTransportType((Transport::TransportType)file->readUnsigned8());
+            getTransportDevice()->setSpeed(file->readDouble());
+            getTransportDevice()->setAcceleration(file->readDouble());
+            getTransportDevice()->setDeceleration(file->readDouble());
 
-            getBrakeDevice()->setDeceleration(readDouble());
-            getWaitTime()->setAvarage(readDouble());
-            getWaitTime()->setMinimum(readDouble());
-            getWaitTime()->setMaximum(readDouble());
-            getWaitTime()->setDeviation(readDouble());
+            getBrakeDevice()->setDeceleration(file->readDouble());
+            getWaitTime()->setAvarage(file->readDouble());
+            getWaitTime()->setMinimum(file->readDouble());
+            getWaitTime()->setMaximum(file->readDouble());
+            getWaitTime()->setDeviation(file->readDouble());
 
-            getTransportDevice()->setLaunch(readBoolean());
-            getTransportDevice()->setLaunchAcceleration(readDouble());
-            getTransportDevice()->setLaunchMaxSpeed(readDouble());
+            getTransportDevice()->setLaunch(file->readBoolean());
+            getTransportDevice()->setLaunchAcceleration(file->readDouble());
+            getTransportDevice()->setLaunchMaxSpeed(file->readDouble());
 
-            setUnloadingOnly(readBoolean());
+            setUnloadingOnly(file->readBoolean());
 
-            readNull(3);
+            file->readNull(3);
 
-            setPasses(readUnsigned8());
-            setShuttleBackwardsStart(readBoolean());
-            setStationNumber(readUnsignedInteger());
+            setPasses(file->readUnsigned8());
+            setShuttleBackwardsStart(file->readBoolean());
+            setStationNumber(file->readUnsignedInteger());
 
-            readNull(3);
+            file->readNull(3);
 
-            uint8_t numSynchronizeDispatchWith = readUnsigned8();
+            uint8_t numSynchronizeDispatchWith = file->readUnsigned8();
 
             for(uint8_t i = 0; i < numSynchronizeDispatchWith; i++) {
-                getWaitTime()->insertSynchronizeDispatchWith(readUnsignedInteger());
+                getWaitTime()->insertSynchronizeDispatchWith(file->readUnsignedInteger());
             }
 
-            setExtraBlockLength(readDouble());
+            setExtraBlockLength(file->readDouble());
 
-            getBrakeDevice()->setBrakeType((Brake::BrakeType)readUnsigned8());
-            setGateDirection((Station::GateDirection)readUnsigned8());
-            setDisplay((Station::Display)readUnsigned8());
-            setEntranceStairs((Station::Stairs)readUnsigned8());
-            setExitStairs((Station::Stairs)readUnsigned8());
+            getBrakeDevice()->setBrakeType((Brake::BrakeType)file->readUnsigned8());
+            setGateDirection((Station::GateDirection)file->readUnsigned8());
+            setDisplay((Station::Display)file->readUnsigned8());
+            setEntranceStairs((Station::Stairs)file->readUnsigned8());
+            setExitStairs((Station::Stairs)file->readUnsigned8());
 
-            readNull(1);
+            file->readNull(1);
 
-            setGatesColor(readColor());
-            setRailingsColor(readColor());
-            setStructureColor(readColor());
+            setGatesColor(file->readColor());
+            setRailingsColor(file->readColor());
+            setStructureColor(file->readColor());
 
-            readNull(137);
+            file->readNull(137);
         }
 
         double Station::getExtraBlockLength() const {

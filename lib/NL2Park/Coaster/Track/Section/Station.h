@@ -5,7 +5,7 @@
 #include "WaitTime.h"
 #include "TransportDevice.h"
 #include "BrakeDevice.h"
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 
 namespace Library {
     namespace NL2Park {
@@ -37,7 +37,7 @@ namespace Library {
                 transportDevice = new TransportDevice();
             }
 
-            void read();
+            void read(File::File *file);
 
             double getExtraBlockLength() const;
             void setExtraBlockLength(double value);

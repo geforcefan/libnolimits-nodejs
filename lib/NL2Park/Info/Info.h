@@ -1,13 +1,14 @@
 #ifndef LIB_NL2PARK_INFO_H
 #define LIB_NL2PARK_INFO_H
 
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 #include <NL2Park/Info/Weather.h>
 #include <NL2Park/Info/Sky.h>
+#include "Version.h"
 
 namespace Library {
     namespace NL2Park {
-        class Info: public Stream::NoLimitsStream {
+        class Info: public Stream::Chunk {
         public:
             enum RideView {
                 ClosestCoasterFirstTrain = 0,
@@ -17,7 +18,9 @@ namespace Library {
             };
 
             Info();
-            void read();
+
+            void read(File::File *file);
+            void write(File::File *file);
 
             Weather *getWeather() const;
             Sky *getSky() const;
@@ -43,9 +46,13 @@ namespace Library {
             RideView getInitialView();
             void setInitialView(RideView value);
 
+            Version *getVersion() const;
+            void setVersion(Version *value);
+
         private:
             Weather *weather;
             Sky *sky;
+            Version *version;
 
             std::string author;
             std::string description;
@@ -55,6 +62,9 @@ namespace Library {
             glm::vec3 initialPosition;
             glm::vec2 initialRotation;
             RideView initialView;
+
+        protected:
+            std::string getChunkName() { return "INFO"; }
         };
     }
 }

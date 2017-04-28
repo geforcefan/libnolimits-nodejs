@@ -1,6 +1,14 @@
 #include <binding/nolimits.h>
 
 #include <binding/NL2Park/Park.h>
+#include <binding/NL2Park/Terrain/Terrain.h>
+#include <binding/NL2Park/Terrain/Water.h>
+#include <binding/NL2Park/Terrain/Layer.h>
+#include <binding/NL2Park/Terrain/AutoPaint.h>
+#include <binding/NL2Park/Terrain/BaseMap.h>
+#include <binding/NL2Park/Terrain/DetailMap.h>
+#include <binding/NL2Park/Terrain/BumpMap.h>
+#include <binding/NL2Park/Terrain/Extras.h>
 #include <binding/NL2Park/Info/Info.h>
 #include <binding/NL2Park/Info/Weather.h>
 #include <binding/NL2Park/Info/Sky.h>
@@ -65,6 +73,14 @@ void InitAll(v8::Handle<v8::Object> exports) {
     Binding::NL2Park::Train::Init(NL2Binding);
     Binding::NL2Park::Car::Init(NL2Binding);
     Binding::NL2Park::IndividualColor::Init(NL2Binding);
+    Binding::NL2Park::Terrain::Init(NL2Binding);
+    Binding::NL2Park::Water::Init(NL2Binding);
+    Binding::NL2Park::Layer::Init(NL2Binding);
+    Binding::NL2Park::AutoPaint::Init(NL2Binding);
+    Binding::NL2Park::BaseMap::Init(NL2Binding);
+    Binding::NL2Park::DetailMap::Init(NL2Binding);
+    Binding::NL2Park::BumpMap::Init(NL2Binding);
+    Binding::NL2Park::Extras::Init(NL2Binding);
 
     Nan::Set(exports, Nan::New("NL2").ToLocalChecked(), NL2Binding);
 }

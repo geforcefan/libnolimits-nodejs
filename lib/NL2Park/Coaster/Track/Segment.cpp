@@ -2,40 +2,40 @@
 
 namespace Library {
     namespace NL2Park {
-        void Segment::read() {
-            setUseMainSpineColor(readBoolean());
-            setRailColor(readColor());
-            setCrossTiesColor(readColor());
-            setMainSpineColor(readColor());
+        void Segment::read(File::File *file) {
+            setUseMainSpineColor(file->readBoolean());
+            setRailColor(file->readColor());
+            setCrossTiesColor(file->readColor());
+            setMainSpineColor(file->readColor());
 
-            setTunnel((Tunnel)readUnsigned8());
+            setTunnel((Tunnel)file->readUnsigned8());
 
-            setLeftRailingAndCatwalk(readBoolean());
-            setRightRailingAndCatwalk(readBoolean());
+            setLeftRailingAndCatwalk(file->readBoolean());
+            setRightRailingAndCatwalk(file->readBoolean());
 
-            setSpineType(readUnsigned8());
+            setSpineType(file->readUnsigned8());
 
-            setSpineColorScheme((Colors::SpineColorScheme)readUnsigned8());
-            setInvisibleSegment(readBoolean());
-            readNull(2);
+            setSpineColorScheme((Colors::SpineColorScheme)file->readUnsigned8());
+            setInvisibleSegment(file->readBoolean());
+            file->readNull(2);
 
-            getWoodenSupportGenerator()->readStream(this);
+            getWoodenSupportGenerator()->read(file);
 
-            setHandrailsColor(readColor());
-            setCatwalksColor(readColor());
+            setHandrailsColor(file->readColor());
+            setCatwalksColor(file->readColor());
 
-            setTransparentCatwalks(readBoolean());
-            setUseRailsColor(readBoolean());
-            setUseCrossTiesColor(readBoolean());
-            setUseHandrailsColor(readBoolean());
-            setUseCatwalksColor(readBoolean());
-            setUseSpineColorScheme(readBoolean());
+            setTransparentCatwalks(file->readBoolean());
+            setUseRailsColor(file->readBoolean());
+            setUseCrossTiesColor(file->readBoolean());
+            setUseHandrailsColor(file->readBoolean());
+            setUseCatwalksColor(file->readBoolean());
+            setUseSpineColorScheme(file->readBoolean());
 
-            setLeftRailingLights(readBoolean());
-            setLeftRailingLightsColor(readColor());
+            setLeftRailingLights(file->readBoolean());
+            setLeftRailingLightsColor(file->readColor());
 
-            setRightRailingLights(readBoolean());
-            setRightRailingLightsColor(readColor());
+            setRightRailingLights(file->readBoolean());
+            setRightRailingLightsColor(file->readColor());
         }
 
         bool Segment::getInvisibleSegment() const {

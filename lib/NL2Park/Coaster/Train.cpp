@@ -3,31 +3,31 @@
 
 namespace Library {
     namespace NL2Park {
-        void Train::read() {
-            readNull(1);
+        void Train::read(File::File *file) {
+            file->readNull(1);
 
-            setStartBlock(readString());
-            readNull(1);
+            setStartBlock(file->readString());
+            file->readNull(1);
 
-            readNull(7);
-            setRunBackward(readBoolean());
-            setRemovedFromTrack(readBoolean());
+            file->readNull(7);
+            setRunBackward(file->readBoolean());
+            setRemovedFromTrack(file->readBoolean());
 
-            for(int i=0; i <= getFileSize(); i++) {
-                setStreamPosition(i);
-                std::string chunk = readChunkName();
+            for(int i=0; i <= file->tell(); i++) {
+                file->seek(i, SEEK_SET);
+                std::string chunk = file->readChunkName();
 
                 if(chunk == "CAR") {
                     Car *_car = new Car();
                     insertCar(_car);
 
-                    _car->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    _car->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
 
                 if (chunk == "INDC") {
-                    getIndividualColor()->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    getIndividualColor()->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
             }
         }

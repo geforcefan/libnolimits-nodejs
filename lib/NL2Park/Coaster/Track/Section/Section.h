@@ -1,11 +1,11 @@
 #ifndef LIB_NL2PARK_SECTION_H
 #define LIB_NL2PARK_SECTION_H
 
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 
 namespace Library {
     namespace NL2Park {
-        class Section : public Library::Stream::NoLimitsStream {
+        class Section : public Library::Stream::Chunk {
         public:
             enum SectionType {
                 Track,
@@ -18,7 +18,7 @@ namespace Library {
 
             Section(SectionType sectionType) : _sectionType(sectionType), section(this) {}
             Section() : _sectionType(SectionType::Track), section(this) {}
-            void read();
+            void read(File::File *file);
 
             SectionType getSectionType() const;
             void setSectionType(const SectionType &sectionType);

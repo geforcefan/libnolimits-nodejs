@@ -6,7 +6,7 @@ namespace Library {
         Style::Style() {
         }
 
-        void Style::read() {
+        void Style::read(File::File *file) {
         }
 
         Style::StyleType Style::getStyleType() const {

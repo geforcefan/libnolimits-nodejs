@@ -3,17 +3,17 @@
 
 #include "Section/Section.h"
 #include "Segment.h"
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 
 namespace Library {
     namespace NL2Park {
-        class Separator : public Stream::NoLimitsStream {
+        class Separator : public Stream::Chunk {
         public:
             Separator() {
                 section = new Section();
                 segment = new Segment();
             }
-            void read();
+            void read(File::File *file);
 
             Section *getSection() const;
             void setSection(Section *value);

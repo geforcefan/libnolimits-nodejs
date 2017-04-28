@@ -2,7 +2,7 @@
 #define LIB_NL2PARK_TRANSPORTDEVICE_H
 
 #include "Transport.h"
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 
 namespace Library {
     namespace NL2Park {

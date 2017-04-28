@@ -4,15 +4,15 @@
 
 namespace Library {
     namespace NL2Park {
-        void Storage::read() {
-            setEnableTransportDevice(readBoolean());
-            setTransportType((Transport::TransportType)readUnsigned8());
-            setBuilding((Storage::Building)readUnsigned8());
-            setRoofColor(readColor());
-            setSideColor(readColor());
-            setFrameColor(readColor());
+        void Storage::read(File::File *file) {
+            setEnableTransportDevice(file->readBoolean());
+            setTransportType((Transport::TransportType)file->readUnsigned8());
+            setBuilding((Storage::Building)file->readUnsigned8());
+            setRoofColor(file->readColor());
+            setSideColor(file->readColor());
+            setFrameColor(file->readColor());
 
-            readNull(15);
+            file->readNull(15);
         }
 
         bool Storage::getEnableTransportDevice() const {

@@ -2,7 +2,7 @@
 #define LIB_NL2PARK_TRANSPORT_H
 
 #include "Section.h"
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 
 namespace Library {
     namespace NL2Park {
@@ -15,7 +15,7 @@ namespace Library {
             };
 
             Transport() : Section(Section::SectionType::Transport) {}
-            void read();
+            void read(File::File *file);
 
             double getSpeed() const;
             void setSpeed(double value);

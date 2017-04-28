@@ -3,7 +3,7 @@
 
 namespace Library {
     namespace NL2Park {
-        void Mode::read() {
+        void Mode::read(File::File *file) {
         }
 
         Mode::Operation Mode::getOperationMode() const {

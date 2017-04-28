@@ -1,11 +1,11 @@
 #ifndef LIB_NL2PARK_TRIGGER_H
 #define LIB_NL2PARK_TRIGGER_H
 
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 
 namespace Library {
     namespace NL2Park {
-        class Trigger : public Stream::NoLimitsStream {
+        class Trigger : public Stream::Chunk {
         public:
             enum TrainEvent {
                 None,
@@ -16,7 +16,7 @@ namespace Library {
             };
 
             Trigger() {}
-            void read();
+            void read(File::File *file);
 
             double getPosition() const;
             void setPosition(double value);

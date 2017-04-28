@@ -1,11 +1,11 @@
 #ifndef LIB_NL2PARK_COLORS_H
 #define LIB_NL2PARK_COLORS_H
 
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 
 namespace Library {
     namespace NL2Park {
-        class Colors: public Stream::NoLimitsStream {
+        class Colors: public Stream::Chunk {
         public:
             enum SpineColorScheme {
                 Plain = 0,
@@ -15,7 +15,7 @@ namespace Library {
             };
 
             Colors();
-            void read();
+            void read(File::File *file);
 
             glm::vec3 getWireframeTrack() const;
             void setWireframeTrack(const glm::vec3 &value);

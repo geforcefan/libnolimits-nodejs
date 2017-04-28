@@ -17,6 +17,7 @@ std::string Helper::rightTrim(std::string str) {
     }
     return str.substr(0, str.length() - numEndSpaces);
 }
+
 std::string Helper::trim(std::string str) {
     return Helper::rightTrim(Helper::leftTrim(str));
 }

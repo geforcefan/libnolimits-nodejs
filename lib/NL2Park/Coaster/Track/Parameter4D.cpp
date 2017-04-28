@@ -2,11 +2,11 @@
 
 namespace Library {
     namespace NL2Park {
-        void Parameter4D::read() {
-            setPosition(readDouble());
-            setAngle(readDouble());
+        void Parameter4D::read(File::File *file) {
+            setPosition(file->readDouble());
+            setAngle(file->readDouble());
 
-            readNull(16);
+            file->readNull(16);
         }
 
         double Parameter4D::getPosition() const {

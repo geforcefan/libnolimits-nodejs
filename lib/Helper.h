@@ -3,6 +3,11 @@
 
 #include <iostream>
 #include <string.h>
+#include <memory>
+#include <iostream>
+#include <string>
+#include <cstdio>
+
 
 class Helper
 {

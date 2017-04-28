@@ -330,6 +330,23 @@
         obj->get##className()->insert##method((uint32_t)Nan::To<int>(info[0]).FromJust()); \
     }
 
+#define BINDING_METHOD_SETTER_GETTER_FLOAT_VECTOR(method, className) \
+    static NAN_GETTER(get##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        std::vector<float> vec = obj->get##className()->get##method(); \
+        v8::Local<v8::Array> arr = Nan::New<v8::Array>(vec.size()); \
+        for(unsigned long i = 0; i < vec.size(); i++) {\
+            float val = vec[i]; \
+            arr->Set(i, Nan::New(val)); \
+        } \
+        info.GetReturnValue().Set(arr);\
+    } \
+    static NAN_METHOD(insert##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        if(!info[0]->IsNumber()) \
+            return Nan::ThrowSyntaxError("1 argument must be of type number"); \
+        obj->get##className()->insert##method((float)Nan::To<double>(info[0]).FromJust()); \
+    }
 
 #define BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(method, className) \
     static NAN_GETTER(get##method) { \

@@ -3,19 +3,19 @@
 
 namespace Library {
     namespace NL2Park {
-        void IndividualColor::read() {
-            setHasIndividualColor(readBoolean());
+        void IndividualColor::read(File::File *file) {
+            setHasIndividualColor(file->readBoolean());
 
-            setCarColor(readColor());
-            setSeatColor(readColor());
-            setHarnessColor(readColor());
-            setBogieColor(readColor());
-            setChassisColor(readColor());
+            setCarColor(file->readColor());
+            setSeatColor(file->readColor());
+            setHarnessColor(file->readColor());
+            setBogieColor(file->readColor());
+            setChassisColor(file->readColor());
 
-            readNull(24);
-            setCarTexture1(readString());
-            readNull(12);
-            setCarTexture2(readString());
+            file->readNull(24);
+            setCarTexture1(file->readString());
+            file->readNull(12);
+            setCarTexture2(file->readString());
         }
 
         bool IndividualColor::getHasIndividualColor() const {

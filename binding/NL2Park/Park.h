@@ -3,6 +3,7 @@
 
 #include <binding/nolimits.h>
 #include <binding/NL2Park/Info/Info.h>
+#include <binding/NL2Park/Terrain/Terrain.h>
 #include <binding/NL2Park/Coaster/Coaster.h>
 
 #include <lib/NL2Park/Park.h>
@@ -26,6 +27,8 @@ namespace Binding {
                 BINDING_PROTOTYPE_METHOD_GETTER(Info);
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(Coaster);
                 BINDING_PROTOTYPE_METHOD_GETTER_BY_NAME_VECTOR(Coaster);
+                BINDING_PROTOTYPE_METHOD_GETTER(Terrain);
+                Nan::SetPrototypeMethod(tpl, "save", save);
             );
         private:
             static BINDING_PERSISTENT_CONSTRUCTOR();
@@ -41,6 +44,16 @@ namespace Binding {
             BINDING_METHOD_GETTER_OBJECT(Info, Park);
             BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(Coaster, Park);
             BINDING_METHOD_GETTER_BY_NAME_OBJECT_VECTOR(Coaster, Park);
+            BINDING_METHOD_GETTER_OBJECT(Terrain, Park);
+
+            static NAN_METHOD(save) {
+                Park* obj = ObjectWrap::Unwrap<Park>(info.Holder());
+
+                if(!info[0]->IsString())
+                    Nan::ThrowTypeError("First argument must be of type string");
+
+                obj->getPark()->save(std::string(*Nan::Utf8String(info[0])));
+            }
 
             Library::NL2Park::Park *_park;
         };

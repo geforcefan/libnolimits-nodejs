@@ -3,7 +3,7 @@
 
 #include "Section.h"
 #include "TransportDevice.h"
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 
 namespace Library {
     namespace NL2Park {
@@ -28,7 +28,7 @@ namespace Library {
             Brake() : Section(Section::SectionType::Brake) {
                 transportDevice = new TransportDevice();
             }
-            void read();
+            void read(File::File *file);
 
             double getExtraBlockLength() const;
             void setExtraBlockLength(double value);

@@ -2,8 +2,10 @@
 #define LIB_NL2PARK_PARK_H
 
 #include <string>
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
+#include "Uspk.h"
 #include <NL2Park/Info/Info.h>
+#include <NL2Park/Terrain/Terrain.h>
 #include <NL2Park/Coaster/Coaster.h>
 
 #include <vector>
@@ -11,11 +13,19 @@
 
 namespace Library {
     namespace NL2Park {
-        class Park: public Stream::NoLimitsStream {
+        class Park: public Stream::Chunk {
         public:
-            Park();
+            Park(std::string filepath);
+            Park() {
+                info = new Info();
+                terrain = new Terrain();
+                uspk = new Uspk();
+            }
 
-            void read();
+            void read(File::File *file);
+            void write(File::File *file);
+
+            void save(std::string filepath);
 
             Info *getInfo() const;
 
@@ -23,8 +33,19 @@ namespace Library {
             Coaster* getCoaster(std::string name) const;
             void insertCoaster(Coaster* value);
 
+            Terrain *getTerrain() const;
+            void setTerrain(Terrain *value);
+
+            Uspk *getUspk() const;
+            void setUspk(Uspk *value);
+
+        protected:
+            std::string getChunkName() { return "NL2P"; }
+
         private:
             Info *info;
+            Terrain *terrain;
+            Uspk *uspk;
 
             std::vector<Coaster*> coaster;
             std::map<std::string, int> coasterMapping;

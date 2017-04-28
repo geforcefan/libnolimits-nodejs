@@ -2,12 +2,12 @@
 
 namespace Library {
     namespace NL2Park {
-        void Vertex::read() {
-            setPosition(readDoubleVec4());
-            setLocked(readBoolean());
-            setStrict(readBoolean());
+        void Vertex::read(File::File *file) {
+            setPosition(file->readDoubleVec4());
+            setLocked(file->readBoolean());
+            setStrict(file->readBoolean());
 
-            readNull(22);
+            file->readNull(22);
         }
 
         glm::vec4 Vertex::getPosition() const {

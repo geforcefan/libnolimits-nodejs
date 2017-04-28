@@ -2,7 +2,7 @@
 #define LIB_NL2PARK_LIFT_H
 
 #include "Section.h"
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 
 namespace Library {
     namespace NL2Park {
@@ -20,7 +20,7 @@ namespace Library {
             };
 
             Lift() : Section(Section::SectionType::Lift) {}
-            void read();
+            void read(File::File *file);
 
             double getSpeed() const;
             void setSpeed(double value);

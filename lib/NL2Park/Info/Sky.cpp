@@ -3,10 +3,16 @@
 
 namespace Library {
     namespace NL2Park {
-        void Sky::read() {
-            setOverrideDefaultDateTime(readBoolean());
-            setCurrentDate(readIntVec2());
-            setCurrentTime(readIntVec2());
+        void Sky::read(File::File *file) {
+            setOverrideDefaultDateTime(file->readBoolean());
+            setCurrentDate(file->readIntVec2());
+            setCurrentTime(file->readIntVec2());
+        }
+
+        void Sky::write(File::File *file) {
+            file->writeBoolean(getOverrideDefaultDateTime());
+            file->writeIntVec2(getCurrentDate());
+            file->writeIntVec2(getCurrentTime());
         }
 
         glm::vec2 Sky::getCurrentTime() const {

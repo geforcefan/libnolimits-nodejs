@@ -1,13 +1,13 @@
 #ifndef LIB_NL2PARK_WEATHER_H
 #define LIB_NL2PARK_WEATHER_H
 
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 
 namespace Library {
     namespace NL2Park {
-        class Weather: public Stream::NoLimitsStream {
+        class Weather: public Stream::Chunk {
         public:
-            Weather() : Stream::NoLimitsStream::NoLimitsStream() {
+            Weather() : Stream::Chunk::Chunk() {
                 rainIntensity = 0;
                 snowIntensity = 0;
                 fogIntensity = 0;
@@ -18,7 +18,8 @@ namespace Library {
                 overwriteDefaultWeather = false;
             }
 
-            void read();
+            void read(File::File *file);
+            void write(File::File *file);
 
             float getRainIntensity() const;
             void setRainIntensity(float value);

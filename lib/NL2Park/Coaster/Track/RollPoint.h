@@ -1,14 +1,14 @@
 #ifndef LIB_NL2PARK_ROLLPOINT_H
 #define LIB_NL2PARK_ROLLPOINT_H
 
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 
 namespace Library {
     namespace NL2Park {
-        class RollPoint : public Stream::NoLimitsStream {
+        class RollPoint : public Stream::Chunk {
         public:
             RollPoint() {}
-            void read();
+            void read(File::File *file);
 
             double getPosition() const;
             void setPosition(double value);

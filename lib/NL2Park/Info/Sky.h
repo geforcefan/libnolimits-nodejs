@@ -1,15 +1,17 @@
 #ifndef LIB_NL2PARK_SKY_H
 #define LIB_NL2PARK_SKY_H
 
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 #include <nolimits.h>
 
 namespace Library {
     namespace NL2Park {
-        class Sky: public Stream::NoLimitsStream {
-            using Stream::NoLimitsStream::NoLimitsStream;
+        class Sky: public Stream::Chunk {
+            using Stream::Chunk::Chunk;
         public:
-            void read();
+            void read(File::File *file);
+            void write(File::File *file);
+
             bool getOverrideDefaultDateTime() const;
             void setOverrideDefaultDateTime(bool value);
 

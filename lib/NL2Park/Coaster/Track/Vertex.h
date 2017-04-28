@@ -1,14 +1,14 @@
 #ifndef LIB_NL2PARK_VERTEX_H
 #define LIB_NL2PARK_VERTEX_H
 
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 
 namespace Library {
     namespace NL2Park {
-        class Vertex : public Stream::NoLimitsStream {
+        class Vertex : public Stream::Chunk {
         public:
             Vertex() {}
-            void read();
+            void read(File::File *file);
 
             glm::vec4 getPosition() const;
             void setPosition(const glm::vec4 &value);

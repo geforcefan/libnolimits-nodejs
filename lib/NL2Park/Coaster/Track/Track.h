@@ -1,7 +1,7 @@
 #ifndef LIB_NL2PARK_TRACK_H
 #define LIB_NL2PARK_TRACK_H
 
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 #include "Section/Section.h"
 
 namespace Library {

@@ -2,17 +2,17 @@
 
 namespace Library {
     namespace NL2Park {
-        void RailNode::read() {
-            setPosition(readDouble());
+        void RailNode::read(File::File *file) {
+            setPosition(file->readDouble());
 
-            readNull(1);
+            file->readNull(1);
 
-            setColor(readColor());
+            setColor(file->readColor());
 
-            readNull(2);
+            file->readNull(2);
 
-            setIsModel(readBoolean());
-            uint8_t style = readUnsigned8();
+            setIsModel(file->readBoolean());
+            uint8_t style = file->readUnsigned8();
 
             if(!getIsModel()) {
                 if(style == 0)
@@ -42,13 +42,13 @@ namespace Library {
                     setConnectionStyle(RailNode::ConnectionStyle::SuspendedVertical);
             }
 
-            setSizeParameter(readDouble());
+            setSizeParameter(file->readDouble());
 
-            readNull(5);
+            file->readNull(5);
 
-            setFlag1(readUnsigned8());
-            setFlag2(readUnsigned8());
-            setFlag3(readUnsigned8());
+            setFlag1(file->readUnsigned8());
+            setFlag2(file->readUnsigned8());
+            setFlag3(file->readUnsigned8());
         }
 
         double RailNode::getPosition() const {

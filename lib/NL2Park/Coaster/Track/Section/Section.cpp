@@ -9,22 +9,22 @@
 
 namespace Library {
     namespace NL2Park {
-        void Section::read() {
-            readNull(4);
-            std::string name = readString();
-            readNull(1);
+        void Section::read(File::File *file) {
+            file->readNull(4);
+            std::string name = file->readString();
+            file->readNull(1);
 
-            for(int i=0; i <= getFileSize(); i++) {
-                setStreamPosition(i);
-                std::string chunk = readChunkName();
+            for(int i=0; i <= file->tell(); i++) {
+                file->seek(i, SEEK_SET);
+                std::string chunk = file->readChunkName();
 
                 if(chunk == "LIFT") {
                     Library::NL2Park::Lift *_lift = new Library::NL2Park::Lift();
                     _lift->setName(name);
                     setSection(_lift);
 
-                    _lift->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    _lift->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
 
                 if(chunk == "TRNS") {
@@ -32,8 +32,8 @@ namespace Library {
                     _transport->setName(name);
                     setSection(_transport);
 
-                    _transport->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    _transport->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
 
                 if(chunk == "BRKE") {
@@ -41,8 +41,8 @@ namespace Library {
                     _brake->setName(name);
                     setSection(_brake);
 
-                    _brake->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    _brake->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
 
                 if(chunk == "STTN") {
@@ -50,8 +50,8 @@ namespace Library {
                     _station->setName(name);
                     setSection(_station);
 
-                    _station->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    _station->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
 
                 if(chunk == "STOR") {
@@ -59,8 +59,8 @@ namespace Library {
                     _storage->setName(name);
                     setSection(_storage);
 
-                    _storage->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    _storage->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
             }
         }

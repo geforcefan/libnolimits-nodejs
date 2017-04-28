@@ -1,7 +1,7 @@
 #ifndef LIB_NL2PARK_BRAKEDEVICE_H
 #define LIB_NL2PARK_BRAKEDEVICE_H
 
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 #include "Brake.h"
 
 namespace Library {

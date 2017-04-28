@@ -1,19 +1,19 @@
 #ifndef LIB_NL2PARK_CAR_H
 #define LIB_NL2PARK_CAR_H
 
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 #include "IndividualColor.h"
 #include <vector>
 
 namespace Library {
     namespace NL2Park {
-        class Car: public Stream::NoLimitsStream {
+        class Car: public Stream::Chunk {
         public:
             Car() {
                 individualColor = new IndividualColor();
             }
 
-            void read();
+            void read(File::File *file);
 
             IndividualColor *getIndividualColor() const;
             void setIndividualColor(IndividualColor *value);

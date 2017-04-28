@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 #include <lib/NL2Park/Coaster/Colors.h>
 #include <lib/NL2Park/Coaster/Style.h>
 #include <lib/NL2Park/Coaster/Mode.h>
@@ -14,10 +14,10 @@
 
 namespace Library {
     namespace NL2Park {
-        class Coaster: public Stream::NoLimitsStream {
+        class Coaster: public Stream::Chunk {
         public:
             Coaster();
-            void read();
+            void read(File::File *file);
 
             std::string getName() const;
             void setName(const std::string &value);

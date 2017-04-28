@@ -2,9 +2,9 @@
 
 namespace Library {
     namespace NL2Park {
-        void WoodenSupportGenerator::read() {
-            setFlag1(readUnsigned8());
-            setFlag2(readUnsigned8());
+        void WoodenSupportGenerator::read(File::File *file) {
+            setFlag1(file->readUnsigned8());
+            setFlag2(file->readUnsigned8());
         }
 
         bool WoodenSupportGenerator::getUseIndividualSettings() {

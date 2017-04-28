@@ -2,12 +2,12 @@
 
 namespace Library {
     namespace NL2Park {
-        void Trigger::read() {
-            setPosition(readDouble());
-            setName(readString());
-            readNull(3);
-            setTrainEvent((Trigger::TrainEvent)readUnsigned8());
-            readNull(23);
+        void Trigger::read(File::File *file) {
+            setPosition(file->readDouble());
+            setName(file->readString());
+            file->readNull(3);
+            setTrainEvent((Trigger::TrainEvent)file->readUnsigned8());
+            file->readNull(23);
         }
 
         double Trigger::getPosition() const {

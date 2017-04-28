@@ -2,28 +2,28 @@
 
 namespace Library {
     namespace NL2Park {
-        void Separator::read() {
-            setPosition(readDouble());
+        void Separator::read(File::File *file) {
+            setPosition(file->readDouble());
 
-            for(int i=0; i <= getFileSize(); i++) {
-                setStreamPosition(i);
+            for(int i=0; i <= file->tell(); i++) {
+                file->seek(i, SEEK_SET);
 
-                std::string chunk = readChunkName();
+                std::string chunk = file->readChunkName();
 
                 if(chunk == "SEGM") {
                     Segment *_segment = new Segment();
                     setSegment(_segment);
 
-                    _segment->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    _segment->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
 
                 if(chunk == "SECT") {
                     Section *_section = new Section();
-                    _section->readChunk(getChunkBufferFile());
+                    _section->readChunk(file->getChunkBufferFile());
 
                     setSection(_section->getSection());
-                    i = getStreamPosition() - 1;
+                    i = file->tell() - 1;
                 }
             }
         }

@@ -3,14 +3,14 @@
 
 namespace Library {
     namespace NL2Park {
-        void Car::read() {
-            for(int i=0; i <= getFileSize(); i++) {
-                setStreamPosition(i);
-                std::string chunk = readChunkName();
+        void Car::read(File::File *file) {
+            for(int i=0; i <= file->tell(); i++) {
+                file->seek(i, SEEK_SET);
+                std::string chunk = file->readChunkName();
 
                 if (chunk == "INDC") {
-                    getIndividualColor()->readChunk(getChunkBufferFile());
-                    i = getStreamPosition() - 1;
+                    getIndividualColor()->readChunk(file->getChunkBufferFile());
+                    i = file->tell() - 1;
                 }
             }
         }

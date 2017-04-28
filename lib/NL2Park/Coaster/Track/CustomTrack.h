@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include <Stream/NoLimitsStream.h>
+#include <Stream/Chunk.h>
 #include <lib/NL2Park/Coaster/Track/Track.h>
 #include <lib/NL2Park/Coaster/Track/RollPoint.h>
 #include <lib/NL2Park/Coaster/Track/Vertex.h>
@@ -16,10 +16,10 @@
 
 namespace Library {
     namespace NL2Park {
-        class CustomTrack: public Stream::NoLimitsStream, public Track  {
+        class CustomTrack: public Stream::Chunk, public Track  {
         public:
             CustomTrack();
-            void read();
+            void read(File::File *file);
 
             RollPoint *getFirstRollPoint() const;
             RollPoint *getLastRollPoint() const;

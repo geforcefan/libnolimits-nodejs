@@ -9,18 +9,18 @@
 #include <binding/NL2Park/Coaster/Track/Parameter4D.h>
 #include <binding/NL2Park/Coaster/Track/Separator.h>
 #include <binding/NL2Park/Coaster/Track/Segment.h>
-#include <binding/NL2Park/Coaster/Track/Support/RailNode.h>
+#include <binding/NL2Park/Coaster/Support/RailNode.h>
 #include <binding/NL2Park/Coaster/Track/Section/Section.h>
-#include <lib/NL2Park/Coaster/Track/CustomTrack.h>
+#include <NL2/Coaster/Track/CustomTrack.h>
 
 namespace Binding {
     namespace NL2Park {
         class CustomTrack : public Track {
         public:
-            CustomTrack(Library::NL2Park::Track *track) : Track(track) {}
-            CustomTrack() : Track(new Library::NL2Park::CustomTrack) {}
+            CustomTrack(NoLimits::NoLimits2::Track *track) : Track(track) {}
+            CustomTrack() : Track(new NoLimits::NoLimits2::CustomTrack) {}
 
-            Library::NL2Park::CustomTrack *getCustomTrack() { return (Library::NL2Park::CustomTrack*)getTrack(); }
+            NoLimits::NoLimits2::CustomTrack *getCustomTrack() { return (NoLimits::NoLimits2::CustomTrack*)getTrack(); }
 
             static BINDING_MODULE_INIT("CustomTrack",
                 BINDING_INHERIT(Binding::NL2Park::Track);

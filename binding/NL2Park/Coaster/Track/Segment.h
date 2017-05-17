@@ -3,41 +3,41 @@
 
 #include <binding/nolimits.h>
 #include <binding/NL2Park/Coaster/Track/WoodenSupportGenerator.h>
-#include <lib/NL2Park/Coaster/Track/Segment.h>
+#include <NL2/Coaster/Track/Segment.h>
 
 namespace Binding {
     namespace NL2Park {
         class Tunnel {
         public:
             static BINDING_MODULE_INIT_ENUM(Tunnel,
-                BINDING_MODULE_ENUM_FIELD(None, Library::NL2Park::Segment::Tunnel);
-                BINDING_MODULE_ENUM_FIELD(Steel, Library::NL2Park::Segment::Tunnel);
-                BINDING_MODULE_ENUM_FIELD(Wooden, Library::NL2Park::Segment::Tunnel);
-                BINDING_MODULE_ENUM_FIELD(RoundConcrete, Library::NL2Park::Segment::Tunnel);
-                BINDING_MODULE_ENUM_FIELD(RectangularConcrete, Library::NL2Park::Segment::Tunnel);
-                BINDING_MODULE_ENUM_FIELD(Virtual, Library::NL2Park::Segment::Tunnel);
+                BINDING_MODULE_ENUM_FIELD(None, NoLimits::NoLimits2::Segment::Tunnel);
+                BINDING_MODULE_ENUM_FIELD(Steel, NoLimits::NoLimits2::Segment::Tunnel);
+                BINDING_MODULE_ENUM_FIELD(Wooden, NoLimits::NoLimits2::Segment::Tunnel);
+                BINDING_MODULE_ENUM_FIELD(RoundConcrete, NoLimits::NoLimits2::Segment::Tunnel);
+                BINDING_MODULE_ENUM_FIELD(RectangularConcrete, NoLimits::NoLimits2::Segment::Tunnel);
+                BINDING_MODULE_ENUM_FIELD(Virtual, NoLimits::NoLimits2::Segment::Tunnel);
             );
         };
 
         class TieSpacing {
         public:
             static BINDING_MODULE_INIT_ENUM(TieSpacing,
-                BINDING_MODULE_ENUM_FIELD(LowestStress, Library::NL2Park::Segment::TieSpacing);
-                BINDING_MODULE_ENUM_FIELD(LowerStress, Library::NL2Park::Segment::TieSpacing);
-                BINDING_MODULE_ENUM_FIELD(LowStress, Library::NL2Park::Segment::TieSpacing);
-                BINDING_MODULE_ENUM_FIELD(Normal, Library::NL2Park::Segment::TieSpacing);
-                BINDING_MODULE_ENUM_FIELD(HighStress, Library::NL2Park::Segment::TieSpacing);
-                BINDING_MODULE_ENUM_FIELD(HighestStress, Library::NL2Park::Segment::TieSpacing);
+                BINDING_MODULE_ENUM_FIELD(LowestStress, NoLimits::NoLimits2::Segment::TieSpacing);
+                BINDING_MODULE_ENUM_FIELD(LowerStress, NoLimits::NoLimits2::Segment::TieSpacing);
+                BINDING_MODULE_ENUM_FIELD(LowStress, NoLimits::NoLimits2::Segment::TieSpacing);
+                BINDING_MODULE_ENUM_FIELD(Normal, NoLimits::NoLimits2::Segment::TieSpacing);
+                BINDING_MODULE_ENUM_FIELD(HighStress, NoLimits::NoLimits2::Segment::TieSpacing);
+                BINDING_MODULE_ENUM_FIELD(HighestStress, NoLimits::NoLimits2::Segment::TieSpacing);
             );
         };
 
         class Segment : public Nan::ObjectWrap {
         public:
-            explicit Segment(Library::NL2Park::Segment *segment) : _segment(segment) {}
-            explicit Segment() : _segment(new Library::NL2Park::Segment) {}
+            explicit Segment(NoLimits::NoLimits2::Segment *segment) : _segment(segment) {}
+            explicit Segment() : _segment(new NoLimits::NoLimits2::Segment) {}
             ~Segment() {}
 
-            Library::NL2Park::Segment *getSegment() { return _segment; }
+            NoLimits::NoLimits2::Segment *getSegment() { return _segment; }
 
             static BINDING_MODULE_INIT("Segment",
                 BINDING_PROTOTYPE_METHOD_GETTER(WoodenSupportGenerator);
@@ -109,13 +109,13 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_VEC3(CatwalksColor, Segment);
 
             BINDING_METHOD_SETTER_GETTER_BOOLEAN(UseSpineColorScheme, Segment);
-            BINDING_METHOD_SETTER_GETTER_ENUM(SpineColorScheme, Segment, Library::NL2Park::Colors::SpineColorScheme);
+            BINDING_METHOD_SETTER_GETTER_ENUM(SpineColorScheme, Segment, NoLimits::NoLimits2::Colors::SpineColorScheme);
 
-            BINDING_METHOD_SETTER_GETTER_ENUM(Tunnel, Segment, Library::NL2Park::Segment::Tunnel);
+            BINDING_METHOD_SETTER_GETTER_ENUM(Tunnel, Segment, NoLimits::NoLimits2::Segment::Tunnel);
             BINDING_METHOD_SETTER_GETTER_UNSIGNED_8(SpineType, Segment);
-            BINDING_METHOD_SETTER_GETTER_ENUM(TieSpacing, Segment, Library::NL2Park::Segment::TieSpacing);
+            BINDING_METHOD_SETTER_GETTER_ENUM(TieSpacing, Segment, NoLimits::NoLimits2::Segment::TieSpacing);
 
-            Library::NL2Park::Segment *_segment;
+            NoLimits::NoLimits2::Segment *_segment;
         };
     }
 }

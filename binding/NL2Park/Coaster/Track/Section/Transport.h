@@ -3,25 +3,25 @@
 
 #include <binding/nolimits.h>
 #include "Section.h"
-#include <lib/NL2Park/Coaster/Track/Section/Transport.h>
+#include <NL2/Coaster/Track/Section/Transport.h>
 
 namespace Binding {
     namespace NL2Park {
         class TransportType {
         public:
             static BINDING_MODULE_INIT_ENUM(TransportType,
-                BINDING_MODULE_ENUM_FIELD(FrictionWheels, Library::NL2Park::Transport::TransportType);
-                BINDING_MODULE_ENUM_FIELD(LinearMotor, Library::NL2Park::Transport::TransportType);
-                BINDING_MODULE_ENUM_FIELD(HideDevice, Library::NL2Park::Transport::TransportType);
+                BINDING_MODULE_ENUM_FIELD(FrictionWheels, NoLimits::NoLimits2::Transport::TransportType);
+                BINDING_MODULE_ENUM_FIELD(LinearMotor, NoLimits::NoLimits2::Transport::TransportType);
+                BINDING_MODULE_ENUM_FIELD(HideDevice, NoLimits::NoLimits2::Transport::TransportType);
             );
         };
 
         class Transport : public Section {
         public:
-            Transport(Library::NL2Park::Transport *transport) : Section(transport) {}
-            Transport() : Section(new Library::NL2Park::Transport) {}
+            Transport(NoLimits::NoLimits2::Transport *transport) : Section(transport) {}
+            Transport() : Section(new NoLimits::NoLimits2::Transport) {}
 
-            Library::NL2Park::Transport *getTransport() { return (Library::NL2Park::Transport*)getSection(); }
+            NoLimits::NoLimits2::Transport *getTransport() { return (NoLimits::NoLimits2::Transport*)getSection(); }
 
             static BINDING_MODULE_INIT("Transport",
                 BINDING_INHERIT(Binding::NL2Park::Section);
@@ -48,7 +48,7 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_UNSIGNED_INTEGER(SpeedingUpPasses, Transport);
             BINDING_METHOD_SETTER_GETTER_BOOLEAN(SpeedingDown, Transport);
             BINDING_METHOD_SETTER_GETTER_DOUBLE(MinSpeed, Transport);
-            BINDING_METHOD_SETTER_GETTER_ENUM(TransportType, Transport, Library::NL2Park::Transport::TransportType);
+            BINDING_METHOD_SETTER_GETTER_ENUM(TransportType, Transport, NoLimits::NoLimits2::Transport::TransportType);
         };
     }
 }

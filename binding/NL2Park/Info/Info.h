@@ -4,28 +4,28 @@
 #include <binding/nolimits.h>
 #include <binding/NL2Park/Info/Weather.h>
 #include <binding/NL2Park/Info/Sky.h>
-#include <lib/NL2Park/Info/Info.h>
+#include <NL2/Info/Info.h>
 
 namespace Binding {
     namespace NL2Park {
         class RideView {
         public:
             static BINDING_MODULE_INIT_ENUM(RideView,
-                BINDING_MODULE_ENUM_FIELD(ClosestCoasterFirstTrain, Library::NL2Park::Info::RideView);
-                BINDING_MODULE_ENUM_FIELD(ClosestCoasterClosestTrain, Library::NL2Park::Info::RideView);
-                BINDING_MODULE_ENUM_FIELD(FlyView, Library::NL2Park::Info::RideView);
-                BINDING_MODULE_ENUM_FIELD(WalkView, Library::NL2Park::Info::RideView);
+                BINDING_MODULE_ENUM_FIELD(ClosestCoasterFirstTrain, NoLimits::NoLimits2::Info::RideView);
+                BINDING_MODULE_ENUM_FIELD(ClosestCoasterClosestTrain, NoLimits::NoLimits2::Info::RideView);
+                BINDING_MODULE_ENUM_FIELD(FlyView, NoLimits::NoLimits2::Info::RideView);
+                BINDING_MODULE_ENUM_FIELD(WalkView, NoLimits::NoLimits2::Info::RideView);
             );
         };
 
         class Info : public Nan::ObjectWrap {
         public:
-            explicit Info() : _info(new Library::NL2Park::Info) {}
-            explicit Info(Library::NL2Park::Info *info) : _info(info) {}
+            explicit Info() : _info(new NoLimits::NoLimits2::Info) {}
+            explicit Info(NoLimits::NoLimits2::Info *info) : _info(info) {}
 
             ~Info() {}
 
-            Library::NL2Park::Info *getInfo() { return _info; }
+            NoLimits::NoLimits2::Info *getInfo() { return _info; }
 
             static BINDING_MODULE_INIT("Info",
                BINDING_PROTOTYPE_METHOD_SETTER_GETTER(Author);
@@ -48,14 +48,14 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_STRING(Environment, Info);
             BINDING_METHOD_SETTER_GETTER_VEC3(InitialPosition, Info);
             BINDING_METHOD_SETTER_GETTER_VEC2(InitialRotation, Info);
-            BINDING_METHOD_SETTER_GETTER_ENUM(InitialView, Info, Library::NL2Park::Info::RideView);
+            BINDING_METHOD_SETTER_GETTER_ENUM(InitialView, Info, NoLimits::NoLimits2::Info::RideView);
             BINDING_METHOD_GETTER_OBJECT(Weather, Info);
             BINDING_METHOD_GETTER_OBJECT(Sky, Info);
 
             static BINDING_PERSISTENT_CONSTRUCTOR();
             static BINDING_METHOD_NEW_CAST_EXTERNAL(Info);
 
-            Library::NL2Park::Info *_info;
+            NoLimits::NoLimits2::Info *_info;
         };
     }
 }

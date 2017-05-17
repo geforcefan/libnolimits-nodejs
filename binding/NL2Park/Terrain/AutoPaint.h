@@ -2,18 +2,18 @@
 #define BINDING_NL2PARK_AUTOPAINT_H
 
 #include <binding/nolimits.h>
-#include <lib/NL2Park/Terrain/AutoPaint.h>
+#include <NL2/Terrain/AutoPaint.h>
 
 namespace Binding {
     namespace NL2Park {
         class AutoPaint : public Nan::ObjectWrap {
         public:
-            explicit AutoPaint() : _autoPaint(new Library::NL2Park::AutoPaint) {}
-            explicit AutoPaint(Library::NL2Park::AutoPaint *autoPaint) : _autoPaint(autoPaint) {}
+            explicit AutoPaint() : _autoPaint(new NoLimits::NoLimits2::AutoPaint) {}
+            explicit AutoPaint(NoLimits::NoLimits2::AutoPaint *autoPaint) : _autoPaint(autoPaint) {}
 
             ~AutoPaint() {}
 
-            Library::NL2Park::AutoPaint *getAutoPaint() { return _autoPaint; }
+            NoLimits::NoLimits2::AutoPaint *getAutoPaint() { return _autoPaint; }
 
             static BINDING_MODULE_INIT("AutoPaint",
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(Enabled);
@@ -41,7 +41,7 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_FLOAT(Noise, AutoPaint);
             BINDING_METHOD_SETTER_GETTER_FLOAT(NoiseDetail, AutoPaint);
 
-            Library::NL2Park::AutoPaint *_autoPaint;
+            NoLimits::NoLimits2::AutoPaint *_autoPaint;
         };
     }
 }

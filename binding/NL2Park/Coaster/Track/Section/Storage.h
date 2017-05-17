@@ -4,24 +4,24 @@
 #include <binding/nolimits.h>
 #include "Section.h"
 #include "TransportDevice.h"
-#include <lib/NL2Park/Coaster/Track/Section/Storage.h>
+#include <NL2/Coaster/Track/Section/Storage.h>
 
 namespace Binding {
     namespace NL2Park {
         class Building {
         public:
             static BINDING_MODULE_INIT_ENUM(Building,
-                BINDING_MODULE_ENUM_FIELD(None, Library::NL2Park::Storage::Building);
-                BINDING_MODULE_ENUM_FIELD(Simple, Library::NL2Park::Storage::Building);
+                BINDING_MODULE_ENUM_FIELD(None, NoLimits::NoLimits2::Storage::Building);
+                BINDING_MODULE_ENUM_FIELD(Simple, NoLimits::NoLimits2::Storage::Building);
             );
         };
 
         class Storage : public Section {
         public:
-            Storage(Library::NL2Park::Storage *storage) : Section(storage) {}
-            Storage() : Section(new Library::NL2Park::Storage) {}
+            Storage(NoLimits::NoLimits2::Storage *storage) : Section(storage) {}
+            Storage() : Section(new NoLimits::NoLimits2::Storage) {}
 
-            Library::NL2Park::Storage *getStorage() { return (Library::NL2Park::Storage*)getSection(); }
+            NoLimits::NoLimits2::Storage *getStorage() { return (NoLimits::NoLimits2::Storage*)getSection(); }
 
             static BINDING_MODULE_INIT("Storage",
                 BINDING_INHERIT(Binding::NL2Park::Section);
@@ -43,8 +43,8 @@ namespace Binding {
 
             BINDING_METHOD_SETTER_GETTER_BOOLEAN(EnableTransportDevice, Storage);
             BINDING_METHOD_GETTER_OBJECT(TransportDevice, Storage);
-            BINDING_METHOD_SETTER_GETTER_ENUM(TransportType, Storage, Library::NL2Park::Transport::TransportType);
-            BINDING_METHOD_SETTER_GETTER_ENUM(Building, Storage, Library::NL2Park::Storage::Building);
+            BINDING_METHOD_SETTER_GETTER_ENUM(TransportType, Storage, NoLimits::NoLimits2::Transport::TransportType);
+            BINDING_METHOD_SETTER_GETTER_ENUM(Building, Storage, NoLimits::NoLimits2::Storage::Building);
             BINDING_METHOD_SETTER_GETTER_VEC3(SideColor, Storage);
             BINDING_METHOD_SETTER_GETTER_VEC3(RoofColor, Storage);
             BINDING_METHOD_SETTER_GETTER_VEC3(FrameColor, Storage);

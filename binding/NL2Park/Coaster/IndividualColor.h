@@ -2,17 +2,17 @@
 #define BINDING_NL2PARK_INDIVIDUALCOLOR_H
 
 #include <binding/nolimits.h>
-#include <lib/NL2Park/Coaster/IndividualColor.h>
+#include <NL2/Coaster/IndividualColor.h>
 
 namespace Binding {
     namespace NL2Park {
         class IndividualColor : public Nan::ObjectWrap {
         public:
-            explicit IndividualColor(Library::NL2Park::IndividualColor *individualColor) : _individualColor(individualColor) {}
-            explicit IndividualColor() : _individualColor(new Library::NL2Park::IndividualColor) {}
+            explicit IndividualColor(NoLimits::NoLimits2::IndividualColor *individualColor) : _individualColor(individualColor) {}
+            explicit IndividualColor() : _individualColor(new NoLimits::NoLimits2::IndividualColor) {}
             ~IndividualColor() {}
 
-            Library::NL2Park::IndividualColor *getIndividualColor() { return _individualColor; }
+            NoLimits::NoLimits2::IndividualColor *getIndividualColor() { return _individualColor; }
 
             static BINDING_MODULE_INIT("IndividualColor",
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(HasIndividualColor);
@@ -23,8 +23,7 @@ namespace Binding {
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(BogieColor);
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(ChassisColor);
 
-                BINDING_PROTOTYPE_METHOD_SETTER_GETTER(CarTexture1);
-                BINDING_PROTOTYPE_METHOD_SETTER_GETTER(CarTexture2);
+                BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(CarTexture);
             );
 
             static BINDING_NEW_INSTANCE();
@@ -40,10 +39,9 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_VEC3(BogieColor, IndividualColor);
             BINDING_METHOD_SETTER_GETTER_VEC3(ChassisColor, IndividualColor);
 
-            BINDING_METHOD_SETTER_GETTER_STRING(CarTexture1, IndividualColor);
-            BINDING_METHOD_SETTER_GETTER_STRING(CarTexture2, IndividualColor);
+            BINDING_METHOD_SETTER_GETTER_STRING_VECTOR(CarTexture, IndividualColor);
 
-            Library::NL2Park::IndividualColor *_individualColor;
+            NoLimits::NoLimits2::IndividualColor *_individualColor;
         };
     }
 }

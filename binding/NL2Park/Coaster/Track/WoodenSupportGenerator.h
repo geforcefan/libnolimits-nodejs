@@ -2,26 +2,26 @@
 #define BINDING_NL2PARK_WOODENSUPPORTGENERATOR_H
 
 #include <binding/nolimits.h>
-#include <lib/NL2Park/Coaster/Track/WoodenSupportGenerator.h>
+#include <NL2/Coaster/Track/WoodenSupportGenerator.h>
 
 namespace Binding {
     namespace NL2Park {
         class BentSpacing {
         public:
             static BINDING_MODULE_INIT_ENUM(BentSpacing,
-                BINDING_MODULE_ENUM_FIELD(Spacing9Ft, Library::NL2Park::WoodenSupportGenerator::BentSpacing);
-                BINDING_MODULE_ENUM_FIELD(Spacing625Ft, Library::NL2Park::WoodenSupportGenerator::BentSpacing);
-                BINDING_MODULE_ENUM_FIELD(Spacing45Ft, Library::NL2Park::WoodenSupportGenerator::BentSpacing);
+                BINDING_MODULE_ENUM_FIELD(Spacing9Ft, NoLimits::NoLimits2::WoodenSupportGenerator::BentSpacing);
+                BINDING_MODULE_ENUM_FIELD(Spacing625Ft, NoLimits::NoLimits2::WoodenSupportGenerator::BentSpacing);
+                BINDING_MODULE_ENUM_FIELD(Spacing45Ft, NoLimits::NoLimits2::WoodenSupportGenerator::BentSpacing);
             );
         };
 
         class WoodenSupportGenerator : public Nan::ObjectWrap {
         public:
-            explicit WoodenSupportGenerator(Library::NL2Park::WoodenSupportGenerator *woodenSupportGenerator) : _woodenSupportGenerator(woodenSupportGenerator) {}
-            explicit WoodenSupportGenerator() : _woodenSupportGenerator(new Library::NL2Park::WoodenSupportGenerator) {}
+            explicit WoodenSupportGenerator(NoLimits::NoLimits2::WoodenSupportGenerator *woodenSupportGenerator) : _woodenSupportGenerator(woodenSupportGenerator) {}
+            explicit WoodenSupportGenerator() : _woodenSupportGenerator(new NoLimits::NoLimits2::WoodenSupportGenerator) {}
             ~WoodenSupportGenerator() {}
 
-            Library::NL2Park::WoodenSupportGenerator *getWoodenSupportGenerator() { return _woodenSupportGenerator; }
+            NoLimits::NoLimits2::WoodenSupportGenerator *getWoodenSupportGenerator() { return _woodenSupportGenerator; }
 
             static BINDING_MODULE_INIT("WoodenSupportGenerator",
                 BINDING_PROTOTYPE_METHOD_GETTER(UseIndividualSettings);
@@ -52,9 +52,9 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_BOOLEAN(UseRightHandrails, WoodenSupportGenerator);
             BINDING_METHOD_SETTER_GETTER_BOOLEAN(CollisionDetection, WoodenSupportGenerator);
             BINDING_METHOD_SETTER_GETTER_BOOLEAN(EnableSupports, WoodenSupportGenerator);
-            BINDING_METHOD_SETTER_GETTER_ENUM(BentSpacing, WoodenSupportGenerator, Library::NL2Park::WoodenSupportGenerator::BentSpacing);
+            BINDING_METHOD_SETTER_GETTER_ENUM(BentSpacing, WoodenSupportGenerator, NoLimits::NoLimits2::WoodenSupportGenerator::BentSpacing);
 
-            Library::NL2Park::WoodenSupportGenerator *_woodenSupportGenerator;
+            NoLimits::NoLimits2::WoodenSupportGenerator *_woodenSupportGenerator;
         };
     }
 }

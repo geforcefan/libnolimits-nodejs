@@ -3,55 +3,9 @@
         {
             "target_name": "nolimits",
             "sources": [
-                "lib/Helper.cpp",
                 "binding/nolimits.cpp",
                 "binding/NL2Park/Coaster/Track/Track.cpp",
-                "binding/NL2Park/Coaster/Track/Section/Section.cpp",
-                "lib/Stream/Chunk.cpp",
-                "lib/NL2Park/Park.cpp",
-                "lib/NL2Park/Uspk.cpp",
-                "lib/NL2Park/Terrain/Terrain.cpp",
-                "lib/NL2Park/Terrain/AutoPaint.cpp",
-                "lib/NL2Park/Terrain/BaseMap.cpp",
-                "lib/NL2Park/Terrain/BumpMap.cpp",
-                "lib/NL2Park/Terrain/DetailMap.cpp",
-                "lib/NL2Park/Terrain/Extras.cpp",
-                "lib/NL2Park/Terrain/Layer.cpp",
-                "lib/NL2Park/Terrain/Water.cpp",
-                "lib/NL2Park/Info/Info.cpp",
-                "lib/NL2Park/Info/Version.cpp",
-                "lib/NL2Park/Info/Sky.cpp",
-                "lib/NL2Park/Info/Weather.cpp",
-                "lib/NL2Park/Coaster/Coaster.cpp",
-                "lib/NL2Park/Coaster/Colors.cpp",
-                "lib/NL2Park/Coaster/Train.cpp",
-                "lib/NL2Park/Coaster/Car.cpp",
-                "lib/NL2Park/Coaster/IndividualColor.cpp",
-                "lib/NL2Park/Coaster/Style.cpp",
-                "lib/NL2Park/Coaster/Mode.cpp",
-                "lib/NL2Park/Coaster/CustomFriction.cpp",
-                "lib/NL2Park/Coaster/Track/Track.cpp",
-                "lib/NL2Park/Coaster/Track/CustomTrack.cpp",
-                "lib/NL2Park/Coaster/Track/Vertex.cpp",
-                "lib/NL2Park/Coaster/Track/RollPoint.cpp",
-                "lib/NL2Park/Coaster/Track/Trigger.cpp",
-                "lib/NL2Park/Coaster/Track/Segment.cpp",
-                "lib/NL2Park/Coaster/Track/Parameter4D.cpp",
-                "lib/NL2Park/Coaster/Track/WoodenSupportGenerator.cpp",
-                "lib/NL2Park/Coaster/Track/Support/RailNode.cpp",
-                "lib/NL2Park/Coaster/Track/Support/SupportNode.cpp",
-                "lib/NL2Park/Coaster/Track/Section/Section.cpp",
-                "lib/NL2Park/Coaster/Track/Section/Lift.cpp",
-                "lib/NL2Park/Coaster/Track/Section/Storage.cpp",
-                "lib/NL2Park/Coaster/Track/Section/Transport.cpp",
-                "lib/NL2Park/Coaster/Track/Section/TransportDevice.cpp",
-                "lib/NL2Park/Coaster/Track/Section/WaitTime.cpp",
-                "lib/NL2Park/Coaster/Track/Section/Station.cpp",
-                "lib/NL2Park/Coaster/Track/Section/BrakeDevice.cpp",
-                "lib/NL2Park/Coaster/Track/Section/Brake.cpp",
-                "lib/NL2Park/Coaster/Track/Separator.cpp",
-                "lib/File/File.cpp",
-                "lib/File/BufferFile.cpp",
+                "binding/NL2Park/Coaster/Track/Section/Section.cpp"
             ],
             'cflags!': ['-fno-exceptions', '-funwind-tables', '-stdlib=libc++', '-std=c++11', '-O3', '-g0'],
             'cflags_cc!': ['-fno-exceptions', '-funwind-tables', '-stdlib=libc++', '-std=c++11', '-O3', '-g0'],
@@ -60,14 +14,15 @@
                 'xcode_settings': {
                   'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
                   'OTHER_CFLAGS': ['-stdlib=libc++', '-std=c++11', '-O3', '-g0'],
-                  'OTHER_LDFLAGS': ['-lz']
+                  'OTHER_LDFLAGS': ['-lz', '-lnolimits']
                 }
               }]
             ],
             "include_dirs": [
                 "<!(node -e \"require('nan')\")",
                 "lib",
-                "."
+                ".",
+                "/Users/ercanakyurek/Daten/Projects/libnolimits/src/"
             ]
         }
     ]

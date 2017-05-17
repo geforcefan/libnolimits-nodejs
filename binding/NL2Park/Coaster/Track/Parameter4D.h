@@ -2,17 +2,17 @@
 #define BINDING_NL2PARK_PARAMETER4D_H
 
 #include <binding/nolimits.h>
-#include <lib/NL2Park/Coaster/Track/Parameter4D.h>
+#include <NL2/Coaster/Track/Parameter4D.h>
 
 namespace Binding {
     namespace NL2Park {
         class Parameter4D : public Nan::ObjectWrap {
         public:
-            explicit Parameter4D(Library::NL2Park::Parameter4D *parameter4D) : _parameter4D(parameter4D) {}
-            explicit Parameter4D() : _parameter4D(new Library::NL2Park::Parameter4D) {}
+            explicit Parameter4D(NoLimits::NoLimits2::Parameter4D *parameter4D) : _parameter4D(parameter4D) {}
+            explicit Parameter4D() : _parameter4D(new NoLimits::NoLimits2::Parameter4D) {}
             ~Parameter4D() {}
 
-            Library::NL2Park::Parameter4D *getParameter4D() { return _parameter4D; }
+            NoLimits::NoLimits2::Parameter4D *getParameter4D() { return _parameter4D; }
 
             static BINDING_MODULE_INIT("Parameter4D",
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(Position);
@@ -27,7 +27,7 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_DOUBLE(Position, Parameter4D);
             BINDING_METHOD_SETTER_GETTER_DOUBLE(Angle, Parameter4D);
 
-            Library::NL2Park::Parameter4D *_parameter4D;
+            NoLimits::NoLimits2::Parameter4D *_parameter4D;
         };
     }
 }

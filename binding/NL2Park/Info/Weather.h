@@ -2,17 +2,17 @@
 #define BINDING_NL2PARK_WEATHER_H
 
 #include <binding/nolimits.h>
-#include <lib/NL2Park/Info/Weather.h>
+#include <NL2/Info/Weather.h>
 
 namespace Binding {
     namespace NL2Park {
         class Weather : public Nan::ObjectWrap {
         public:
-            explicit Weather(Library::NL2Park::Weather *weather) : _weather(weather) {}
-            explicit Weather() : _weather(new Library::NL2Park::Weather) {}
+            explicit Weather(NoLimits::NoLimits2::Weather *weather) : _weather(weather) {}
+            explicit Weather() : _weather(new NoLimits::NoLimits2::Weather) {}
             ~Weather() {}
 
-            Library::NL2Park::Weather *getWeather() { return _weather; }
+            NoLimits::NoLimits2::Weather *getWeather() { return _weather; }
 
             static BINDING_MODULE_INIT("Weather",
                BINDING_PROTOTYPE_METHOD_SETTER_GETTER(RainIntensity);
@@ -47,7 +47,7 @@ namespace Binding {
                 if(!info[1]->IsBoolean())
                     return Nan::ThrowTypeError("argument 2 must be of type Boolean");
 
-                float result = Library::NL2Park::Weather::convertWindIntensity(
+                float result = NoLimits::NoLimits2::Weather::convertWindIntensity(
                     (float)Nan::To<double>(info[0]).FromJust(),
                     Nan::To<bool>(info[1]).FromJust()
                 );
@@ -61,7 +61,7 @@ namespace Binding {
                 if(!info[1]->IsBoolean())
                     return Nan::ThrowTypeError("argument 2 must be of type Boolean");
 
-                float result = Library::NL2Park::Weather::convertFogIntensity(
+                float result = NoLimits::NoLimits2::Weather::convertFogIntensity(
                     (float)Nan::To<double>(info[0]).FromJust(),
                     Nan::To<bool>(info[1]).FromJust()
                 );
@@ -69,7 +69,7 @@ namespace Binding {
                 info.GetReturnValue().Set(result);
             }
 
-            Library::NL2Park::Weather *_weather;
+            NoLimits::NoLimits2::Weather *_weather;
         };
     }
 }

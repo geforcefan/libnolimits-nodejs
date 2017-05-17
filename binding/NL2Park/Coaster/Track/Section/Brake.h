@@ -4,41 +4,41 @@
 #include <binding/nolimits.h>
 #include "Section.h"
 #include "TransportDevice.h"
-#include <lib/NL2Park/Coaster/Track/Section/Brake.h>
+#include <NL2/Coaster/Track/Section/Brake.h>
 
 namespace Binding {
     namespace NL2Park {
         class BrakeType {
         public:
             static BINDING_MODULE_INIT_ENUM(BrakeType,
-                BINDING_MODULE_ENUM_FIELD(FrictionBrake, Library::NL2Park::Brake::BrakeType);
-                BINDING_MODULE_ENUM_FIELD(MagneticBrake, Library::NL2Park::Brake::BrakeType);
-                BINDING_MODULE_ENUM_FIELD(HideBrakeDevice, Library::NL2Park::Brake::BrakeType);
+                BINDING_MODULE_ENUM_FIELD(FrictionBrake, NoLimits::NoLimits2::Brake::BrakeType);
+                BINDING_MODULE_ENUM_FIELD(MagneticBrake, NoLimits::NoLimits2::Brake::BrakeType);
+                BINDING_MODULE_ENUM_FIELD(HideBrakeDevice, NoLimits::NoLimits2::Brake::BrakeType);
             );
         };
 
         class BrakeMode {
         public:
             static BINDING_MODULE_INIT_ENUM(BrakeMode,
-                BINDING_MODULE_ENUM_FIELD(TrimBrake, Library::NL2Park::Brake::BrakeMode);
-                BINDING_MODULE_ENUM_FIELD(BlockBrake, Library::NL2Park::Brake::BrakeMode);
+                BINDING_MODULE_ENUM_FIELD(TrimBrake, NoLimits::NoLimits2::Brake::BrakeMode);
+                BINDING_MODULE_ENUM_FIELD(BlockBrake, NoLimits::NoLimits2::Brake::BrakeMode);
             );
         };
 
         class Position {
         public:
             static BINDING_MODULE_INIT_ENUM(Position,
-                BINDING_MODULE_ENUM_FIELD(FirstCar, Library::NL2Park::Brake::Position);
-                BINDING_MODULE_ENUM_FIELD(MiddleCar, Library::NL2Park::Brake::Position);
+                BINDING_MODULE_ENUM_FIELD(FirstCar, NoLimits::NoLimits2::Brake::Position);
+                BINDING_MODULE_ENUM_FIELD(MiddleCar, NoLimits::NoLimits2::Brake::Position);
             );
         };
 
         class Brake : public Section {
         public:
-            Brake(Library::NL2Park::Brake *brake) : Section(brake) {}
-            Brake() : Section(new Library::NL2Park::Brake) {}
+            Brake(NoLimits::NoLimits2::Brake *brake) : Section(brake) {}
+            Brake() : Section(new NoLimits::NoLimits2::Brake) {}
 
-            Library::NL2Park::Brake *getBrake() { return (Library::NL2Park::Brake*)getSection(); }
+            NoLimits::NoLimits2::Brake *getBrake() { return (NoLimits::NoLimits2::Brake*)getSection(); }
 
             static BINDING_MODULE_INIT("Brake",
                 BINDING_INHERIT(Binding::NL2Park::Section);
@@ -74,18 +74,18 @@ namespace Binding {
 
             BINDING_METHOD_SETTER_GETTER_DOUBLE(ExtraBlockLength, Brake);
 
-            BINDING_METHOD_SETTER_GETTER_ENUM(Mode, Brake, Library::NL2Park::Brake::BrakeMode);
+            BINDING_METHOD_SETTER_GETTER_ENUM(Mode, Brake, NoLimits::NoLimits2::Brake::BrakeMode);
 
             BINDING_METHOD_SETTER_GETTER_BOOLEAN(CompleteStop, Brake);
             BINDING_METHOD_SETTER_GETTER_DOUBLE(WaitTime, Brake);
 
-            BINDING_METHOD_SETTER_GETTER_ENUM(BrakeType, Brake, Library::NL2Park::Brake::BrakeType);
+            BINDING_METHOD_SETTER_GETTER_ENUM(BrakeType, Brake, NoLimits::NoLimits2::Brake::BrakeType);
 
             BINDING_METHOD_SETTER_GETTER_DOUBLE(SpeedLimit, Brake);
             BINDING_METHOD_SETTER_GETTER_DOUBLE(Hysteresis, Brake);
             BINDING_METHOD_SETTER_GETTER_DOUBLE(Deceleration, Brake);
 
-            BINDING_METHOD_SETTER_GETTER_ENUM(PositionOnTrain, Brake, Library::NL2Park::Brake::Position);
+            BINDING_METHOD_SETTER_GETTER_ENUM(PositionOnTrain, Brake, NoLimits::NoLimits2::Brake::Position);
             BINDING_METHOD_SETTER_GETTER_DOUBLE(PositionOnSection, Brake);
 
             BINDING_METHOD_SETTER_GETTER_BOOLEAN(EnableTransport, Brake);

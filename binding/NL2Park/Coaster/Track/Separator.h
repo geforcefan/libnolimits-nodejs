@@ -4,17 +4,17 @@
 #include <binding/nolimits.h>
 #include <binding/NL2Park/Coaster/Track/Section/Section.h>
 #include <binding/NL2Park/Coaster/Track/Segment.h>
-#include <lib/NL2Park/Coaster/Track/Separator.h>
+#include <NL2/Coaster/Track/Separator.h>
 
 namespace Binding {
     namespace NL2Park {
         class Separator : public Nan::ObjectWrap {
         public:
-            explicit Separator(Library::NL2Park::Separator *separator) : _separator(separator) {}
-            explicit Separator() : _separator(new Library::NL2Park::Separator) {}
+            explicit Separator(NoLimits::NoLimits2::Separator *separator) : _separator(separator) {}
+            explicit Separator() : _separator(new NoLimits::NoLimits2::Separator) {}
             ~Separator() {}
 
-            Library::NL2Park::Separator *getSeparator() { return _separator; }
+            NoLimits::NoLimits2::Separator *getSeparator() { return _separator; }
 
             static BINDING_MODULE_INIT("Separator",
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(Position);
@@ -31,7 +31,7 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_INHERITED_OBJECT(Section, Separator);
             BINDING_METHOD_SETTER_GETTER_OBJECT(Segment, Separator);
 
-            Library::NL2Park::Separator *_separator;
+            NoLimits::NoLimits2::Separator *_separator;
         };
     }
 }

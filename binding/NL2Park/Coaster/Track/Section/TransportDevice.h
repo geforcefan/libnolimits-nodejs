@@ -2,17 +2,17 @@
 #define BINDING_NL2PARK_TRANSPORTDEVICE_H
 
 #include <binding/nolimits.h>
-#include <lib/NL2Park/Coaster/Track/Section/TransportDevice.h>
+#include <NL2/Coaster/Track/Section/TransportDevice.h>
 
 namespace Binding {
     namespace NL2Park {
         class TransportDevice : public Nan::ObjectWrap {
         public:
-            explicit TransportDevice(Library::NL2Park::TransportDevice *transportDevice) : _transportDevice(transportDevice) {}
-            explicit TransportDevice() : _transportDevice(new Library::NL2Park::TransportDevice) {}
+            explicit TransportDevice(NoLimits::NoLimits2::TransportDevice *transportDevice) : _transportDevice(transportDevice) {}
+            explicit TransportDevice() : _transportDevice(new NoLimits::NoLimits2::TransportDevice) {}
             ~TransportDevice() {}
 
-            Library::NL2Park::TransportDevice *getTransportDevice() { return _transportDevice; }
+            NoLimits::NoLimits2::TransportDevice *getTransportDevice() { return _transportDevice; }
 
             static BINDING_MODULE_INIT("TransportDevice",
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(TransportType);
@@ -29,7 +29,7 @@ namespace Binding {
             static BINDING_PERSISTENT_CONSTRUCTOR();
             static BINDING_METHOD_NEW_CAST_EXTERNAL(TransportDevice);
 
-            BINDING_METHOD_SETTER_GETTER_ENUM(TransportType, TransportDevice, Library::NL2Park::Transport::TransportType);
+            BINDING_METHOD_SETTER_GETTER_ENUM(TransportType, TransportDevice, NoLimits::NoLimits2::Transport::TransportType);
             BINDING_METHOD_SETTER_GETTER_DOUBLE(Speed, TransportDevice);
             BINDING_METHOD_SETTER_GETTER_DOUBLE(Acceleration, TransportDevice);
             BINDING_METHOD_SETTER_GETTER_DOUBLE(Deceleration, TransportDevice);
@@ -37,7 +37,7 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_DOUBLE(LaunchAcceleration, TransportDevice);
             BINDING_METHOD_SETTER_GETTER_DOUBLE(LaunchMaxSpeed, TransportDevice);
 
-            Library::NL2Park::TransportDevice *_transportDevice;
+            NoLimits::NoLimits2::TransportDevice *_transportDevice;
         };
     }
 }

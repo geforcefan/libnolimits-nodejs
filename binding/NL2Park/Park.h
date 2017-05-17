@@ -6,22 +6,24 @@
 #include <binding/NL2Park/Terrain/Terrain.h>
 #include <binding/NL2Park/Coaster/Coaster.h>
 
-#include <lib/NL2Park/Park.h>
-#include <lib/File/BufferFile.h>
+#include <NL2/Park.h>
+#include <File/MemoryFile.h>
 
 namespace Binding {
     namespace NL2Park {
         class Park : public Nan::ObjectWrap {
         public:
             explicit Park(std::string filepath) {
-                _park = new Library::NL2Park::Park();
-                _park->readChunk(Library::File::BufferFile::createFromFilePath(filepath));
+                _park = new NoLimits::NoLimits2::Park(filepath);
             }
 
-            explicit Park() {}
+            explicit Park() {
+                _park = new NoLimits::NoLimits2::Park();
+            }
+
             ~Park() {}
 
-            Library::NL2Park::Park *getPark() { return _park; }
+            NoLimits::NoLimits2::Park *getPark() { return _park; }
 
             static BINDING_MODULE_INIT("Park",
                 BINDING_PROTOTYPE_METHOD_GETTER(Info);
@@ -55,7 +57,7 @@ namespace Binding {
                 obj->getPark()->save(std::string(*Nan::Utf8String(info[0])));
             }
 
-            Library::NL2Park::Park *_park;
+            NoLimits::NoLimits2::Park *_park;
         };
     }
 }

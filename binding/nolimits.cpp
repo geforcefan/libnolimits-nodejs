@@ -29,7 +29,7 @@
 #include <binding/NL2Park/Coaster/Track/Segment.h>
 #include <binding/NL2Park/Coaster/Track/WoodenSupportGenerator.h>
 #include <binding/NL2Park/Coaster/Track/Parameter4D.h>
-#include <binding/NL2Park/Coaster/Track/Support/RailNode.h>
+#include <binding/NL2Park/Coaster/Support/RailNode.h>
 #include <binding/NL2Park/Coaster/Track/Section/Section.h>
 #include <binding/NL2Park/Coaster/Track/Section/TransportDevice.h>
 #include <binding/NL2Park/Coaster/Track/Section/Lift.h>

@@ -2,17 +2,17 @@
 #define BINDING_NL2PARK_ROLLPOINT_H
 
 #include <binding/nolimits.h>
-#include <lib/NL2Park/Coaster/Track/RollPoint.h>
+#include <NL2/Coaster/Track/RollPoint.h>
 
 namespace Binding {
     namespace NL2Park {
         class RollPoint : public Nan::ObjectWrap {
         public:
-            explicit RollPoint(Library::NL2Park::RollPoint *rollPoint) : _rollPoint(rollPoint) {}
-            explicit RollPoint() : _rollPoint(new Library::NL2Park::RollPoint) {}
+            explicit RollPoint(NoLimits::NoLimits2::RollPoint *rollPoint) : _rollPoint(rollPoint) {}
+            explicit RollPoint() : _rollPoint(new NoLimits::NoLimits2::RollPoint) {}
             ~RollPoint() {}
 
-            Library::NL2Park::RollPoint *getRollPoint() { return _rollPoint; }
+            NoLimits::NoLimits2::RollPoint *getRollPoint() { return _rollPoint; }
 
             static BINDING_MODULE_INIT("RollPoint",
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(Position);
@@ -31,7 +31,7 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_BOOLEAN(Vertical, RollPoint);
             BINDING_METHOD_SETTER_GETTER_BOOLEAN(Strict, RollPoint);
 
-            Library::NL2Park::RollPoint *_rollPoint;
+            NoLimits::NoLimits2::RollPoint *_rollPoint;
         };
     }
 }

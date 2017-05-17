@@ -5,45 +5,45 @@
 #include "Section.h"
 #include "BrakeDevice.h"
 #include "WaitTime.h"
-#include <lib/NL2Park/Coaster/Track/Section/Station.h>
+#include <NL2/Coaster/Track/Section/Station.h>
 
 namespace Binding {
     namespace NL2Park {
         class Display {
         public:
             static BINDING_MODULE_INIT_ENUM(Display,
-                BINDING_MODULE_ENUM_FIELD(FullBuilding, Library::NL2Park::Station::Display);
-                BINDING_MODULE_ENUM_FIELD(NoRoof, Library::NL2Park::Station::Display);
-                BINDING_MODULE_ENUM_FIELD(GatesOnly, Library::NL2Park::Station::Display);
-                BINDING_MODULE_ENUM_FIELD(HideAll, Library::NL2Park::Station::Display);
+                BINDING_MODULE_ENUM_FIELD(FullBuilding, NoLimits::NoLimits2::Station::Display);
+                BINDING_MODULE_ENUM_FIELD(NoRoof, NoLimits::NoLimits2::Station::Display);
+                BINDING_MODULE_ENUM_FIELD(GatesOnly, NoLimits::NoLimits2::Station::Display);
+                BINDING_MODULE_ENUM_FIELD(HideAll, NoLimits::NoLimits2::Station::Display);
             );
         };
 
         class GateDirection {
         public:
             static BINDING_MODULE_INIT_ENUM(GateDirection,
-                BINDING_MODULE_ENUM_FIELD(Left, Library::NL2Park::Station::GateDirection);
-                BINDING_MODULE_ENUM_FIELD(Right, Library::NL2Park::Station::GateDirection);
+                BINDING_MODULE_ENUM_FIELD(Left, NoLimits::NoLimits2::Station::GateDirection);
+                BINDING_MODULE_ENUM_FIELD(Right, NoLimits::NoLimits2::Station::GateDirection);
             );
         };
 
         class Stairs {
         public:
             static BINDING_MODULE_INIT_ENUM(Stairs,
-                BINDING_MODULE_ENUM_FIELD(None, Library::NL2Park::Station::Stairs);
-                BINDING_MODULE_ENUM_FIELD(BeginFront, Library::NL2Park::Station::Stairs);
-                BINDING_MODULE_ENUM_FIELD(BeginSide, Library::NL2Park::Station::Stairs);
-                BINDING_MODULE_ENUM_FIELD(EndFront, Library::NL2Park::Station::Stairs);
-                BINDING_MODULE_ENUM_FIELD(EndSide, Library::NL2Park::Station::Stairs);
+                BINDING_MODULE_ENUM_FIELD(None, NoLimits::NoLimits2::Station::Stairs);
+                BINDING_MODULE_ENUM_FIELD(BeginFront, NoLimits::NoLimits2::Station::Stairs);
+                BINDING_MODULE_ENUM_FIELD(BeginSide, NoLimits::NoLimits2::Station::Stairs);
+                BINDING_MODULE_ENUM_FIELD(EndFront, NoLimits::NoLimits2::Station::Stairs);
+                BINDING_MODULE_ENUM_FIELD(EndSide, NoLimits::NoLimits2::Station::Stairs);
             );
         };
 
         class Station : public Section {
         public:
-            Station(Library::NL2Park::Station *station) : Section(station) {}
-            Station() : Section(new Library::NL2Park::Station) {}
+            Station(NoLimits::NoLimits2::Station *station) : Section(station) {}
+            Station() : Section(new NoLimits::NoLimits2::Station) {}
 
-            Library::NL2Park::Station *getStation() { return (Library::NL2Park::Station*)getSection(); }
+            NoLimits::NoLimits2::Station *getStation() { return (NoLimits::NoLimits2::Station*)getSection(); }
 
             static BINDING_MODULE_INIT("Station",
                 BINDING_INHERIT(Binding::NL2Park::Section);
@@ -86,11 +86,11 @@ namespace Binding {
 
             BINDING_METHOD_SETTER_GETTER_BOOLEAN(UnloadingOnly, Station);
 
-            BINDING_METHOD_SETTER_GETTER_ENUM(Display, Station, Library::NL2Park::Station::Display);
-            BINDING_METHOD_SETTER_GETTER_ENUM(GateDirection, Station, Library::NL2Park::Station::GateDirection);
+            BINDING_METHOD_SETTER_GETTER_ENUM(Display, Station, NoLimits::NoLimits2::Station::Display);
+            BINDING_METHOD_SETTER_GETTER_ENUM(GateDirection, Station, NoLimits::NoLimits2::Station::GateDirection);
 
-            BINDING_METHOD_SETTER_GETTER_ENUM(EntranceStairs, Station, Library::NL2Park::Station::Stairs);
-            BINDING_METHOD_SETTER_GETTER_ENUM(ExitStairs, Station, Library::NL2Park::Station::Stairs);
+            BINDING_METHOD_SETTER_GETTER_ENUM(EntranceStairs, Station, NoLimits::NoLimits2::Station::Stairs);
+            BINDING_METHOD_SETTER_GETTER_ENUM(ExitStairs, Station, NoLimits::NoLimits2::Station::Stairs);
 
             BINDING_METHOD_SETTER_GETTER_UNSIGNED_8(Passes, Station);
             BINDING_METHOD_SETTER_GETTER_BOOLEAN(ShuttleBackwardsStart, Station);

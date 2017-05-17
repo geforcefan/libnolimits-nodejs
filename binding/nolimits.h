@@ -107,7 +107,7 @@
 #define BINDING_METHOD_GETTER_OBJECT(method, className) \
     static NAN_GETTER(get##method) { \
         className* obj = Nan::ObjectWrap::Unwrap<className>(info.Holder()); \
-        Library::NL2Park::method *lib = obj->get##className()->get##method(); \
+        NoLimits::NoLimits2::method *lib = obj->get##className()->get##method(); \
         Binding::NL2Park::method *binding = new Binding::NL2Park::method(lib); \
         const int argc = 1; \
         v8::Local<v8::Value> argv[] = { v8::External::New(info.GetIsolate(), binding) }; \
@@ -117,7 +117,7 @@
 #define BINDING_METHOD_SETTER_GETTER_OBJECT(method, className) \
     static NAN_GETTER(get##method) { \
         className* obj = Nan::ObjectWrap::Unwrap<className>(info.Holder()); \
-        Library::NL2Park::method *lib = obj->get##className()->get##method(); \
+        NoLimits::NoLimits2::method *lib = obj->get##className()->get##method(); \
         Binding::NL2Park::method *binding = new Binding::NL2Park::method(lib); \
         const int argc = 1; \
         v8::Local<v8::Value> argv[] = { v8::External::New(info.GetIsolate(), binding) }; \
@@ -135,7 +135,7 @@
 #define BINDING_METHOD_GETTER_OBJECT_WITH_VARNAME(varName, method, className) \
     static NAN_GETTER(get##varName) { \
     className* obj = Nan::ObjectWrap::Unwrap<className>(info.Holder()); \
-    Library::NL2Park::method *lib = obj->get##className()->get##varName(); \
+    NoLimits::NoLimits2::method *lib = obj->get##className()->get##varName(); \
     Binding::NL2Park::method *binding = new Binding::NL2Park::method(lib); \
     const int argc = 1; \
     v8::Local<v8::Value> argv[] = { v8::External::New(info.GetIsolate(), binding) }; \
@@ -153,6 +153,23 @@
         if(!value->IsString()) \
             Nan::ThrowTypeError("First argument must be of type string"); \
         obj->get##className()->set##method(std::string(*Nan::Utf8String(value))); \
+    }
+
+#define BINDING_METHOD_SETTER_GETTER_STRING_VECTOR(method, className) \
+    static NAN_GETTER(get##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        std::vector<std::string> vec = obj->get##className()->get##method(); \
+        v8::Local<v8::Array> arr = Nan::New<v8::Array>(vec.size()); \
+        for(unsigned long i = 0; i < vec.size(); i++) {\
+            arr->Set(i, Nan::New<v8::String>(vec[i].c_str()).ToLocalChecked()); \
+        } \
+        info.GetReturnValue().Set(arr);\
+    } \
+    static NAN_METHOD(insert##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        if(!info[0]->IsString()) \
+            return Nan::ThrowSyntaxError("First argument must be of type string"); \
+        obj->get##className()->insert##method(std::string(*Nan::Utf8String(info[0]))); \
     }
 
 #define BINDING_METHOD_SETTER_GETTER_FLOAT(method, className) \
@@ -213,6 +230,12 @@
         if(!value->IsNumber()) \
             Nan::ThrowTypeError("First argument must be of type number"); \
         obj->get##className()->set##method((uint32_t)Nan::To<int>(value).FromJust()); \
+    }
+
+#define BINDING_METHOD_GETTER_UNSIGNED_INTEGER(method, className) \
+    static NAN_GETTER(get##method) { \
+        className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
+        info.GetReturnValue().Set(obj->get##className()->get##method()); \
     }
 
 #define BINDING_METHOD_SETTER_GETTER_ENUM(method, className, cast) \
@@ -351,10 +374,10 @@
 #define BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(method, className) \
     static NAN_GETTER(get##method) { \
         className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
-        std::vector<Library::NL2Park::method*> vec = obj->get##className()->get##method(); \
+        std::vector<NoLimits::NoLimits2::method*> vec = obj->get##className()->get##method(); \
         v8::Local<v8::Array> arr = Nan::New<v8::Array>(vec.size()); \
         for(unsigned long i = 0; i < vec.size(); i++) {\
-            Library::NL2Park::method *lib = vec[i]; \
+            NoLimits::NoLimits2::method *lib = vec[i]; \
             Binding::NL2Park::method *binding = new Binding::NL2Park::method(lib); \
             const int argc = 1; \
             v8::Local<v8::Value> argv[] = { v8::External::New(info.GetIsolate(), binding) }; \
@@ -376,7 +399,7 @@
         className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
         if(!info[0]->IsString()) \
             Nan::ThrowTypeError("First argument must be of type string"); \
-        Library::NL2Park::method* lib = obj->get##className()->get##method(std::string(*Nan::Utf8String(info[0]))); \
+        NoLimits::NoLimits2::method* lib = obj->get##className()->get##method(std::string(*Nan::Utf8String(info[0]))); \
         if(lib == NULL) { \
             info.GetReturnValue().Set(Nan::Null());\
         } else { \
@@ -392,7 +415,7 @@
         className* obj = ObjectWrap::Unwrap<className>(info.Holder()); \
         if(!info[0]->IsString()) \
             Nan::ThrowTypeError("First argument must be of type string"); \
-        Library::NL2Park::method* lib = obj->get##className()->get##method(std::string(*Nan::Utf8String(info[0]))); \
+        NoLimits::NoLimits2::method* lib = obj->get##className()->get##method(std::string(*Nan::Utf8String(info[0]))); \
         if(lib == NULL) { \
             info.GetReturnValue().Set(Nan::Null());\
         } else { \
@@ -403,10 +426,10 @@
 #define BINDING_METHOD_SETTER_GETTER_INHERITED_OBJECT_VECTOR(method, className) \
     static NAN_GETTER(get##method) { \
         className* self = ObjectWrap::Unwrap<className>(info.Holder()); \
-        std::vector<Library::NL2Park::method*> vec = self->get##className()->get##method(); \
+        std::vector<NoLimits::NoLimits2::method*> vec = self->get##className()->get##method(); \
         v8::Local<v8::Array> arr = Nan::New<v8::Array>(vec.size()); \
         for(unsigned long i = 0; i < vec.size(); i++) { \
-            Library::NL2Park::method *_lib = vec[i]; \
+            NoLimits::NoLimits2::method *_lib = vec[i]; \
             arr->Set(i, Binding::NL2Park::method::createFromType(_lib)); \
         } \
         info.GetReturnValue().Set(arr); \
@@ -423,7 +446,7 @@
 #define BINDING_METHOD_SETTER_GETTER_INHERITED_OBJECT(method, className) \
     static NAN_GETTER(get##method) { \
         className* self = ObjectWrap::Unwrap<className>(info.Holder()); \
-        Library::NL2Park::method *_lib = self->get##className()->get##method(); \
+        NoLimits::NoLimits2::method *_lib = self->get##className()->get##method(); \
         info.GetReturnValue().Set(Binding::NL2Park::method::createFromType(_lib)); \
     } \
     static NAN_METHOD(set##method) { \

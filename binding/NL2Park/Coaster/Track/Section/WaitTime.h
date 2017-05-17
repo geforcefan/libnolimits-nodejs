@@ -2,17 +2,17 @@
 #define BINDING_NL2PARK_WAITTIME_H
 
 #include <binding/nolimits.h>
-#include <lib/NL2Park/Coaster/Track/Section/WaitTime.h>
+#include <NL2/Coaster/Track/Section/WaitTime.h>
 
 namespace Binding {
     namespace NL2Park {
         class WaitTime : public Nan::ObjectWrap {
         public:
-            explicit WaitTime(Library::NL2Park::WaitTime *waitTime) : _waitTime(waitTime) {}
-            explicit WaitTime() : _waitTime(new Library::NL2Park::WaitTime) {}
+            explicit WaitTime(NoLimits::NoLimits2::WaitTime *waitTime) : _waitTime(waitTime) {}
+            explicit WaitTime() : _waitTime(new NoLimits::NoLimits2::WaitTime) {}
             ~WaitTime() {}
 
-            Library::NL2Park::WaitTime *getWaitTime() { return _waitTime; }
+            NoLimits::NoLimits2::WaitTime *getWaitTime() { return _waitTime; }
 
             static BINDING_MODULE_INIT("WaitTime",
                 BINDING_PROTOTYPE_METHOD_GETTER(Avarage);
@@ -33,7 +33,7 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_DOUBLE(Deviation, WaitTime);
             BINDING_METHOD_SETTER_GETTER_UNSIGNED_INTEGER_VECTOR(SynchronizeDispatchWith, WaitTime);
 
-            Library::NL2Park::WaitTime *_waitTime;
+            NoLimits::NoLimits2::WaitTime *_waitTime;
         };
     }
 }

@@ -3,33 +3,33 @@
 
 #include <binding/nolimits.h>
 #include "Section.h"
-#include <lib/NL2Park/Coaster/Track/Section/Lift.h>
+#include <NL2/Coaster/Track/Section/Lift.h>
 
 namespace Binding {
     namespace NL2Park {
         class LiftType {
         public:
             static BINDING_MODULE_INIT_ENUM(LiftType,
-                BINDING_MODULE_ENUM_FIELD(Chain, Library::NL2Park::Lift::LiftType);
-                BINDING_MODULE_ENUM_FIELD(FrictionWheels, Library::NL2Park::Lift::LiftType);
+                BINDING_MODULE_ENUM_FIELD(Chain, NoLimits::NoLimits2::Lift::LiftType);
+                BINDING_MODULE_ENUM_FIELD(FrictionWheels, NoLimits::NoLimits2::Lift::LiftType);
             );
         };
 
         class MotorLocation {
         public:
             static BINDING_MODULE_INIT_ENUM(MotorLocation,
-                BINDING_MODULE_ENUM_FIELD(AtStart, Library::NL2Park::Lift::MotorLocation);
-                BINDING_MODULE_ENUM_FIELD(AtEnd, Library::NL2Park::Lift::MotorLocation);
-                BINDING_MODULE_ENUM_FIELD(Silent, Library::NL2Park::Lift::MotorLocation);
+                BINDING_MODULE_ENUM_FIELD(AtStart, NoLimits::NoLimits2::Lift::MotorLocation);
+                BINDING_MODULE_ENUM_FIELD(AtEnd, NoLimits::NoLimits2::Lift::MotorLocation);
+                BINDING_MODULE_ENUM_FIELD(Silent, NoLimits::NoLimits2::Lift::MotorLocation);
             );
         };
 
         class Lift : public Section {
         public:
-            Lift(Library::NL2Park::Lift *lift) : Section(lift) {}
-            Lift() : Section(new Library::NL2Park::Lift) {}
+            Lift(NoLimits::NoLimits2::Lift *lift) : Section(lift) {}
+            Lift() : Section(new NoLimits::NoLimits2::Lift) {}
 
-            Library::NL2Park::Lift *getLift() { return (Library::NL2Park::Lift*)getSection(); }
+            NoLimits::NoLimits2::Lift *getLift() { return (NoLimits::NoLimits2::Lift*)getSection(); }
 
             static BINDING_MODULE_INIT("Lift",
                 BINDING_INHERIT(Binding::NL2Park::Section);
@@ -56,8 +56,8 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_DOUBLE(Speed, Lift);
             BINDING_METHOD_SETTER_GETTER_DOUBLE(Acceleration, Lift);
             BINDING_METHOD_SETTER_GETTER_DOUBLE(Deceleration, Lift);
-            BINDING_METHOD_SETTER_GETTER_ENUM(LiftType, Lift, Library::NL2Park::Lift::LiftType);
-            BINDING_METHOD_SETTER_GETTER_ENUM(MotorLocation, Lift, Library::NL2Park::Lift::MotorLocation);
+            BINDING_METHOD_SETTER_GETTER_ENUM(LiftType, Lift, NoLimits::NoLimits2::Lift::LiftType);
+            BINDING_METHOD_SETTER_GETTER_ENUM(MotorLocation, Lift, NoLimits::NoLimits2::Lift::MotorLocation);
             BINDING_METHOD_SETTER_GETTER_BOOLEAN(HasAntiRollbackDevice, Lift);
             BINDING_METHOD_SETTER_GETTER_BOOLEAN(ShuttleModeGentle2ndPassRelease, Lift);
             BINDING_METHOD_SETTER_GETTER_BOOLEAN(DiveCoasterDropReleaseMode, Lift);

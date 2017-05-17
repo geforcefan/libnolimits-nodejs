@@ -2,17 +2,17 @@
 #define BINDING_NL2PARK_VERTEX_H
 
 #include <binding/nolimits.h>
-#include <lib/NL2Park/Coaster/Track/Vertex.h>
+#include <NL2/Coaster/Track/Vertex.h>
 
 namespace Binding {
     namespace NL2Park {
         class Vertex : public Nan::ObjectWrap {
         public:
-            explicit Vertex(Library::NL2Park::Vertex *vertex) : _vertex(vertex) {}
-            explicit Vertex() : _vertex(new Library::NL2Park::Vertex) {}
+            explicit Vertex(NoLimits::NoLimits2::Vertex *vertex) : _vertex(vertex) {}
+            explicit Vertex() : _vertex(new NoLimits::NoLimits2::Vertex) {}
             ~Vertex() {}
 
-            Library::NL2Park::Vertex *getVertex() { return _vertex; }
+            NoLimits::NoLimits2::Vertex *getVertex() { return _vertex; }
 
             static BINDING_MODULE_INIT("Vertex",
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(Position);
@@ -29,7 +29,7 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_BOOLEAN(Locked, Vertex);
             BINDING_METHOD_SETTER_GETTER_BOOLEAN(Strict, Vertex);
 
-            Library::NL2Park::Vertex *_vertex;
+            NoLimits::NoLimits2::Vertex *_vertex;
         };
     }
 }

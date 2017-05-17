@@ -2,17 +2,17 @@
 #define BINDING_NL2PARK_TRIGGER_H
 
 #include <binding/nolimits.h>
-#include <lib/NL2Park/Coaster/Track/Trigger.h>
+#include <NL2/Coaster/Track/Trigger.h>
 
 namespace Binding {
     namespace NL2Park {
         class Trigger : public Nan::ObjectWrap {
         public:
-            explicit Trigger(Library::NL2Park::Trigger *trigger) : _trigger(trigger) {}
-            explicit Trigger() : _trigger(new Library::NL2Park::Trigger) {}
+            explicit Trigger(NoLimits::NoLimits2::Trigger *trigger) : _trigger(trigger) {}
+            explicit Trigger() : _trigger(new NoLimits::NoLimits2::Trigger) {}
             ~Trigger() {}
 
-            Library::NL2Park::Trigger *getTrigger() { return _trigger; }
+            NoLimits::NoLimits2::Trigger *getTrigger() { return _trigger; }
 
             static BINDING_MODULE_INIT("Trigger",
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(Position);
@@ -27,9 +27,9 @@ namespace Binding {
 
             BINDING_METHOD_SETTER_GETTER_DOUBLE(Position, Trigger);
             BINDING_METHOD_SETTER_GETTER_STRING(Name, Trigger);
-            BINDING_METHOD_SETTER_GETTER_ENUM(TrainEvent, Trigger, Library::NL2Park::Trigger::TrainEvent);
+            BINDING_METHOD_SETTER_GETTER_ENUM(TrainEvent, Trigger, NoLimits::NoLimits2::Trigger::TrainEvent);
 
-            Library::NL2Park::Trigger *_trigger;
+            NoLimits::NoLimits2::Trigger *_trigger;
         };
     }
 }

@@ -2,17 +2,17 @@
 #define BINDING_NL2PARK_CUSTOMFRICTION_H
 
 #include <binding/nolimits.h>
-#include <lib/NL2Park/Coaster/CustomFriction.h>
+#include <NL2/Coaster/CustomFriction.h>
 
 namespace Binding {
     namespace NL2Park {
         class CustomFriction : public Nan::ObjectWrap {
         public:
-            explicit CustomFriction(Library::NL2Park::CustomFriction *customFriction) : _customFriction(customFriction) {}
-            explicit CustomFriction() : _customFriction(new Library::NL2Park::CustomFriction) {}
+            explicit CustomFriction(NoLimits::NoLimits2::CustomFriction *customFriction) : _customFriction(customFriction) {}
+            explicit CustomFriction() : _customFriction(new NoLimits::NoLimits2::CustomFriction) {}
             ~CustomFriction() {}
 
-            Library::NL2Park::CustomFriction *getCustomFriction() { return _customFriction; }
+            NoLimits::NoLimits2::CustomFriction *getCustomFriction() { return _customFriction; }
 
             static BINDING_MODULE_INIT("CustomFriction",
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(ConstFrictionParameter);
@@ -27,7 +27,7 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_DOUBLE(ConstFrictionParameter, CustomFriction);
             BINDING_METHOD_SETTER_GETTER_DOUBLE(AirResistanceParameter, CustomFriction);
 
-            Library::NL2Park::CustomFriction *_customFriction;
+            NoLimits::NoLimits2::CustomFriction *_customFriction;
         };
     }
 }

@@ -2,18 +2,18 @@
 #define BINDING_NL2PARK_EXTRAS_H
 
 #include <binding/nolimits.h>
-#include <lib/NL2Park/Terrain/Extras.h>
+#include <NL2/Terrain/Extras.h>
 
 namespace Binding {
     namespace NL2Park {
         class Extras : public Nan::ObjectWrap {
         public:
-            explicit Extras() : _extras(new Library::NL2Park::Extras) {}
-            explicit Extras(Library::NL2Park::Extras *extras) : _extras(extras) {}
+            explicit Extras() : _extras(new NoLimits::NoLimits2::Extras) {}
+            explicit Extras(NoLimits::NoLimits2::Extras *extras) : _extras(extras) {}
 
             ~Extras() {}
 
-            Library::NL2Park::Extras *getExtras() { return _extras; }
+            NoLimits::NoLimits2::Extras *getExtras() { return _extras; }
 
             static BINDING_MODULE_INIT("Extras",
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(FootstepSounds);
@@ -29,7 +29,7 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_STRING(FootstepSounds, Extras);
             BINDING_METHOD_SETTER_GETTER_STRING(AutoplantObject, Extras);
 
-            Library::NL2Park::Extras *_extras;
+            NoLimits::NoLimits2::Extras *_extras;
         };
     }
 }

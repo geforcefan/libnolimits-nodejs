@@ -2,78 +2,78 @@
 #define BINDING_NL2PARK_STYLE_H
 
 #include <binding/nolimits.h>
-#include <lib/NL2Park/Coaster/Style.h>
+#include <NL2/Coaster/Style.h>
 
 namespace Binding {
     namespace NL2Park {
         class StyleType {
         public:
             static BINDING_MODULE_INIT_ENUM(StyleType,
-                BINDING_MODULE_ENUM_FIELD(Coaster4D, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(ClassicSteelLoopingCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(ClassicSteelLoopingCoasterModern, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(CorkscrewCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(GerstlauerBobsledCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(GerstlauerEuroFighter, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(GerstlauerEuroFighter2, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(GerstlauerSpinningCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(GravityGroupTimberliner, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(HyperCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(HyperCoaster4SeatsAcross, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(HyperCoaster4SeatsStaggeredWithScoops, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(HyperCoaster4SeatsStaggered, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(InvertedCoaster2Seats, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(InvertedCoaster4Seats, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(InvertedFaceToFaceCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(InvertedImpulseCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(LimLaunchedCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(MackLaunchedCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(MaurerSoehneSpinningCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(MaurerSoehneXCarCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(RocketCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(SuspendedCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(TwistedDiveCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(TwistedFloorlessCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(TwistedFlyingCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(TwistedSitdownCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(TwistedStandUpCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(TwistedWingCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(VekomaFlyingDutchman, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(VekomaMinetrainCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(VekomaMinetrainCoasterWithLocomotive, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(VekomaMotorbikeCoaster, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(WoodenCoasterClassic4, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(WoodenCoasterClassic6, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(WoodenCoasterTrailered2, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(WoodenCoasterTrailered4, Library::NL2Park::Style::StyleType);
-                BINDING_MODULE_ENUM_FIELD(ZamperlaTwisterCoaster, Library::NL2Park::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(Coaster4D, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(ClassicSteelLoopingCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(ClassicSteelLoopingCoasterModern, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(CorkscrewCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(GerstlauerBobsledCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(GerstlauerEuroFighter, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(GerstlauerEuroFighter2, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(GerstlauerSpinningCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(GravityGroupTimberliner, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(HyperCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(HyperCoaster4SeatsAcross, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(HyperCoaster4SeatsStaggeredWithScoops, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(HyperCoaster4SeatsStaggered, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(InvertedCoaster2Seats, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(InvertedCoaster4Seats, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(InvertedFaceToFaceCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(InvertedImpulseCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(LimLaunchedCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(MackLaunchedCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(MaurerSoehneSpinningCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(MaurerSoehneXCarCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(RocketCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(SuspendedCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(TwistedDiveCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(TwistedFloorlessCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(TwistedFlyingCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(TwistedSitdownCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(TwistedStandUpCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(TwistedWingCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(VekomaFlyingDutchman, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(VekomaMinetrainCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(VekomaMinetrainCoasterWithLocomotive, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(VekomaMotorbikeCoaster, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(WoodenCoasterClassic4, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(WoodenCoasterClassic6, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(WoodenCoasterTrailered2, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(WoodenCoasterTrailered4, NoLimits::NoLimits2::Style::StyleType);
+                BINDING_MODULE_ENUM_FIELD(ZamperlaTwisterCoaster, NoLimits::NoLimits2::Style::StyleType);
             );
         };
 
         class WornType {
         public:
             static BINDING_MODULE_INIT_ENUM(WornType,
-                BINDING_MODULE_ENUM_FIELD(New, Library::NL2Park::Style::WornType);
-                BINDING_MODULE_ENUM_FIELD(Worn, Library::NL2Park::Style::WornType);
-                BINDING_MODULE_ENUM_FIELD(Rusted, Library::NL2Park::Style::WornType);
+                BINDING_MODULE_ENUM_FIELD(New, NoLimits::NoLimits2::Style::WornType);
+                BINDING_MODULE_ENUM_FIELD(Worn, NoLimits::NoLimits2::Style::WornType);
+                BINDING_MODULE_ENUM_FIELD(Rusted, NoLimits::NoLimits2::Style::WornType);
             );
         };
 
         class RailType {
         public:
             static BINDING_MODULE_INIT_ENUM(RailType,
-                BINDING_MODULE_ENUM_FIELD(Standard, Library::NL2Park::Style::RailType);
-                BINDING_MODULE_ENUM_FIELD(Striped, Library::NL2Park::Style::RailType);
+                BINDING_MODULE_ENUM_FIELD(Standard, NoLimits::NoLimits2::Style::RailType);
+                BINDING_MODULE_ENUM_FIELD(Striped, NoLimits::NoLimits2::Style::RailType);
             );
         };
 
         class Style : public Nan::ObjectWrap {
         public:
-            explicit Style(Library::NL2Park::Style *style) : _style(style) {}
-            explicit Style() : _style(new Library::NL2Park::Style) {}
+            explicit Style(NoLimits::NoLimits2::Style *style) : _style(style) {}
+            explicit Style() : _style(new NoLimits::NoLimits2::Style) {}
             ~Style() {}
 
-            Library::NL2Park::Style *getStyle() { return _style; }
+            NoLimits::NoLimits2::Style *getStyle() { return _style; }
 
             static BINDING_MODULE_INIT("Style",
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(StyleType);
@@ -90,11 +90,11 @@ namespace Binding {
             static BINDING_PERSISTENT_CONSTRUCTOR();
             static BINDING_METHOD_NEW_CAST_EXTERNAL(Style);
 
-            BINDING_METHOD_SETTER_GETTER_ENUM(StyleType, Style, Library::NL2Park::Style::StyleType);
-            BINDING_METHOD_SETTER_GETTER_ENUM(WornType, Style, Library::NL2Park::Style::WornType);
-            BINDING_METHOD_SETTER_GETTER_ENUM(RailType, Style, Library::NL2Park::Style::RailType);
+            BINDING_METHOD_SETTER_GETTER_ENUM(StyleType, Style, NoLimits::NoLimits2::Style::StyleType);
+            BINDING_METHOD_SETTER_GETTER_ENUM(WornType, Style, NoLimits::NoLimits2::Style::WornType);
+            BINDING_METHOD_SETTER_GETTER_ENUM(RailType, Style, NoLimits::NoLimits2::Style::RailType);
 
-            Library::NL2Park::Style *_style;
+            NoLimits::NoLimits2::Style *_style;
         };
     }
 }

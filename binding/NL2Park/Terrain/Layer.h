@@ -8,18 +8,18 @@
 #include "BumpMap.h"
 #include "Extras.h"
 
-#include <lib/NL2Park/Terrain/Layer.h>
+#include <NL2/Terrain/Layer.h>
 
 namespace Binding {
     namespace NL2Park {
         class Layer : public Nan::ObjectWrap {
         public:
-            explicit Layer() : _layer(new Library::NL2Park::Layer) {}
-            explicit Layer(Library::NL2Park::Layer *layer) : _layer(layer) {}
+            explicit Layer() : _layer(new NoLimits::NoLimits2::Layer) {}
+            explicit Layer(NoLimits::NoLimits2::Layer *layer) : _layer(layer) {}
 
             ~Layer() {}
 
-            Library::NL2Park::Layer *getLayer() { return _layer; }
+            NoLimits::NoLimits2::Layer *getLayer() { return _layer; }
 
             static BINDING_MODULE_INIT("Layer",
                 BINDING_PROTOTYPE_METHOD_GETTER(Name);
@@ -43,7 +43,7 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_OBJECT(BumpMap, Layer);
             BINDING_METHOD_SETTER_GETTER_OBJECT(Extras, Layer);
 
-            Library::NL2Park::Layer *_layer;
+            NoLimits::NoLimits2::Layer *_layer;
         };
     }
 }

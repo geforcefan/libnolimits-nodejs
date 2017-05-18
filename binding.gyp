@@ -3,9 +3,9 @@
         {
             "target_name": "nolimits",
             "sources": [
-                "binding/nolimits.cpp",
-                "binding/NL2Park/Coaster/Track/Track.cpp",
-                "binding/NL2Park/Coaster/Track/Section/Section.cpp"
+                "src/Nolimits.cpp",
+                "src/NL2/Coaster/Track/Track.cpp",
+                "src/NL2/Coaster/Track/Section/Section.cpp"
             ],
             'cflags!': ['-fno-exceptions', '-funwind-tables', '-stdlib=libc++', '-std=c++11', '-O3', '-g0'],
             'cflags_cc!': ['-fno-exceptions', '-funwind-tables', '-stdlib=libc++', '-std=c++11', '-O3', '-g0'],
@@ -20,9 +20,7 @@
             ],
             "include_dirs": [
                 "<!(node -e \"require('nan')\")",
-                "lib",
                 ".",
-                "/Users/ercanakyurek/Daten/Projects/libnolimits/src/"
             ]
         }
     ]

@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Info/Weather.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Weather : public Nan::ObjectWrap {
         public:
             explicit Weather(NoLimits::NoLimits2::Weather *weather) : _weather(weather) {}

@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Coaster/Support/SupportNode.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class SupportNodeColorMode {
         public:
             static BINDING_MODULE_INIT_ENUM(ColorMode,

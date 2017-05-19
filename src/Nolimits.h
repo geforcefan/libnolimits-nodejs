@@ -108,27 +108,27 @@
     static NAN_GETTER(get##method) { \
         className* obj = Nan::ObjectWrap::Unwrap<className>(info.Holder()); \
         NoLimits::NoLimits2::method *lib = obj->get##className()->get##method(); \
-        Binding::NL2Park::method *binding = new Binding::NL2Park::method(lib); \
+        Binding::NoLimits2::method *binding = new Binding::NoLimits2::method(lib); \
         const int argc = 1; \
         v8::Local<v8::Value> argv[] = { v8::External::New(info.GetIsolate(), binding) }; \
-        info.GetReturnValue().Set(Binding::NL2Park::method::NewInstance(argc, argv)); \
+        info.GetReturnValue().Set(Binding::NoLimits2::method::NewInstance(argc, argv)); \
     }
 
 #define BINDING_METHOD_SETTER_GETTER_OBJECT(method, className) \
     static NAN_GETTER(get##method) { \
         className* obj = Nan::ObjectWrap::Unwrap<className>(info.Holder()); \
         NoLimits::NoLimits2::method *lib = obj->get##className()->get##method(); \
-        Binding::NL2Park::method *binding = new Binding::NL2Park::method(lib); \
+        Binding::NoLimits2::method *binding = new Binding::NoLimits2::method(lib); \
         const int argc = 1; \
         v8::Local<v8::Value> argv[] = { v8::External::New(info.GetIsolate(), binding) }; \
-        info.GetReturnValue().Set(Binding::NL2Park::method::NewInstance(argc, argv)); \
+        info.GetReturnValue().Set(Binding::NoLimits2::method::NewInstance(argc, argv)); \
     } \
     static NAN_METHOD(set##method) { \
         className* self = ObjectWrap::Unwrap<className>(info.Holder()); \
         if(info[0]->IsUndefined()) \
             return Nan::ThrowSyntaxError("1 argument must be provided"); \
         Nan::MaybeLocal<v8::Object> maybe1 = Nan::To<v8::Object>(info[0]); \
-        Binding::NL2Park::method* _lib = ObjectWrap::Unwrap<Binding::NL2Park::method>(maybe1.ToLocalChecked()); \
+        Binding::NoLimits2::method* _lib = ObjectWrap::Unwrap<Binding::NoLimits2::method>(maybe1.ToLocalChecked()); \
         self->get##className()->set##method(_lib->get##method()); \
     }
 
@@ -136,10 +136,10 @@
     static NAN_GETTER(get##varName) { \
     className* obj = Nan::ObjectWrap::Unwrap<className>(info.Holder()); \
     NoLimits::NoLimits2::method *lib = obj->get##className()->get##varName(); \
-    Binding::NL2Park::method *binding = new Binding::NL2Park::method(lib); \
+    Binding::NoLimits2::method *binding = new Binding::NoLimits2::method(lib); \
     const int argc = 1; \
     v8::Local<v8::Value> argv[] = { v8::External::New(info.GetIsolate(), binding) }; \
-    info.GetReturnValue().Set(Binding::NL2Park::method::NewInstance(argc, argv)); \
+    info.GetReturnValue().Set(Binding::NoLimits2::method::NewInstance(argc, argv)); \
     }
 
 #define BINDING_METHOD_SETTER_GETTER_STRING(method, className) \
@@ -378,10 +378,10 @@
         v8::Local<v8::Array> arr = Nan::New<v8::Array>(vec.size()); \
         for(unsigned long i = 0; i < vec.size(); i++) {\
             NoLimits::NoLimits2::method *lib = vec[i]; \
-            Binding::NL2Park::method *binding = new Binding::NL2Park::method(lib); \
+            Binding::NoLimits2::method *binding = new Binding::NoLimits2::method(lib); \
             const int argc = 1; \
             v8::Local<v8::Value> argv[] = { v8::External::New(info.GetIsolate(), binding) }; \
-            arr->Set(i, Binding::NL2Park::method::NewInstance(argc, argv)); \
+            arr->Set(i, Binding::NoLimits2::method::NewInstance(argc, argv)); \
         } \
         info.GetReturnValue().Set(arr);\
     } \
@@ -390,7 +390,7 @@
         if(info[0]->IsUndefined()) \
             return Nan::ThrowSyntaxError("1 argument must be provided"); \
         Nan::MaybeLocal<v8::Object> maybe1 = Nan::To<v8::Object>(info[0]); \
-        Binding::NL2Park::method* argObj = ObjectWrap::Unwrap<Binding::NL2Park::method>(maybe1.ToLocalChecked()); \
+        Binding::NoLimits2::method* argObj = ObjectWrap::Unwrap<Binding::NoLimits2::method>(maybe1.ToLocalChecked()); \
         obj->get##className()->insert##method(argObj->get##method()); \
     }
 
@@ -403,10 +403,10 @@
         if(lib == NULL) { \
             info.GetReturnValue().Set(Nan::Null());\
         } else { \
-            Binding::NL2Park::method *binding = new Binding::NL2Park::method(lib); \
+            Binding::NoLimits2::method *binding = new Binding::NoLimits2::method(lib); \
             const int argc = 1; \
             v8::Local<v8::Value> argv[] = { v8::External::New(info.GetIsolate(), binding) }; \
-            info.GetReturnValue().Set(Binding::NL2Park::method::NewInstance(argc, argv)); \
+            info.GetReturnValue().Set(Binding::NoLimits2::method::NewInstance(argc, argv)); \
         } \
     }
 
@@ -419,7 +419,7 @@
         if(lib == NULL) { \
             info.GetReturnValue().Set(Nan::Null());\
         } else { \
-            info.GetReturnValue().Set(Binding::NL2Park::method::createFromType(lib)); \
+            info.GetReturnValue().Set(Binding::NoLimits2::method::createFromType(lib)); \
         } \
     }
 
@@ -430,7 +430,7 @@
         v8::Local<v8::Array> arr = Nan::New<v8::Array>(vec.size()); \
         for(unsigned long i = 0; i < vec.size(); i++) { \
             NoLimits::NoLimits2::method *_lib = vec[i]; \
-            arr->Set(i, Binding::NL2Park::method::createFromType(_lib)); \
+            arr->Set(i, Binding::NoLimits2::method::createFromType(_lib)); \
         } \
         info.GetReturnValue().Set(arr); \
     } \
@@ -439,7 +439,7 @@
         if(info[0]->IsUndefined()) \
             return Nan::ThrowSyntaxError("1 argument must be provided"); \
         Nan::MaybeLocal<v8::Object> maybe1 = Nan::To<v8::Object>(info[0]); \
-        Binding::NL2Park::method* _lib = ObjectWrap::Unwrap<Binding::NL2Park::method>(maybe1.ToLocalChecked()); \
+        Binding::NoLimits2::method* _lib = ObjectWrap::Unwrap<Binding::NoLimits2::method>(maybe1.ToLocalChecked()); \
         self->get##className()->insert##method(_lib->get##method()); \
     }
 
@@ -447,14 +447,14 @@
     static NAN_GETTER(get##method) { \
         className* self = ObjectWrap::Unwrap<className>(info.Holder()); \
         NoLimits::NoLimits2::method *_lib = self->get##className()->get##method(); \
-        info.GetReturnValue().Set(Binding::NL2Park::method::createFromType(_lib)); \
+        info.GetReturnValue().Set(Binding::NoLimits2::method::createFromType(_lib)); \
     } \
     static NAN_METHOD(set##method) { \
         className* self = ObjectWrap::Unwrap<className>(info.Holder()); \
         if(info[0]->IsUndefined()) \
             return Nan::ThrowSyntaxError("1 argument must be provided"); \
         Nan::MaybeLocal<v8::Object> maybe1 = Nan::To<v8::Object>(info[0]); \
-        Binding::NL2Park::method* _lib = ObjectWrap::Unwrap<Binding::NL2Park::method>(maybe1.ToLocalChecked()); \
+        Binding::NoLimits2::method* _lib = ObjectWrap::Unwrap<Binding::NoLimits2::method>(maybe1.ToLocalChecked()); \
         self->get##className()->set##method(_lib->get##method()); \
     }
 

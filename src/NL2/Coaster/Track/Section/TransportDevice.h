@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Coaster/Track/Section/TransportDevice.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class TransportDevice : public Nan::ObjectWrap {
         public:
             explicit TransportDevice(NoLimits::NoLimits2::TransportDevice *transportDevice) : _transportDevice(transportDevice) {}

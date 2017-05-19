@@ -6,7 +6,7 @@
 #include "SupportNode.h"
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class ConnectionStyle {
         public:
             static BINDING_MODULE_INIT_ENUM(ConnectionStyle,
@@ -48,7 +48,7 @@ namespace Binding {
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(HasRotationModeAzimuth);
 
                 BINDING_PROTOTYPE_ENUM_LIST(ConnectionStyle);
-                BINDING_PROTOTYPE_ENUM_LIST(Binding::NL2Park::SupportNodeColorMode);
+                BINDING_PROTOTYPE_ENUM_LIST(Binding::NoLimits2::SupportNodeColorMode);
             );
 
             static BINDING_NEW_INSTANCE();

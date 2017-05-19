@@ -8,7 +8,7 @@
 #include <libnolimits/NL2/Coaster/Train.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Train : public Nan::ObjectWrap {
         public:
             explicit Train(NoLimits::NoLimits2::Train *train) : _train(train) {}

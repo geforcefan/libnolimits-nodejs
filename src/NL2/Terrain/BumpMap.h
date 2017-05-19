@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Terrain/DetailMap.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class DetailMap : public Nan::ObjectWrap {
         public:
             explicit DetailMap() : _detailMap(new NoLimits::NoLimits2::DetailMap) {}

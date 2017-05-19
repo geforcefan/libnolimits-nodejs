@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Coaster/Colors.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class SpineColorScheme {
         public:
             static BINDING_MODULE_INIT_ENUM(SpineColorScheme,

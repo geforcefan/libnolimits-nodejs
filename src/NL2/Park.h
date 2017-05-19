@@ -5,12 +5,13 @@
 #include "Info/Info.h"
 #include "Terrain/Terrain.h"
 #include "Coaster/Coaster.h"
+#include "Scenery/Scenery.h"
 
-#include <libnolimits/NL2//Park.h>
+#include <libnolimits/NL2/Park.h>
 #include <libnolimits/File/MemoryFile.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Park : public Nan::ObjectWrap {
         public:
             explicit Park(std::string filepath) {
@@ -30,6 +31,7 @@ namespace Binding {
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(Coaster);
                 BINDING_PROTOTYPE_METHOD_GETTER_BY_NAME_VECTOR(Coaster);
                 BINDING_PROTOTYPE_METHOD_GETTER(Terrain);
+                BINDING_PROTOTYPE_METHOD_GETTER(Scenery);
                 Nan::SetPrototypeMethod(tpl, "save", save);
             );
         private:
@@ -47,6 +49,7 @@ namespace Binding {
             BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(Coaster, Park);
             BINDING_METHOD_GETTER_BY_NAME_OBJECT_VECTOR(Coaster, Park);
             BINDING_METHOD_GETTER_OBJECT(Terrain, Park);
+            BINDING_METHOD_GETTER_OBJECT(Scenery, Park);
 
             static NAN_METHOD(save) {
                 Park* obj = ObjectWrap::Unwrap<Park>(info.Holder());

@@ -6,7 +6,7 @@
 #include <libnolimits/NL2/Coaster/Track/Section/Transport.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class TransportType {
         public:
             static BINDING_MODULE_INIT_ENUM(TransportType,
@@ -24,7 +24,7 @@ namespace Binding {
             NoLimits::NoLimits2::Transport *getTransport() { return (NoLimits::NoLimits2::Transport*)getSection(); }
 
             static BINDING_MODULE_INIT("Transport",
-                BINDING_INHERIT(Binding::NL2Park::Section);
+                BINDING_INHERIT(Binding::NoLimits2::Section);
 
                 BINDING_PROTOTYPE_ENUM_LIST(TransportType);
 

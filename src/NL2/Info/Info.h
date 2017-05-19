@@ -7,7 +7,7 @@
 #include <libnolimits/NL2/Info/Info.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class RideView {
         public:
             static BINDING_MODULE_INIT_ENUM(RideView,

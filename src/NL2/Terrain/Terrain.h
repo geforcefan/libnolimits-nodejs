@@ -8,7 +8,7 @@
 #include <libnolimits/NL2/Terrain/Terrain.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Terrain : public Nan::ObjectWrap {
         public:
             class TerrainMap {

@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Coaster/Track/RollPoint.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class RollPoint : public Nan::ObjectWrap {
         public:
             explicit RollPoint(NoLimits::NoLimits2::RollPoint *rollPoint) : _rollPoint(rollPoint) {}

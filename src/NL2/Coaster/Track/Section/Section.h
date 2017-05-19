@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Coaster/Track/Section/Section.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Section : public Nan::ObjectWrap {
         public:
             explicit Section(NoLimits::NoLimits2::Section *section) : _section(section) {}

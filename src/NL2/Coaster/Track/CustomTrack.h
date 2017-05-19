@@ -14,7 +14,7 @@
 #include <libnolimits/NL2/Coaster/Track/CustomTrack.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class CustomTrack : public Track {
         public:
             CustomTrack(NoLimits::NoLimits2::Track *track) : Track(track) {}
@@ -23,7 +23,7 @@ namespace Binding {
             NoLimits::NoLimits2::CustomTrack *getCustomTrack() { return (NoLimits::NoLimits2::CustomTrack*)getTrack(); }
 
             static BINDING_MODULE_INIT("CustomTrack",
-                BINDING_INHERIT(Binding::NL2Park::Track);
+                BINDING_INHERIT(Binding::NoLimits2::Track);
 
                 BINDING_PROTOTYPE_METHOD_GETTER(FirstRollPoint);
                 BINDING_PROTOTYPE_METHOD_GETTER(LastRollPoint);

@@ -6,7 +6,7 @@
 #include <libnolimits/NL2/Coaster/Car.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Car : public Nan::ObjectWrap {
         public:
             explicit Car(NoLimits::NoLimits2::Car *car) : _car(car) {}

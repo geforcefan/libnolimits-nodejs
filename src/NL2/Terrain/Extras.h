@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Terrain/Extras.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Extras : public Nan::ObjectWrap {
         public:
             explicit Extras() : _extras(new NoLimits::NoLimits2::Extras) {}

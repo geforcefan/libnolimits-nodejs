@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Info/Sky.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Sky : public Nan::ObjectWrap {
         public:
             explicit Sky(NoLimits::NoLimits2::Sky *sky) : _sky(sky) {}

@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Coaster/Track/Section/WaitTime.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class WaitTime : public Nan::ObjectWrap {
         public:
             explicit WaitTime(NoLimits::NoLimits2::WaitTime *waitTime) : _waitTime(waitTime) {}

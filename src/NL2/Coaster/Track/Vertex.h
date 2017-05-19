@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Coaster/Track/Vertex.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Vertex : public Nan::ObjectWrap {
         public:
             explicit Vertex(NoLimits::NoLimits2::Vertex *vertex) : _vertex(vertex) {}

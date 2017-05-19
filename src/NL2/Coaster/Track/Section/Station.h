@@ -8,7 +8,7 @@
 #include <libnolimits/NL2/Coaster/Track/Section/Station.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Display {
         public:
             static BINDING_MODULE_INIT_ENUM(Display,
@@ -46,7 +46,7 @@ namespace Binding {
             NoLimits::NoLimits2::Station *getStation() { return (NoLimits::NoLimits2::Station*)getSection(); }
 
             static BINDING_MODULE_INIT("Station",
-                BINDING_INHERIT(Binding::NL2Park::Section);
+                BINDING_INHERIT(Binding::NoLimits2::Section);
 
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(ExtraBlockLength);
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(UnloadingOnly);

@@ -14,6 +14,9 @@
 #include "NL2/Info/Sky.h"
 #include "NL2/Coaster/Coaster.h"
 #include "NL2/Coaster/Colors.h"
+#include "NL2/Coaster/ResourceFile.h"
+#include "NL2/Coaster/Script.h"
+#include "NL2/Coaster/FileScript.h"
 #include "NL2/Coaster/Style.h"
 #include "NL2/Coaster/Mode.h"
 #include "NL2/Coaster/Train.h"
@@ -39,50 +42,57 @@
 #include "NL2/Coaster/Track/Section/WaitTime.h"
 #include "NL2/Coaster/Track/Section/Brake.h"
 #include "NL2/Coaster/Track/Section/BrakeDevice.h"
+#include "NL2/Scenery/Scenery.h"
+#include "NL2/Scenery/SceneObjectInstance.h"
 
 void InitAll(v8::Handle<v8::Object> exports) {
     v8::Local<v8::Object> NL2Binding = Nan::New<v8::Object>();
-    Binding::NL2Park::Park::Init(NL2Binding);
-    Binding::NL2Park::Info::Init(NL2Binding);
-    Binding::NL2Park::Weather::Init(NL2Binding);
-    Binding::NL2Park::Sky::Init(NL2Binding);
-    Binding::NL2Park::Coaster::Init(NL2Binding);
-    Binding::NL2Park::Colors::Init(NL2Binding);
-    Binding::NL2Park::Style::Init(NL2Binding);
-    Binding::NL2Park::Mode::Init(NL2Binding);
-    Binding::NL2Park::CustomFriction::Init(NL2Binding);
-    Binding::NL2Park::CustomTrack::Init(NL2Binding);
-    Binding::NL2Park::Track::Init(NL2Binding);
-    Binding::NL2Park::Vertex::Init(NL2Binding);
-    Binding::NL2Park::RollPoint::Init(NL2Binding);
-    Binding::NL2Park::Trigger::Init(NL2Binding);
-    Binding::NL2Park::RailNode::Init(NL2Binding);
-    Binding::NL2Park::Segment::Init(NL2Binding);
-    Binding::NL2Park::Parameter4D::Init(NL2Binding);
-    Binding::NL2Park::WoodenSupportGenerator::Init(NL2Binding);
-    Binding::NL2Park::Section::Init(NL2Binding);
-    Binding::NL2Park::Storage::Init(NL2Binding);
-    Binding::NL2Park::TransportDevice::Init(NL2Binding);
-    Binding::NL2Park::Lift::Init(NL2Binding);
-    Binding::NL2Park::Separator::Init(NL2Binding);
-    Binding::NL2Park::Station::Init(NL2Binding);
-    Binding::NL2Park::Brake::Init(NL2Binding);
-    Binding::NL2Park::WaitTime::Init(NL2Binding);
-    Binding::NL2Park::Transport::Init(NL2Binding);
-    Binding::NL2Park::BrakeDevice::Init(NL2Binding);
-    Binding::NL2Park::Train::Init(NL2Binding);
-    Binding::NL2Park::Car::Init(NL2Binding);
-    Binding::NL2Park::IndividualColor::Init(NL2Binding);
-    Binding::NL2Park::Terrain::Init(NL2Binding);
-    Binding::NL2Park::Water::Init(NL2Binding);
-    Binding::NL2Park::Layer::Init(NL2Binding);
-    Binding::NL2Park::AutoPaint::Init(NL2Binding);
-    Binding::NL2Park::BaseMap::Init(NL2Binding);
-    Binding::NL2Park::DetailMap::Init(NL2Binding);
-    Binding::NL2Park::BumpMap::Init(NL2Binding);
-    Binding::NL2Park::Extras::Init(NL2Binding);
+    Binding::NoLimits2::Park::Init(NL2Binding);
+    Binding::NoLimits2::Info::Init(NL2Binding);
+    Binding::NoLimits2::Weather::Init(NL2Binding);
+    Binding::NoLimits2::Sky::Init(NL2Binding);
+    Binding::NoLimits2::Coaster::Init(NL2Binding);
+    Binding::NoLimits2::Colors::Init(NL2Binding);
+    Binding::NoLimits2::Style::Init(NL2Binding);
+    Binding::NoLimits2::Mode::Init(NL2Binding);
+    Binding::NoLimits2::CustomFriction::Init(NL2Binding);
+    Binding::NoLimits2::CustomTrack::Init(NL2Binding);
+    Binding::NoLimits2::Track::Init(NL2Binding);
+    Binding::NoLimits2::Vertex::Init(NL2Binding);
+    Binding::NoLimits2::RollPoint::Init(NL2Binding);
+    Binding::NoLimits2::Trigger::Init(NL2Binding);
+    Binding::NoLimits2::RailNode::Init(NL2Binding);
+    Binding::NoLimits2::Segment::Init(NL2Binding);
+    Binding::NoLimits2::Parameter4D::Init(NL2Binding);
+    Binding::NoLimits2::WoodenSupportGenerator::Init(NL2Binding);
+    Binding::NoLimits2::Section::Init(NL2Binding);
+    Binding::NoLimits2::Storage::Init(NL2Binding);
+    Binding::NoLimits2::TransportDevice::Init(NL2Binding);
+    Binding::NoLimits2::Lift::Init(NL2Binding);
+    Binding::NoLimits2::Separator::Init(NL2Binding);
+    Binding::NoLimits2::Station::Init(NL2Binding);
+    Binding::NoLimits2::Brake::Init(NL2Binding);
+    Binding::NoLimits2::WaitTime::Init(NL2Binding);
+    Binding::NoLimits2::Transport::Init(NL2Binding);
+    Binding::NoLimits2::BrakeDevice::Init(NL2Binding);
+    Binding::NoLimits2::Train::Init(NL2Binding);
+    Binding::NoLimits2::Car::Init(NL2Binding);
+    Binding::NoLimits2::IndividualColor::Init(NL2Binding);
+    Binding::NoLimits2::Terrain::Init(NL2Binding);
+    Binding::NoLimits2::Water::Init(NL2Binding);
+    Binding::NoLimits2::Layer::Init(NL2Binding);
+    Binding::NoLimits2::AutoPaint::Init(NL2Binding);
+    Binding::NoLimits2::BaseMap::Init(NL2Binding);
+    Binding::NoLimits2::DetailMap::Init(NL2Binding);
+    Binding::NoLimits2::BumpMap::Init(NL2Binding);
+    Binding::NoLimits2::Extras::Init(NL2Binding);
+    Binding::NoLimits2::Scenery::Init(NL2Binding);
+    Binding::NoLimits2::SceneObjectInstance::Init(NL2Binding);
+    Binding::NoLimits2::ResourceFile::Init(NL2Binding);
+    Binding::NoLimits2::Script::Init(NL2Binding);
+    Binding::NoLimits2::FileScript::Init(NL2Binding);
 
-    Nan::Set(exports, Nan::New("NL2").ToLocalChecked(), NL2Binding);
+    Nan::Set(exports, Nan::New("NoLimits2").ToLocalChecked(), NL2Binding);
 }
 
 NODE_MODULE(nolimits, InitAll)

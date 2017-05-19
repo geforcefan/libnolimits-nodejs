@@ -6,7 +6,7 @@
 #include <libnolimits/NL2/Coaster/Track/Segment.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Tunnel {
         public:
             static BINDING_MODULE_INIT_ENUM(Tunnel,

@@ -8,10 +8,10 @@ SegfaultHandler.registerHandler("crash.log", function(signal, address, stack) {
     // This callback will execute before the signal is forwarded on.
 });
 
-
+console.log("Started");
 const NoLimits = require('.').default;
 
-const Park = new NoLimits.NL2.Park();
+const Park = new NoLimits.NoLimits2.Park();
 
 for(var x = 0; x < Park.Terrain.VertexDimX; x++) {
     for(var y = 0; y < Park.Terrain.VertexDimY; y++) {
@@ -19,6 +19,21 @@ for(var x = 0; x < Park.Terrain.VertexDimX; x++) {
     }
 }
 
+var resourceFile = new NoLimits.NoLimits2.ResourceFile();
+resourceFile.Id = "0ABC";
+resourceFile.Path = "Test";
+
+var script = new NoLimits.NoLimits2.Script();
+script.insertResourceFile(resourceFile);
+script.PrivateVirtualMachine = true;
+script.ClassPath = "Hey Class";
+
+var coaster = new NoLimits.NoLimits2.Coaster();
+coaster.insertScript(script);
+coaster.Name = "Ercan Coaster";
+
+Park.insertCoaster(coaster);
+
 Park.save("/Users/ercanakyurek/Desktop/TestCoaster/Test.nl2park");
 
-console.log(Park);
+console.log(script);

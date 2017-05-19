@@ -6,7 +6,7 @@
 #include <libnolimits/NL2/Coaster/Mode.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Operation {
         public:
             static BINDING_MODULE_INIT_ENUM(Operation,

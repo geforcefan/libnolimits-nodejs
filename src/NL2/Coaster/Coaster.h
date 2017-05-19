@@ -10,11 +10,13 @@
 #include "Style.h"
 #include "Mode.h"
 #include "Train.h"
+#include "FileScript.h"
+#include "Script.h"
 
 #include "Track/CustomTrack.h"
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Coaster : public Nan::ObjectWrap {
         public:
             explicit Coaster(NoLimits::NoLimits2::Coaster *coaster) : _coaster(coaster) {}
@@ -35,6 +37,9 @@ namespace Binding {
                 BINDING_PROTOTYPE_METHOD_GETTER(Style);
                 BINDING_PROTOTYPE_METHOD_GETTER(Mode);
                 BINDING_PROTOTYPE_METHOD_GETTER_BY_NAME_VECTOR(Section);
+
+                BINDING_PROTOTYPE_METHOD_GETTER(FileScript);
+                BINDING_PROTOTYPE_METHOD_SETTER_GETTER_VECTOR(Script);
             );
 
             static BINDING_NEW_INSTANCE();
@@ -50,6 +55,9 @@ namespace Binding {
             BINDING_METHOD_GETTER_OBJECT(Colors, Coaster);
             BINDING_METHOD_GETTER_OBJECT(Style, Coaster);
             BINDING_METHOD_GETTER_OBJECT(Mode, Coaster);
+
+            BINDING_METHOD_GETTER_OBJECT(FileScript, Coaster);
+            BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(Script, Coaster);
 
             BINDING_METHOD_SETTER_GETTER_INHERITED_OBJECT_VECTOR(Track, Coaster);
             BINDING_METHOD_SETTER_GETTER_OBJECT_VECTOR(Train, Coaster);

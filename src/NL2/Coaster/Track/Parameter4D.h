@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Coaster/Track/Parameter4D.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Parameter4D : public Nan::ObjectWrap {
         public:
             explicit Parameter4D(NoLimits::NoLimits2::Parameter4D *parameter4D) : _parameter4D(parameter4D) {}

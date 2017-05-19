@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Coaster/CustomFriction.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class CustomFriction : public Nan::ObjectWrap {
         public:
             explicit CustomFriction(NoLimits::NoLimits2::CustomFriction *customFriction) : _customFriction(customFriction) {}

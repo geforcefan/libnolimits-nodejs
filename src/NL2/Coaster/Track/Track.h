@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Coaster/Track/Track.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Track : public Nan::ObjectWrap {
         public:
             explicit Track(NoLimits::NoLimits2::Track *track) : _track(track) {}

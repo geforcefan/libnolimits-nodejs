@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Coaster/Track/WoodenSupportGenerator.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class BentSpacing {
         public:
             static BINDING_MODULE_INIT_ENUM(BentSpacing,

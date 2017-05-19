@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Terrain/BumpMap.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class BumpMap : public Nan::ObjectWrap {
         public:
             explicit BumpMap() : _bumpMap(new NoLimits::NoLimits2::BumpMap) {}

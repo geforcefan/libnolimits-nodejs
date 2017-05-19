@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Coaster/Track/Trigger.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Trigger : public Nan::ObjectWrap {
         public:
             explicit Trigger(NoLimits::NoLimits2::Trigger *trigger) : _trigger(trigger) {}

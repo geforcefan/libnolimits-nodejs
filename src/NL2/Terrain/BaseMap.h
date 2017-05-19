@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Terrain/BaseMap.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class BaseMap : public Nan::ObjectWrap {
         public:
             explicit BaseMap() : _baseMap(new NoLimits::NoLimits2::BaseMap) {}

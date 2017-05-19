@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Coaster/Style.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class StyleType {
         public:
             static BINDING_MODULE_INIT_ENUM(StyleType,

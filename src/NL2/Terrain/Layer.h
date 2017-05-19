@@ -11,7 +11,7 @@
 #include <libnolimits/NL2/Terrain/Layer.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Layer : public Nan::ObjectWrap {
         public:
             explicit Layer() : _layer(new NoLimits::NoLimits2::Layer) {}

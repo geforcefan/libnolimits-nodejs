@@ -7,7 +7,7 @@
 #include <libnolimits/NL2/Coaster/Track/Separator.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Separator : public Nan::ObjectWrap {
         public:
             explicit Separator(NoLimits::NoLimits2::Separator *separator) : _separator(separator) {}

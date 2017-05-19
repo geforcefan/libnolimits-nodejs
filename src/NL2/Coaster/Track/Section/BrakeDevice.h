@@ -6,7 +6,7 @@
 #include <libnolimits/NL2/Coaster/Track/Section/BrakeDevice.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class BrakeDevice : public Nan::ObjectWrap {
         public:
             explicit BrakeDevice(NoLimits::NoLimits2::BrakeDevice *brakeDevice) : _brakeDevice(brakeDevice) {}

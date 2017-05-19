@@ -7,7 +7,7 @@
 #include <libnolimits/NL2/Coaster/Track/Section/Storage.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Building {
         public:
             static BINDING_MODULE_INIT_ENUM(Building,
@@ -24,7 +24,7 @@ namespace Binding {
             NoLimits::NoLimits2::Storage *getStorage() { return (NoLimits::NoLimits2::Storage*)getSection(); }
 
             static BINDING_MODULE_INIT("Storage",
-                BINDING_INHERIT(Binding::NL2Park::Section);
+                BINDING_INHERIT(Binding::NoLimits2::Section);
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(EnableTransportDevice);
                 BINDING_PROTOTYPE_METHOD_GETTER(TransportDevice);
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(TransportType);

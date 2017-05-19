@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Terrain/Water.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class Water : public Nan::ObjectWrap {
         public:
             explicit Water() : _water(new NoLimits::NoLimits2::Water) {}

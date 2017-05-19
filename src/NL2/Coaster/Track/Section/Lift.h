@@ -6,7 +6,7 @@
 #include <libnolimits/NL2/Coaster/Track/Section/Lift.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class LiftType {
         public:
             static BINDING_MODULE_INIT_ENUM(LiftType,
@@ -32,7 +32,7 @@ namespace Binding {
             NoLimits::NoLimits2::Lift *getLift() { return (NoLimits::NoLimits2::Lift*)getSection(); }
 
             static BINDING_MODULE_INIT("Lift",
-                BINDING_INHERIT(Binding::NL2Park::Section);
+                BINDING_INHERIT(Binding::NoLimits2::Section);
 
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(Speed);
                 BINDING_PROTOTYPE_METHOD_SETTER_GETTER(Acceleration);

@@ -7,7 +7,7 @@
 #include <libnolimits/NL2/Coaster/Track/Section/Brake.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class BrakeType {
         public:
             static BINDING_MODULE_INIT_ENUM(BrakeType,
@@ -41,7 +41,7 @@ namespace Binding {
             NoLimits::NoLimits2::Brake *getBrake() { return (NoLimits::NoLimits2::Brake*)getSection(); }
 
             static BINDING_MODULE_INIT("Brake",
-                BINDING_INHERIT(Binding::NL2Park::Section);
+                BINDING_INHERIT(Binding::NoLimits2::Section);
 
                 BINDING_PROTOTYPE_METHOD_GETTER(ExtraBlockLength);
 

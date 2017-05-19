@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Terrain/AutoPaint.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class AutoPaint : public Nan::ObjectWrap {
         public:
             explicit AutoPaint() : _autoPaint(new NoLimits::NoLimits2::AutoPaint) {}

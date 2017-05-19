@@ -5,7 +5,7 @@
 #include <libnolimits/NL2/Coaster/IndividualColor.h>
 
 namespace Binding {
-    namespace NL2Park {
+    namespace NoLimits2 {
         class IndividualColor : public Nan::ObjectWrap {
         public:
             explicit IndividualColor(NoLimits::NoLimits2::IndividualColor *individualColor) : _individualColor(individualColor) {}
